@@ -1,0 +1,15 @@
+newmtl _Tuba_V2:tuba_Brass_blinn3SG
+illum 4
+Kd 0.83 0.63 0.39
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.50 0.50 0.50
+newmtl _Tuba_V2:tuba_Silver_blinn2SG
+illum 4
+Kd 0.91 0.91 0.91
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 0.06

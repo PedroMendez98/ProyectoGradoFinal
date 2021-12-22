@@ -1,0 +1,70 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 15.11.2011 15:56:36
+
+newmtl Drum_wood
+	Ns 33.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.3150 0.3150 0.3150
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Drum_wood.jpg
+	map_Kd Drum_wood.jpg
+
+newmtl Drum_fabric_strap
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.0900 0.0900 0.0900
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Drum_fabric_on_strap.JPG
+	map_Kd Drum_fabric_on_strap.JPG
+
+newmtl Drum_iron
+	Ns 78.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.3882 0.4392 0.4902
+	Kd 0.3882 0.4392 0.4902
+	Ks 0.5220 0.5220 0.5220
+	Ke 0.0000 0.0000 0.0000
+
+newmtl Drum_painted_metal
+	Ns 60.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.6300 0.6300 0.6300
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Drum_painting_on_metal.jpg
+	map_Kd Drum_painting_on_metal.jpg
+
+newmtl Drum_red_plastic
+	Ns 60.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 0.7200 0.7200 0.7200
+	Ke 0.0000 0.0000 0.0000
+	map_Ka Drum_dent_on_the_rim.jpg
+	map_Kd Drum_dent_on_the_rim.jpg
