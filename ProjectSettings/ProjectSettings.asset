@@ -16,7 +16,7 @@ PlayerSettings:
   productName: ProyectoGradoFinal
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 1, g: 0, b: 0.25000048, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.990566, g: 0.5747152, b: 0.6790856, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
@@ -657,7 +657,7 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
-    Analytics: 1
+    Analytics: 0
     Build: 0
     Collab: 1
     Game Performance: 0

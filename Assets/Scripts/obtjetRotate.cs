@@ -8,7 +8,7 @@ public class obtjetRotate : MonoBehaviour
 {
 
     public GameObject objeto;
-    public GameObject  image, panel;
+    public GameObject  image, panel, text;
     bool enter;
     GUIStyle style;
     public Font ScoreFont;
@@ -17,6 +17,7 @@ public class obtjetRotate : MonoBehaviour
     {
         panel.SetActive(false);
         style = new GUIStyle();
+        
     }
 
     // Update is called once per frame
@@ -25,7 +26,8 @@ public class obtjetRotate : MonoBehaviour
         objeto.transform.Rotate(0, 10, 0);
         if (Input.GetKeyDown("e"))
         {
-            image.SetActive(true); 
+            image.SetActive(true);
+            text.SetActive(false);
         }
     }
     private void OnTriggerEnter(Collider other)
