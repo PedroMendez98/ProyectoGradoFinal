@@ -19,7 +19,7 @@ public class AjPlayer : MonoBehaviour
     private Vector3 CamRight;
     private Vector3 movePlayer;
     public float jumpForce;
-    public GameObject image;
+    //public GameObject image;
 
 
     // Update is called once per frame
@@ -29,9 +29,8 @@ public class AjPlayer : MonoBehaviour
         Application.targetFrameRate = -1;
         player = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        image.SetActive(true);
-        StartCoroutine("time_starts");
-        
+        //image.SetActive(true);
+        //StartCoroutine("time_starts");        
     }
 
     void Update()
@@ -116,9 +115,9 @@ public class AjPlayer : MonoBehaviour
         animator.SetFloat("VetX", playerInput.magnitude * runWalkSpeed);
     }
 
-    IEnumerator time_starts()
-    {
-        yield return new WaitForSeconds(5);
-        image.SetActive(false);
-    }
+    //IEnumerator time_starts()
+    //{
+    //    yield return new WaitForSeconds(5);
+    //    image.SetActive(false);
+    //}
 }
