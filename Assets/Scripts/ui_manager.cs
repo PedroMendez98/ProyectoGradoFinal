@@ -17,6 +17,7 @@ public class ui_manager : MonoBehaviour
 
     //Imagenes y/o Fondos
     public GameObject image_information;
+    public GameObject image_controls;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class ui_manager : MonoBehaviour
         image_information.SetActive(false);
         button_next.SetActive(false);
         button_close.SetActive(false);
+        image_controls.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,6 +39,7 @@ public class ui_manager : MonoBehaviour
         button_play.SetActive(true);
         menu.SetActive(false);
         image_information.SetActive(false);
+        image_controls.SetActive(false);
     }
     public void startInfo()
     {
@@ -46,6 +49,7 @@ public class ui_manager : MonoBehaviour
         image_information.SetActive(true);
         button_next.SetActive(true);
         button_close.SetActive(true);
+        image_controls.SetActive(false);
     }
     public void close()
     {
@@ -55,5 +59,16 @@ public class ui_manager : MonoBehaviour
         image_information.SetActive(false);
         button_next.SetActive(false);
         button_close.SetActive(false);
+        image_controls.SetActive(false);
+    }
+    public void screenControls()
+    {
+        button_play.SetActive(false);
+        Time.timeScale = 0f;
+        menu.SetActive(false);
+        image_information.SetActive(false);
+        button_next.SetActive(false);
+        button_close.SetActive(true);
+        image_controls.SetActive(true);
     }
 }
