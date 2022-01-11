@@ -35,8 +35,6 @@ public class AjPlayer : MonoBehaviour
 
     void Update()
     {
-       
-
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
 
