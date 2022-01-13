@@ -20,15 +20,20 @@ public class ui_manager : MonoBehaviour
     public GameObject button_menu_tracks;
     public GameObject button_menu_objects;
 
+    public Text textInfo;
+
     //Imagenes y/o Fondos
     public GameObject image_information;
     public GameObject image_controls;
     public GameObject image_menu;
 
+    bool validate_screen_status;
+
     //Jugador
     // Start is called before the first frame update
     void Start()
     {
+        textInfo.GetComponent<Text>();
         menu.SetActive(true);
         menuPausa.SetActive(false);
         image_information.SetActive(false);
@@ -49,6 +54,7 @@ public class ui_manager : MonoBehaviour
     {
         if (Input.GetButtonDown("Pause"))
         {
+            validate_screen_status = true;
             menuPause();
         }
     }
@@ -62,6 +68,7 @@ public class ui_manager : MonoBehaviour
         button_back.SetActive(false);
         button_menu.SetActive(true);
         Time.timeScale = 1f;
+        validate_screen_status = false;
 
     }
     public void startInfo()
@@ -79,6 +86,8 @@ public class ui_manager : MonoBehaviour
         image_menu.SetActive(false);
         button_menu_objects.SetActive(false);
         button_menu_tracks.SetActive(false);
+        
+        textInfo.text = "Este juego esta diseñado para el aprendizaje de lógica computacional de esta manera podrás poner aprueba tu conocimiento para resolver problemas a través de la lógica, \n\n recuerda dentro del colegio encontraras información a través de pistas y objetos que tendrás que recolectar de igual manera pondrás a prueba el conocimiento que obtengas durante esta aventura por medio pequeños ejercicios.";
 
     }
     public void close()
@@ -92,10 +101,11 @@ public class ui_manager : MonoBehaviour
         image_controls.SetActive(false);
         menuPausa.SetActive(false);
         button_back.SetActive(false);
-        button_menu.SetActive(true);
         image_menu.SetActive(false);
         button_menu_objects.SetActive(false);
         button_menu_tracks.SetActive(false);
+        button_menu.SetActive(true);
+        
     }
     public void screenControls()
     {
@@ -132,7 +142,6 @@ public class ui_manager : MonoBehaviour
     public void back()
     {
         button_play.SetActive(true);
-        menu.SetActive(true);
         Time.timeScale = 1f;
         image_information.SetActive(false);
         button_next.SetActive(false);
@@ -144,6 +153,14 @@ public class ui_manager : MonoBehaviour
         image_menu.SetActive(false);
         button_menu_objects.SetActive(false);
         button_menu_tracks.SetActive(false);
+        if (validate_screen_status == true)
+        {
+            menu.SetActive(false);
+        }
+        else
+        {
+            menu.SetActive(true);
+        }
     }
     public void enterMenu()
     {
@@ -159,5 +176,22 @@ public class ui_manager : MonoBehaviour
         image_menu.SetActive(true);
         button_menu_objects.SetActive(true);
         button_menu_tracks.SetActive(true);
+    }
+    public void next()
+    {
+        textInfo.text = "\n\nNo olvides algunos profesores del videojuego te darán información para que puedas continuar con tu ruta de aprendizaje.\n\n\n ¡Que comience la aventura a través de esta ruta de aprendizaje!";
+        button_play.SetActive(false);
+        Time.timeScale = 0f;
+        menu.SetActive(false);
+        image_information.SetActive(true);
+        button_next.SetActive(true);
+        button_close.SetActive(true);
+        image_controls.SetActive(false);
+        menuPausa.SetActive(false);
+        button_back.SetActive(true);
+        button_menu.SetActive(false);
+        image_menu.SetActive(false);
+        button_menu_objects.SetActive(false);
+        button_menu_tracks.SetActive(false);
     }
 }
