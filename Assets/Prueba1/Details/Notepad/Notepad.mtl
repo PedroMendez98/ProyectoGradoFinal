@@ -1,0 +1,44 @@
+newmtl N02___Default
+Ka 0.000000 0.000000 0.000000
+Kd 0.803922 0.803922 0.803922
+Ks 0.000000 0.000000 0.000000
+adobe_interior_color 0.803922 0.803922 0.803922
+Ns 2.000000
+d 1.000000
+Tr 0.000000
+Pr 0.333333
+Pm 0.080000
+adobe_density 0.000000
+adobe_translucence 0.000000
+adobe_glow 0.000000
+map_Kd N02___Default - Textura por defecto.PSD 
+
+newmtl N01___Default
+Ka 0.000000 0.000000 0.000000
+Kd 0.803922 0.803922 0.803922
+Ks 0.200000 0.200000 0.200000
+adobe_interior_color 0.803922 0.803922 0.803922
+Ns 6.062867
+d 1.000000
+Tr 0.000000
+Pr 0.600000
+Pm 0.000000
+adobe_density 0.000000
+adobe_translucence 0.000000
+adobe_glow 0.000000
+
+newmtl N03___Default
+Ka 0.000000 0.000000 0.000000
+Kd 0.803922 0.803922 0.803922
+Ks 0.000000 0.000000 0.000000
+adobe_interior_color 0.803922 0.803922 0.803922
+Ns 2.000000
+d 1.000000
+Tr 0.000000
+Pr 0.333333
+Pm 0.080000
+adobe_density 0.000000
+adobe_translucence 0.000000
+adobe_glow 0.000000
+map_Kd N03___Default - Textura por defecto.PSD 
+

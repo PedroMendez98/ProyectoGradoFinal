@@ -20,7 +20,10 @@ public class ui_manager : MonoBehaviour
     public GameObject button_menu_tracks;
     public GameObject button_menu_objects;
 
+    public GameObject text_title_grades;
+
     public Text textInfo;
+    public Text textTitleGrades;
 
     //Imagenes y/o Fondos
     public GameObject image_information;
@@ -45,7 +48,7 @@ public class ui_manager : MonoBehaviour
         image_menu.SetActive(false);
         button_menu_objects.SetActive(false);
         button_menu_tracks.SetActive(false);
-
+        text_title_grades.SetActive(false);
 
     }
 
