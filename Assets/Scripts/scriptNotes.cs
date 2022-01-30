@@ -88,7 +88,7 @@ public class scriptNotes : MonoBehaviour
           "\n\n\n                                        Pulsa 'X' para continuar....";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
-        //Destroy(notebookLogic);
+        Destroy(notebookLogic);
         Destroy(plarTeacher);
     }
     public void caseNextContinue(int opts)
