@@ -8,6 +8,13 @@ TagManager:
   - terrain
   - Esfera
   - Logic
+  - teacherOne
+  - Concept
+  - algorit
+  - codificacion
+  - lenguProgramation
+  - pseudocodigo
+  - diaFlujo
   layers:
   - Default
   - TransparentFX

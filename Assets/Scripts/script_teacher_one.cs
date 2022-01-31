@@ -24,6 +24,8 @@ public class script_teacher_one : MonoBehaviour
     public Vector3 rota;
     public GameObject panel;
     public GameObject textWelcome;
+    bool enter;
+    public Font ScoreFont;
 
     private void Awake()
     {
@@ -63,8 +65,9 @@ public class script_teacher_one : MonoBehaviour
             jugador.Rotate(rota);
             llave = true;
             teacherStatic();
-            panel.SetActive(true);
-            textWelcome.SetActive(true);
+            enter = true;
+            //panel.SetActive(true);
+            //textWelcome.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -74,6 +77,7 @@ public class script_teacher_one : MonoBehaviour
             llave = false;
             time = 0;
             timeRest = 5;
+            enter = false;
             panel.SetActive(false);
             textWelcome.SetActive(false);
         }
@@ -110,7 +114,7 @@ public class script_teacher_one : MonoBehaviour
             time = 0;
         }
         distance = Mathf.RoundToInt(Vector3.Distance(transform.position, wayPoints[nextPoint].position));
-         if(distance == 0)
+        if (distance == 0)
         {
             teacherAnimator.SetBool("Walk", false);
             teacherAnimator.SetBool("Idle", false);
@@ -118,4 +122,14 @@ public class script_teacher_one : MonoBehaviour
             teacher.destination = jugador.position;
         }
     }
+    void OnGUI()
+    {
+         style.fontSize = 25;
+         style.font = ScoreFont;
+         if (enter)
+         {
+            GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height - 50, 150, 30), "'F' Hablar con el Profe!", style);
+         }
+    }
 }
+

@@ -17,11 +17,20 @@ public class scriptNotes : MonoBehaviour
     public Text textTitle;
     public Text textInfoNote;
 
+    public GameObject panel2;
+    public GameObject textPanel2;
+
+    public GameObject[] notas;
+    public GameObject[] notasPantalla;
+    public Button[] buttonNotes;
+
 
     //objetos a destruir
     public GameObject plarTeacher;
 
     int opt;
+    int optmenuPant;
+    string buttonOptions;
     
     // Start is called before the first frame update
     void Start()
@@ -32,6 +41,12 @@ public class scriptNotes : MonoBehaviour
         text_title.SetActive(false);
         text_info_note.SetActive(false);
         button_exit.SetActive(false);
+        panel2.SetActive(false);
+        textPanel2.SetActive(false);
+        for (int i = 0; i < buttonNotes.LongLength; i++)
+        {
+            buttonNotes[i].enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -49,6 +64,7 @@ public class scriptNotes : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         tags = other.gameObject.tag;
+        print(tags);
     }
     private void OnTriggerExit(Collider other)
     {
@@ -60,8 +76,38 @@ public class scriptNotes : MonoBehaviour
         switch (tags)
         {
             case "Logic":
-                opt = 1;
                 logicNote();
+                tags = "";
+                buttonOptions = "buttonLogic";
+                validarButton(buttonOptions);
+                break;
+            case "teacherOne":
+                mensajeWelcome();
+                tags = "";
+                break;
+            case "Concept":
+                concepText();
+                tags = "";
+                break;
+            case "algorit":
+                algorit();
+                tags = "";
+                break;
+            case "codificacion":
+                codificacion();
+                tags = "";
+                break;
+            case "lenguProgramation":
+                lenguProgramation();
+                tags = "";
+                break;
+            case "pseudocodigo":
+                pseudocodigo();
+                tags = "";
+                break;
+            case "diaFlujo":
+                diaFlujo();
+                tags = "";
                 break;
             default:
                 break;
@@ -87,9 +133,45 @@ public class scriptNotes : MonoBehaviour
           "\n- Análisis y optimización de recursos temporales y espaciales (mas conocidos en el campo de la ciencia computacional como algoritmos)"+
           "\n\n\n                                        Pulsa 'X' para continuar....";
         button_exit.SetActive(true);
+        for (int i = 0; i < notas.LongLength; i++)
+        {
+            if (notas[i].name == "Concept")
+            {
+                notas[i].SetActive(true);
+            }
+            if (notas[i].name == "Logic")
+            {
+                notas[i].SetActive(false);
+            }
+        }
         Time.timeScale = 0f;
-        Destroy(notebookLogic);
+        opt = 1;
         Destroy(plarTeacher);
+    }
+    public void concepText()
+    {
+        panelNotebook.SetActive(true);
+        text_info_note.SetActive(true);
+        text_title.SetActive(true);
+        textTitle.text = "Conceptos";
+        textInfoNote.text = "Para iniciar esta travesía es importante tener claros algunos conceptos, los cuales aparecerán en el mapa para que puedas analizarlos."
+                               + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
+        button_exit.SetActive(true);
+
+        Time.timeScale = 0f;
+        opt = 0;
+        for (int i = 0; i < notas.LongLength; i++)
+        {
+            if (notas[i].name == "Logic")
+            {
+                notas[i].SetActive(false);
+            }
+            if (notas[i].name == "algorit" || notas[i].name == "codificacion" || notas[i].name == "lenguProgramation" || notas[i].name == "pseudocodigo" || notas[i].name == "diaFlujo")
+            {
+                notas[i].SetActive(true);
+
+            }
+        }
     }
     public void caseNextContinue(int opts)
     {
@@ -100,6 +182,152 @@ public class scriptNotes : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+    public void mensajeWelcome()
+    {
+        panelNotebook.SetActive(false);
+        text_title.SetActive(false);
+        text_info_note.SetActive(false);
+        button_exit.SetActive(false);
+        panel2.SetActive(true);
+        textPanel2.SetActive(true);
+        for (int i = 0; i < notas.LongLength; i++)
+        {
+           if(notas[i].name == "Logic")
+            {
+                notas[i].SetActive(true);
+            }
+        }
+        optmenuPant = 1;
+        StartCoroutine("expectTime");
+        
+    }
+    public void algorit()
+    {
+        panelNotebook.SetActive(true);
+        text_info_note.SetActive(true);
+        text_title.SetActive(true);
+        textTitle.text = "Algoritmo";
+        textInfoNote.text = "Para iniciar esta travesía es importante tener claros algunos conceptos, los cuales aparecerán en el mapa para que puedas analizarlos."
+                               + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
+        button_exit.SetActive(true);
+        Time.timeScale = 0f;
+        opt = 0;
+        for (int i = 0; i < notas.LongLength; i++)
+        {
+            if (notas[i].name == "Concept" || notas[i].name == "algorit")
+            {
+                notas[i].SetActive(false);
+            }
+        }
+    }
+    public void codificacion()
+    {
+        panelNotebook.SetActive(true);
+        text_info_note.SetActive(true);
+        text_title.SetActive(true);
+        textTitle.text = "Codificación";
+        textInfoNote.text = "Para iniciar esta travesía es importante tener claros algunos conceptos, los cuales aparecerán en el mapa para que puedas analizarlos."
+                               + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
+        button_exit.SetActive(true);
+        Time.timeScale = 0f;
+        opt = 0;
+        for (int i = 0; i < notas.LongLength; i++)
+        {
+            if (notas[i].name == "codificacion")
+            {
+                notas[i].SetActive(false);
+            }
+        }
+    }
+    public void lenguProgramation()
+    {
+        panelNotebook.SetActive(true);
+        text_info_note.SetActive(true);
+        text_title.SetActive(true);
+        textTitle.text = "Lenguajes de programación";
+        textInfoNote.text = "Para iniciar esta travesía es importante tener claros algunos conceptos, los cuales aparecerán en el mapa para que puedas analizarlos."
+                               + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
+        button_exit.SetActive(true);
+        Time.timeScale = 0f;
+        opt = 0;
+        for (int i = 0; i < notas.LongLength; i++)
+        {
+            if (notas[i].name == "lenguProgramation")
+            {
+                notas[i].SetActive(false);
+            }
+        }
+    }
+    public void pseudocodigo()
+    {
+        panelNotebook.SetActive(true);
+        text_info_note.SetActive(true);
+        text_title.SetActive(true);
+        textTitle.text = "Pseudocódigo";
+        textInfoNote.text = "Para iniciar esta travesía es importante tener claros algunos conceptos, los cuales aparecerán en el mapa para que puedas analizarlos."
+                               + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
+        button_exit.SetActive(true);
+        Time.timeScale = 0f;
+        opt = 0;
+        for (int i = 0; i < notas.LongLength; i++)
+        {
+            if (notas[i].name == "pseudocodigo")
+            {
+                notas[i].SetActive(false);
+            }
+        }
+    }
+    public void diaFlujo()
+    {
+        panelNotebook.SetActive(true);
+        text_info_note.SetActive(true);
+        text_title.SetActive(true);
+        textTitle.text = "Diagrama de flujos";
+        textInfoNote.text = "Para iniciar esta travesía es importante tener claros algunos conceptos, los cuales aparecerán en el mapa para que puedas analizarlos."
+                               + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
+        button_exit.SetActive(true);
+        Time.timeScale = 0f;
+        opt = 0;
+        for (int i = 0; i < notas.LongLength; i++)
+        {
+            if (notas[i].name == "diaFlujo")
+            {
+                notas[i].SetActive(false);
+            }
+        }
+    }
+    IEnumerator expectTime()
+    {
+        
+        yield return new WaitForSeconds(5);
+        switch (optmenuPant)
+        {
+            case 1:
+                for (int i = 0; i < notasPantalla.LongLength; i++)
+                {
+                    if (notasPantalla[i].name == "miniMap")
+                    {
+                        notasPantalla[i].SetActive(true);
+                    }        
+                    yield return new WaitForSeconds(5);
+                    notasPantalla[i].SetActive(false);
+                }
+                break;
+            default:
+                break;
+        }
+        
+    }
+    public void validarButton(string optiButton) 
+    {
+        for (int i = 0; i < buttonNotes.LongLength; i++)
+        {
+           if(buttonNotes[i].name == optiButton)
+           {
+                buttonNotes[i].enabled = true;   
+           }
         }
     }
 }
