@@ -15,6 +15,7 @@ TagManager:
   - lenguProgramation
   - pseudocodigo
   - diaFlujo
+  - tipovariable
   layers:
   - Default
   - TransparentFX

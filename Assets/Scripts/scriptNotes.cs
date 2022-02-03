@@ -7,7 +7,6 @@ public class scriptNotes : MonoBehaviour
 {
     string tags;
     public GameObject panelNotebook;
-    public GameObject notebookLogic;
 
     public GameObject text_title;
     public GameObject text_info_note;
@@ -24,14 +23,14 @@ public class scriptNotes : MonoBehaviour
     public GameObject[] notasPantalla;
     public Button[] buttonNotes;
 
-
     //objetos a destruir
     public GameObject plarTeacher;
 
     int opt;
     int optmenuPant;
     string buttonOptions;
-    
+    int cont = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +45,10 @@ public class scriptNotes : MonoBehaviour
         for (int i = 0; i < buttonNotes.LongLength; i++)
         {
             buttonNotes[i].enabled = false;
+        }
+        for (int i = 0; i < notas.LongLength; i++)
+        {
+            notas[i].SetActive(false);
         }
     }
 
@@ -78,8 +81,7 @@ public class scriptNotes : MonoBehaviour
             case "Logic":
                 logicNote();
                 tags = "";
-                buttonOptions = "buttonLogic";
-                validarButton(buttonOptions);
+                validarButton("buttonLogic");
                 break;
             case "teacherOne":
                 mensajeWelcome();
@@ -92,22 +94,32 @@ public class scriptNotes : MonoBehaviour
             case "algorit":
                 algorit();
                 tags = "";
+                validarButton("buttonAlgorit");
                 break;
             case "codificacion":
                 codificacion();
                 tags = "";
+                validarButton("buttonCodificacion");
                 break;
             case "lenguProgramation":
                 lenguProgramation();
                 tags = "";
+                validarButton("buttonLenguProgramation");
                 break;
             case "pseudocodigo":
                 pseudocodigo();
                 tags = "";
+                validarButton("buttonPseudocodigo");
                 break;
             case "diaFlujo":
                 diaFlujo();
                 tags = "";
+                validarButton("buttonDiaFlujo");
+                break;
+            case "tipovariable":
+                tipovariable();
+                tags="";
+                validarButton("buttonTipovariable");
                 break;
             default:
                 break;
@@ -133,17 +145,9 @@ public class scriptNotes : MonoBehaviour
           "\n- Análisis y optimización de recursos temporales y espaciales (mas conocidos en el campo de la ciencia computacional como algoritmos)"+
           "\n\n\n                                        Pulsa 'X' para continuar....";
         button_exit.SetActive(true);
-        for (int i = 0; i < notas.LongLength; i++)
-        {
-            if (notas[i].name == "Concept")
-            {
-                notas[i].SetActive(true);
-            }
-            if (notas[i].name == "Logic")
-            {
-                notas[i].SetActive(false);
-            }
-        }
+        activarPistas("Concept");
+        desactivarPistas("Logic");
+
         Time.timeScale = 0f;
         opt = 1;
         Destroy(plarTeacher);
@@ -160,18 +164,12 @@ public class scriptNotes : MonoBehaviour
 
         Time.timeScale = 0f;
         opt = 0;
-        for (int i = 0; i < notas.LongLength; i++)
-        {
-            if (notas[i].name == "Logic")
-            {
-                notas[i].SetActive(false);
-            }
-            if (notas[i].name == "algorit" || notas[i].name == "codificacion" || notas[i].name == "lenguProgramation" || notas[i].name == "pseudocodigo" || notas[i].name == "diaFlujo")
-            {
-                notas[i].SetActive(true);
-
-            }
-        }
+        desactivarPistas("Concept");
+        activarPistas("algorit");
+        activarPistas("codificacion");
+        activarPistas("lenguProgramation");
+        activarPistas("pseudocodigo");
+        activarPistas("diaFlujo");
     }
     public void caseNextContinue(int opts)
     {
@@ -192,14 +190,8 @@ public class scriptNotes : MonoBehaviour
         button_exit.SetActive(false);
         panel2.SetActive(true);
         textPanel2.SetActive(true);
-        for (int i = 0; i < notas.LongLength; i++)
-        {
-           if(notas[i].name == "Logic")
-            {
-                notas[i].SetActive(true);
-            }
-        }
         optmenuPant = 1;
+        activarPistas("Logic");
         StartCoroutine("expectTime");
         
     }
@@ -214,13 +206,9 @@ public class scriptNotes : MonoBehaviour
         button_exit.SetActive(true);
         Time.timeScale = 0f;
         opt = 0;
-        for (int i = 0; i < notas.LongLength; i++)
-        {
-            if (notas[i].name == "Concept" || notas[i].name == "algorit")
-            {
-                notas[i].SetActive(false);
-            }
-        }
+        cont = cont + 1;
+        validarNotas(cont);
+        desactivarPistas("algorit");
     }
     public void codificacion()
     {
@@ -232,14 +220,10 @@ public class scriptNotes : MonoBehaviour
                                + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
+        cont = cont + 1;
+        validarNotas(cont);
         opt = 0;
-        for (int i = 0; i < notas.LongLength; i++)
-        {
-            if (notas[i].name == "codificacion")
-            {
-                notas[i].SetActive(false);
-            }
-        }
+        desactivarPistas("codificacion");
     }
     public void lenguProgramation()
     {
@@ -252,13 +236,9 @@ public class scriptNotes : MonoBehaviour
         button_exit.SetActive(true);
         Time.timeScale = 0f;
         opt = 0;
-        for (int i = 0; i < notas.LongLength; i++)
-        {
-            if (notas[i].name == "lenguProgramation")
-            {
-                notas[i].SetActive(false);
-            }
-        }
+        cont = cont + 1;
+        validarNotas(cont);
+        desactivarPistas("lenguProgramation");
     }
     public void pseudocodigo()
     {
@@ -271,13 +251,9 @@ public class scriptNotes : MonoBehaviour
         button_exit.SetActive(true);
         Time.timeScale = 0f;
         opt = 0;
-        for (int i = 0; i < notas.LongLength; i++)
-        {
-            if (notas[i].name == "pseudocodigo")
-            {
-                notas[i].SetActive(false);
-            }
-        }
+        desactivarPistas("pseudocodigo");
+        cont = cont + 1;
+        validarNotas(cont);
     }
     public void diaFlujo()
     {
@@ -290,13 +266,22 @@ public class scriptNotes : MonoBehaviour
         button_exit.SetActive(true);
         Time.timeScale = 0f;
         opt = 0;
-        for (int i = 0; i < notas.LongLength; i++)
-        {
-            if (notas[i].name == "diaFlujo")
-            {
-                notas[i].SetActive(false);
-            }
-        }
+        desactivarPistas("diaFlujo");
+        cont = cont + 1;
+        validarNotas(cont);
+    }
+    public void tipovariable()
+    {
+        panelNotebook.SetActive(true);
+        text_info_note.SetActive(true);
+        text_title.SetActive(true);
+        textTitle.text = "Tipo Variable";
+        textInfoNote.text = "Para iniciar esta travesía es importante tener claros algunos conceptos, los cuales aparecerán en el mapa para que puedas analizarlos."
+                               + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
+        button_exit.SetActive(true);
+        Time.timeScale = 0f;
+        opt = 0;
+        desactivarPistas("tipovariable");
     }
     IEnumerator expectTime()
     {
@@ -328,6 +313,33 @@ public class scriptNotes : MonoBehaviour
            {
                 buttonNotes[i].enabled = true;   
            }
+        }
+    }
+    public void activarPistas(string namePistaA)
+    {
+        for (int i = 0; i < notas.LongLength; i++)
+        {
+            if (notas[i].name == namePistaA)
+            {
+                notas[i].SetActive(true);
+            }
+        }
+    }
+    public void desactivarPistas(string namePistaD)
+    {
+        for (int i = 0; i < notas.LongLength; i++)
+        {
+            if (notas[i].name == namePistaD)
+            {
+                notas[i].SetActive(false);
+            }
+        }
+    }
+    public void validarNotas(int contador)
+    {
+        if (contador == 5)
+        {
+            activarPistas("tipovariable");
         }
     }
 }
