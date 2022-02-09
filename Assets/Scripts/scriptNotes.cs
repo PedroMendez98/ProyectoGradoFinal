@@ -296,7 +296,7 @@ public class scriptNotes : MonoBehaviour
                     {
                         notasPantalla[i].SetActive(true);
                     }        
-                    yield return new WaitForSeconds(5);
+                    yield return new WaitForSeconds(3);
                     notasPantalla[i].SetActive(false);
                 }
                 break;
