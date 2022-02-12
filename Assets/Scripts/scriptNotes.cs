@@ -121,6 +121,11 @@ public class scriptNotes : MonoBehaviour
                 tags="";
                 validarButton("buttonTipovariable");
                 break;
+            case "trouble":
+                trouble();
+                tags = "";
+                validarButton("buttonTrouble");
+                break;
             default:
                 break;
         }
@@ -178,6 +183,17 @@ public class scriptNotes : MonoBehaviour
             case 1:
                 textInfoNote.text = "la lógica computacional es una disciplina que estudia la aplicación de la lógica formal Para representación computacional de parámetros, técnicas de deducción automática o Conocimientos básicos asistidos por ordenador relacionados con la validez y la integridad de acuerdo con su complejidad. ";
                 break;
+            case 2:
+                textInfoNote.text = "Para explicar mejor, un lenguaje de programación es un sistema de comunicación estructurado, compuesto por conjuntos de símbolos, palabras clave, reglas semánticas y sintaxis que permite el entendimiento entre programadores y máquinas."+
+                                    "\n\nEstos son algunos ejemplos de lenguajes de programación que podrás encontrar:"+
+                                    "\n\t*JavaScript \n\t*Java \n\t*C# \n\t*PHP \n\t*C / C++";
+                break;
+            case 3:
+                textInfoNote.text = "Usando algoritmos, las personas pueden entender fácilmente un programa. El objetivo principal de los diagramas de flujo es analizar diferentes procesos.\n\n Los procesos se pueden representar mediante cajas y flujos de diferentes tamaños y colores. En un diagrama, podemos resaltar fácilmente un elemento y la relación entre cada parte.";
+                break;
+            case 4:
+                textInfoNote.text = " El pseudocódigo es un método para visualizar una solución detallada de un algoritmo. El término se utiliza campos como la informática, las especializaciones en informática y el análisis numérico. Por lo tanto, el pseudocódigo es una forma relativamente simple de representar los diferentes pasos que debe seguir un programa para lograr sus objetivos.";
+                break;
             default:
                 break;
         }
@@ -201,8 +217,11 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "Algoritmo";
-        textInfoNote.text = "Para iniciar esta travesía es importante tener claros algunos conceptos, los cuales aparecerán en el mapa para que puedas analizarlos."
-                               + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
+        textInfoNote.text = "Un algoritmo informático es un conjunto definido, ordenado y acotado de instrucciones para resolver un problema, realizar un cálculo o realizar una tarea. Es decir, un algoritmo es un proceso paso a paso para llegar a un fin. Partiendo de un estado e información inicial, sigue una secuencia de pasos ordenados para resolver una situación."
+                            + "\n\nLos algoritmos se componen de tres partes importantes para realizar los pasos y resolver los problemas, sus componentes son:"+
+                                "\n\t* Input(Entrada) información que se suministra al algoritmo."+ 
+                                "\n\t* Proceso(Paso asignados a partir de la entrada)."+
+                                "\n\t* Output(Salida) resultado de la transformación de los datos.";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
         opt = 0;
@@ -216,8 +235,7 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "Codificación";
-        textInfoNote.text = "Para iniciar esta travesía es importante tener claros algunos conceptos, los cuales aparecerán en el mapa para que puedas analizarlos."
-                               + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
+        textInfoNote.text = "En informática, la codificación también es la operación de enviar datos de un lugar a otro, procesarlos y obtener resultados de ellos. Todas las operaciones de la computadora están encriptadas en código binario o en una combinación más o menos compleja de 1 y 0 que siguen apareciendo. \n\nA su vez, ciertas operaciones de la computadora requieren un segundo nivel de encriptación. Son aquellas que requieren aspectos de seguridad y confidencialidad, y por lo tanto implican la creación de mensajes encriptados que solo pueden ser leídos por cierto tipo de computadoras o por el usuario que los creó, al igual que las contraseñas y los datos personales en las transacciones en línea.";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
         cont = cont + 1;
@@ -231,11 +249,15 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "Lenguajes de programación";
-        textInfoNote.text = "Para iniciar esta travesía es importante tener claros algunos conceptos, los cuales aparecerán en el mapa para que puedas analizarlos."
-                               + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
+        textInfoNote.text = "Es un lenguaje completo que, a través de una serie de instrucciones, permite a los programadores escribir un conjunto de instrucciones, acciones secuenciales, datos y algoritmos para crear programas que manipulan la física y la lógica de una máquina."+
+                            "\n\nGracias a este lenguaje, el programador y la máquina se comunican entre sí, lo que permite determinar con precisión aspectos como:"+
+                              "\n\t-Qué datos debe explotar un determinado software."+
+                              "\n\t-Cómo deben almacenarse o transmitirse estos datos." +
+                              "\n\t-Acciones tomadas por el software en base a los casos de cambio."+
+                              "\n\n                                        Pulsa 'X' para continuar....";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
-        opt = 0;
+        opt = 2;
         cont = cont + 1;
         validarNotas(cont);
         desactivarPistas("lenguProgramation");
@@ -246,11 +268,11 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "Pseudocódigo";
-        textInfoNote.text = "Para iniciar esta travesía es importante tener claros algunos conceptos, los cuales aparecerán en el mapa para que puedas analizarlos."
-                               + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
+        textInfoNote.text = "El pseudocódigo es una forma de expresar los diferentes pasos que realizará un programa, más similar a un lenguaje de programación. Su principal función es representar la solución de un problema o algoritmo paso a paso de la forma más detallada posible, utilizando un lenguaje cercano a la programación. \n\nEl pseudocódigo no se puede ejecutar en una computadora porque entonces ya no será un pseudocódigo, como sugiere el nombre, es un código de error (pseudo = falso), que es un código escrito para el entendimiento humano, no para la máquina."
+                            +"\n\n                                        Pulsa 'X' para continuar....";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
-        opt = 0;
+        opt = 4;
         desactivarPistas("pseudocodigo");
         cont = cont + 1;
         validarNotas(cont);
@@ -261,11 +283,11 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "Diagrama de flujos";
-        textInfoNote.text = "Para iniciar esta travesía es importante tener claros algunos conceptos, los cuales aparecerán en el mapa para que puedas analizarlos."
-                               + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
+        textInfoNote.text = "Un diagrama de flujo se conoce como una representación gráfica de todos los pasos involucrados en un proceso. Por lo tanto, es un diagrama esquemático de la secuencia de operaciones que componen el sistema. Un diagrama de flujo es en pocas palabras todas las acciones que se relacionan entre sí para conducir a un resultado específico. \n\nEs importante resaltar que un diagrama de flujo es una representación gráfica o visual de un algoritmo que utiliza varios símbolos, formas y líneas para representar el proceso de un programa."+
+                             "\n                                           Pulsa 'X' para continuar....";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
-        opt = 0;
+        opt = 3;
         desactivarPistas("diaFlujo");
         cont = cont + 1;
         validarNotas(cont);
@@ -282,11 +304,25 @@ public class scriptNotes : MonoBehaviour
         Time.timeScale = 0f;
         opt = 0;
         desactivarPistas("tipovariable");
+        activarPistas("trouble");
+    }
+    public void trouble()
+    {
+        panelNotebook.SetActive(true);
+        text_info_note.SetActive(true);
+        text_title.SetActive(true);
+        textTitle.text = "Problemas";
+        textInfoNote.text = "Para iniciar esta travesía es importante tener claros algunos conceptos, los cuales aparecerán en el mapa para que puedas analizarlos."
+                               + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
+        button_exit.SetActive(true);
+        Time.timeScale = 0f;
+        opt = 0;
+        desactivarPistas("trouble");
     }
     IEnumerator expectTime()
     {
         
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         switch (optmenuPant)
         {
             case 1:
