@@ -17,6 +17,12 @@ TagManager:
   - diaFlujo
   - tipovariable
   - trouble
+  - actiPruebas
+  - Notebook_1
+  - Notebook_2
+  - Notebook_3
+  - Jasper
+  - Tops
   layers:
   - Default
   - TransparentFX

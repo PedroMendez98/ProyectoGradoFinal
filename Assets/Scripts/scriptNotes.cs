@@ -18,10 +18,12 @@ public class scriptNotes : MonoBehaviour
 
     public GameObject panel2;
     public GameObject textPanel2;
+    public GameObject pistaInterrogante;
 
     public GameObject[] notas;
     public GameObject[] notasPantalla;
     public Button[] buttonNotes;
+    public GameObject[] life;
 
     //objetos a destruir
     public GameObject plarTeacher;
@@ -30,6 +32,7 @@ public class scriptNotes : MonoBehaviour
     int optmenuPant;
     string buttonOptions;
     int cont = 0;
+    int option;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +45,7 @@ public class scriptNotes : MonoBehaviour
         button_exit.SetActive(false);
         panel2.SetActive(false);
         textPanel2.SetActive(false);
+        pistaInterrogante.SetActive(false);
         for (int i = 0; i < buttonNotes.LongLength; i++)
         {
             buttonNotes[i].enabled = false;
@@ -63,12 +67,32 @@ public class scriptNotes : MonoBehaviour
         {
             caseNextContinue(opt);
         }
+        if (Input.GetKeyDown("e"))
+        {
+            if (tags == "actiPruebas")
+            {
+                optionNote();
+            }
+           
+        }
+        personaje();
+
+        //--------borrar----------
+        for (int i = 0; i < buttonNotes.LongLength; i++)
+        {
+            buttonNotes[i].enabled = true;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
         tags = other.gameObject.tag;
         print(tags);
+        if (tags=="Tops")
+        {
+            option += 1;
+        }
     }
+
     private void OnTriggerExit(Collider other)
     {
         
@@ -126,6 +150,10 @@ public class scriptNotes : MonoBehaviour
                 tags = "";
                 validarButton("buttonTrouble");
                 break;
+            case "actiPruebas":
+                activarPruebas();
+                tags = "";
+                break;
             default:
                 break;
         }
@@ -176,28 +204,7 @@ public class scriptNotes : MonoBehaviour
         activarPistas("pseudocodigo");
         activarPistas("diaFlujo");
     }
-    public void caseNextContinue(int opts)
-    {
-        switch (opts)
-        {
-            case 1:
-                textInfoNote.text = "la lógica computacional es una disciplina que estudia la aplicación de la lógica formal Para representación computacional de parámetros, técnicas de deducción automática o Conocimientos básicos asistidos por ordenador relacionados con la validez y la integridad de acuerdo con su complejidad. ";
-                break;
-            case 2:
-                textInfoNote.text = "Para explicar mejor, un lenguaje de programación es un sistema de comunicación estructurado, compuesto por conjuntos de símbolos, palabras clave, reglas semánticas y sintaxis que permite el entendimiento entre programadores y máquinas."+
-                                    "\n\nEstos son algunos ejemplos de lenguajes de programación que podrás encontrar:"+
-                                    "\n\t*JavaScript \n\t*Java \n\t*C# \n\t*PHP \n\t*C / C++";
-                break;
-            case 3:
-                textInfoNote.text = "Usando algoritmos, las personas pueden entender fácilmente un programa. El objetivo principal de los diagramas de flujo es analizar diferentes procesos.\n\n Los procesos se pueden representar mediante cajas y flujos de diferentes tamaños y colores. En un diagrama, podemos resaltar fácilmente un elemento y la relación entre cada parte.";
-                break;
-            case 4:
-                textInfoNote.text = " El pseudocódigo es un método para visualizar una solución detallada de un algoritmo. El término se utiliza campos como la informática, las especializaciones en informática y el análisis numérico. Por lo tanto, el pseudocódigo es una forma relativamente simple de representar los diferentes pasos que debe seguir un programa para lograr sus objetivos.";
-                break;
-            default:
-                break;
-        }
-    }
+
     public void mensajeWelcome()
     {
         panelNotebook.SetActive(false);
@@ -298,11 +305,11 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "Tipo Variable";
-        textInfoNote.text = "Para iniciar esta travesía es importante tener claros algunos conceptos, los cuales aparecerán en el mapa para que puedas analizarlos."
-                               + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
+        textInfoNote.text = "Es un espacio en la memoria de la computadora que permite el almacenamiento temporal de datos durante la ejecución de un proceso, cuyo contenido puede cambiarse durante la ejecución del programa. \n\nLa información puede ser un carácter, una cadena, un número, una matriz y, en general, cualquier otro tipo de dato. Para identificar una variable en la memoria de la computadora, es necesario darle un nombre para que podamos identificarla en el algoritmo."
+                            +"\n                                           Pulsa 'X' para continuar....";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
-        opt = 0;
+        opt = 5;
         desactivarPistas("tipovariable");
         activarPistas("trouble");
     }
@@ -312,12 +319,81 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "Problemas";
-        textInfoNote.text = "Para iniciar esta travesía es importante tener claros algunos conceptos, los cuales aparecerán en el mapa para que puedas analizarlos."
-                               + "\n\nLos conceptos son: \n -Algoritmos \n -Codificación \n -Lenguaje de programación \n -Seudocódigo \n -Diagrama de flujo";
+        textInfoNote.text = "En el cual se comprende con claridad, cuál es el problema, que debes lograr y perfilar una posible solución."
+                             + "\n\nLa programación lineal es un método por el cual se optimiza una función objetivo, por maximización o minimización, en el que las variables se elevan a potencias de 1. Ello, teniendo en cuenta las diversas restricciones introducidas." +
+                                " Recuerda que este tipo de ecuación es una igualdad matemática que puede tener una o más incógnitas. Entonces tiene la siguiente forma básica, donde a y b son constantes, mientras que x e y son variables.";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
         opt = 0;
         desactivarPistas("trouble");
+        pistaInterrogante.SetActive(true);
+        
+    }
+    void activarPruebas()
+    {
+        panelNotebook.SetActive(true);
+        text_info_note.SetActive(true);
+        text_title.SetActive(true);
+        textInfoNote.alignment = TextAnchor.UpperCenter;
+        opt = 12;
+        textTitle.text = "¡FELICIDADES!";
+        textInfoNote.text = "¡Felicidades has llegado al momento de las pruebas!" +
+                            "\n\n¡Validemos que tanto aprendiste empecemos!" +
+                             "\n\n\nPulsa | X | para empezar….";
+        Time.timeScale = 0f;
+    }
+    void personaje()
+    {
+        if (tags == "Tops")
+        {
+            switch (option)
+            {
+                case 1:
+                    calculateLife("Notebook_3");
+                    break;
+                case 2:
+                    calculateLife("Notebook_2");
+                    break;
+                case 3:
+                    calculateLife("Notebook_1");
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+    }
+    public void caseNextContinue(int opts)
+    {
+        switch (opts)
+        {
+            case 1:
+                textInfoNote.text = "la lógica computacional es una disciplina que estudia la aplicación de la lógica formal Para representación computacional de parámetros, técnicas de deducción automática o Conocimientos básicos asistidos por ordenador relacionados con la validez y la integridad de acuerdo con su complejidad. ";
+                break;
+            case 2:
+                textInfoNote.text = "Para explicar mejor, un lenguaje de programación es un sistema de comunicación estructurado, compuesto por conjuntos de símbolos, palabras clave, reglas semánticas y sintaxis que permite el entendimiento entre programadores y máquinas." +
+                                    "\n\nEstos son algunos ejemplos de lenguajes de programación que podrás encontrar:" +
+                                    "\n\t*JavaScript \n\t*Java \n\t*C# \n\t*PHP \n\t*C / C++";
+                break;
+            case 3:
+                textInfoNote.text = "Usando algoritmos, las personas pueden entender fácilmente un programa. El objetivo principal de los diagramas de flujo es analizar diferentes procesos.\n\n Los procesos se pueden representar mediante cajas y flujos de diferentes tamaños y colores. En un diagrama, podemos resaltar fácilmente un elemento y la relación entre cada parte.";
+                break;
+            case 4:
+                textInfoNote.text = "El pseudocódigo es un método para visualizar una solución detallada de un algoritmo. El término se utiliza campos como la informática, las especializaciones en informática y el análisis numérico. Por lo tanto, el pseudocódigo es una forma relativamente simple de representar los diferentes pasos que debe seguir un programa para lograr sus objetivos.";
+                break;
+            case 5:
+                textInfoNote.text = "Estos son los tipos de variables que puedes utilizar: \n\n* Variables numéricas: Variables que almacenan valores numéricos(positivos o negativos), es decir, almacenan números del 0 al 9, signos(+y -) y puntos decimales. \n\n*Variables booleanas: Son variables que pueden contener solo dos valores (verdadero o falso) que muestran el resultado de una comparación entre otros datos. \n\n*Variables Alfanuméricas: incluye caracteres alfabéticos numéricos (letras, números y caracteres especiales).";
+                break;
+            case 12:
+                panelNotebook.SetActive(false);
+                text_info_note.SetActive(false);
+                text_title.SetActive(false);
+                Time.timeScale = 1f;
+                pistaInterrogante.SetActive(false);
+                break;
+            default:
+                break;
+        }
     }
     IEnumerator expectTime()
     {
@@ -376,6 +452,16 @@ public class scriptNotes : MonoBehaviour
         if (contador == 5)
         {
             activarPistas("tipovariable");
+        }
+    }
+    public void calculateLife(string strlife)
+    {
+        for (int i = 0; i < life.LongLength; i++)
+        {
+            if (life[i].name == strlife)
+            {
+                life[i].SetActive(false);
+            }
         }
     }
 }

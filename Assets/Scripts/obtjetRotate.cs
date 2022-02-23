@@ -7,34 +7,27 @@ using UnityEngine.UI;
 public class obtjetRotate : MonoBehaviour
 {
 
-    public GameObject objeto;
-    public GameObject  image, panel, text;
+    public GameObject objeto, panelNotebook;
+    public Text textTitle;
+    public Text textInfoNote;
     bool enter;
     GUIStyle style;
     public Font ScoreFont;
     // Start is called before the first frame update
     void Start()
     {
-        panel.SetActive(false);
         style = new GUIStyle();
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        objeto.transform.Rotate(0, 10, 0);
-        if (Input.GetKeyDown("e"))
-        {
-            image.SetActive(true);
-            text.SetActive(false);
-        }
+        objeto.transform.Rotate(0, 10, 0); 
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            panel.SetActive(true);
             enter = true;
         }
     }
@@ -42,9 +35,8 @@ public class obtjetRotate : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            panel.SetActive(false);
             enter = false;
-            image.SetActive(false);
+            panelNotebook.SetActive(false);
         }
     }
     void OnGUI()
