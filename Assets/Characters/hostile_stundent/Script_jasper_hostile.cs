@@ -88,7 +88,7 @@ public class Script_jasper_hostile : MonoBehaviour
         }
         distance = Mathf.RoundToInt(Vector3.Distance(transform.position, jugador2.position));
     }
-    void teacherMove()
+    public void teacherMove()
     {
         teacher.angularSpeed = 120f;
         timeTrans += Time.deltaTime;
@@ -113,4 +113,5 @@ public class Script_jasper_hostile : MonoBehaviour
             teacher.destination = jugador2.position;
         }
     }
+
 }

@@ -26,6 +26,7 @@ public class script_teacher_one : MonoBehaviour
     public GameObject textWelcome;
     bool enter;
     public Font ScoreFont;
+    public int llaveInt = 0;
 
     private void Awake()
     {
@@ -42,18 +43,23 @@ public class script_teacher_one : MonoBehaviour
         llave = false;
         panel.SetActive(false);
         textWelcome.SetActive(false);
+        llaveInt = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (llave == true)
+        if (llaveInt == 0)
         {
             teacherStatic();
         }
-        if (llave == false)
+        if (llaveInt == 1)
         {
             teacherMove();
+        }
+        if (llaveInt == 2)
+        {
+            teacherMove_2();
         }
     }
 
@@ -68,6 +74,7 @@ public class script_teacher_one : MonoBehaviour
             enter = true;
             //panel.SetActive(true);
             //textWelcome.SetActive(true);
+            llaveInt = 1;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -130,6 +137,14 @@ public class script_teacher_one : MonoBehaviour
          {
             GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height - 50, 150, 30), "'F' Hablar con el Profe!", style);
          }
+    }
+    public void teacherMove_2()
+    {
+
+        teacherAnimator.SetBool("Walk", false);
+        teacherAnimator.SetBool("Idle", false);
+        teacherAnimator.SetBool("Speak", true);
+
     }
 }
 

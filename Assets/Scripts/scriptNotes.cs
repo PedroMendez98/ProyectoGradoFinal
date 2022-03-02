@@ -27,6 +27,11 @@ public class scriptNotes : MonoBehaviour
 
     //objetos a destruir
     public GameObject plarTeacher;
+    public GameObject companionCharacter;
+    public Collider objTeacher;
+
+
+    script_teacher_one hosti = new script_teacher_one();
 
     int opt;
     int optmenuPant;
@@ -37,6 +42,7 @@ public class scriptNotes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         textInfoNote.GetComponent<Text>();
         textTitle.GetComponent<Text>();
         panelNotebook.SetActive(false);
@@ -46,6 +52,8 @@ public class scriptNotes : MonoBehaviour
         panel2.SetActive(false);
         textPanel2.SetActive(false);
         pistaInterrogante.SetActive(false);
+        companionCharacter.SetActive(false);
+       
         for (int i = 0; i < buttonNotes.LongLength; i++)
         {
             buttonNotes[i].enabled = false;
@@ -183,7 +191,8 @@ public class scriptNotes : MonoBehaviour
 
         Time.timeScale = 0f;
         opt = 1;
-        Destroy(plarTeacher);
+        plarTeacher.transform.position = new Vector3(350.43f, 165.418f, 259.57f);
+        plarTeacher.SetActive(false);
     }
     public void concepText()
     {
@@ -341,6 +350,11 @@ public class scriptNotes : MonoBehaviour
                             "\n\n¡Validemos que tanto aprendiste empecemos!" +
                              "\n\n\nPulsa | X | para empezar….";
         Time.timeScale = 0f;
+        companionCharacter.SetActive(true);
+        plarTeacher.SetActive(true);
+        hosti.llaveInt = 2;
+        objTeacher.enabled = false;
+
     }
     void personaje()
     {
