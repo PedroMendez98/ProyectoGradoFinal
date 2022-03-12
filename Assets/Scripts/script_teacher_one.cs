@@ -34,8 +34,6 @@ public class script_teacher_one : MonoBehaviour
         teacherAnimator = GetComponent<Animator>();
         lastPoint = wayPoints.Length;
         style = new GUIStyle();
-        
-
     }
     // Start is called before the first frame update
     void Start()

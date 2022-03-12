@@ -23,6 +23,12 @@ TagManager:
   - Notebook_3
   - Jasper
   - Tops
+  - companion
+  - book
+  - teacherTwo
+  - optionInterrogante
+  - ItemDraggerParent
+  - item
   layers:
   - Default
   - TransparentFX

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class scriptNotes : MonoBehaviour
 {
@@ -29,20 +30,37 @@ public class scriptNotes : MonoBehaviour
     public GameObject plarTeacher;
     public GameObject companionCharacter;
     public Collider objTeacher;
+    public GameObject bookHomework;
+    public GameObject imageHomework;
 
+    public bool enter;
 
+    string msg;
+
+    GUIStyle style;
+    public Font ScoreFont;
+
+    public Collider teacherOne;
+    public Collider companionColl;
+
+    script_Companion msgS = new script_Companion(); 
     script_teacher_one hosti = new script_teacher_one();
 
+    public Animator animatorTeacherTwo;
+    public Collider colliderTeacherTwo;
+
     int opt;
+    int caseHom;
     int optmenuPant;
     string buttonOptions;
+    int optInterrogante = 0;
     int cont = 0;
     int option;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        style = new GUIStyle();
         textInfoNote.GetComponent<Text>();
         textTitle.GetComponent<Text>();
         panelNotebook.SetActive(false);
@@ -53,7 +71,11 @@ public class scriptNotes : MonoBehaviour
         textPanel2.SetActive(false);
         pistaInterrogante.SetActive(false);
         companionCharacter.SetActive(false);
-       
+        bookHomework.SetActive(false);
+        imageHomework.SetActive(false);
+        //activarPruebas();
+        //companion();
+
         for (int i = 0; i < buttonNotes.LongLength; i++)
         {
             buttonNotes[i].enabled = false;
@@ -77,15 +99,34 @@ public class scriptNotes : MonoBehaviour
         }
         if (Input.GetKeyDown("e"))
         {
-            if (tags == "actiPruebas")
-            {
-                optionNote();
-            }
-           
+            optionNote();
         }
+        if (Input.GetKeyDown("r"))
+        {
+            switch (caseHom)
+            {
+                case 1:
+                    caseNextContinue(15);
+                    enter = false;
+                    break;
+                case 2:
+                    imageHomework.SetActive(false);
+                    optmenuPant = 3;
+                    teacherOne.enabled = false;
+                    enter = false;
+                    animatorTeacherTwo.SetBool("idle", false);
+                    animatorTeacherTwo.SetBool("talking", true);
+                    StartCoroutine("expectTime");
+                    break;
+                default:
+                    break;
+            }
+            
+        }
+        Debug.Log("OPT: " + opt);
         personaje();
 
-        //--------borrar----------
+        ////--------borrar----------
         for (int i = 0; i < buttonNotes.LongLength; i++)
         {
             buttonNotes[i].enabled = true;
@@ -99,6 +140,17 @@ public class scriptNotes : MonoBehaviour
         {
             option += 1;
         }
+        if (tags == "book")
+        {
+            enter = true;
+        }
+        if (tags == "teacherTwo")
+        {
+            msg = "'R' Entregar Tarea";
+            enter = true;
+            caseHom = 2;
+        }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -158,8 +210,18 @@ public class scriptNotes : MonoBehaviour
                 tags = "";
                 validarButton("buttonTrouble");
                 break;
-            case "actiPruebas":
-                activarPruebas();
+            case "optionInterrogante":
+                if (optInterrogante == 1)
+                {
+                   caseNextContinue(opt);
+                }  else
+                {
+                    activarPruebas();           
+                }
+                tags = "";
+                break;
+            case "companion":
+                companion();
                 tags = "";
                 break;
             default:
@@ -328,7 +390,7 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "Problemas";
-        textInfoNote.text = "En el cual se comprende con claridad, cuál es el problema, que debes lograr y perfilar una posible solución."
+        textInfoNote.text = "En el cual se comprende con claridad, cuál es el problema, que debes lograr y planificar una posible solución."
                              + "\n\nLa programación lineal es un método por el cual se optimiza una función objetivo, por maximización o minimización, en el que las variables se elevan a potencias de 1. Ello, teniendo en cuenta las diversas restricciones introducidas." +
                                 " Recuerda que este tipo de ecuación es una igualdad matemática que puede tener una o más incógnitas. Entonces tiene la siguiente forma básica, donde a y b son constantes, mientras que x e y son variables.";
         button_exit.SetActive(true);
@@ -354,7 +416,24 @@ public class scriptNotes : MonoBehaviour
         plarTeacher.SetActive(true);
         hosti.llaveInt = 2;
         objTeacher.enabled = false;
-
+        optInterrogante = 1;
+    }
+    void companion()
+    {
+        panelNotebook.SetActive(true);
+        text_info_note.SetActive(true);
+        text_title.SetActive(true);
+        opt = 13;
+        textTitle.text = "¡Hola!";
+        textInfoNote.text = "Soy tu compañero \n\nQueria pedirte el favor que busques al docente y entregues nuestra tarea para que asi nos pueda calificar." +
+                             "\n\n\nPulsa | X | para recoger tarea";
+        Debug.Log("opt" + opt);
+        Time.timeScale = 0f;
+        bookHomework.SetActive(true);
+        StartCoroutine("expectTime");
+        caseHom = 1;
+        msg = "'R' Recoger Tarea";
+        companionColl.enabled = false;  
     }
     void personaje()
     {
@@ -399,11 +478,30 @@ public class scriptNotes : MonoBehaviour
                 textInfoNote.text = "Estos son los tipos de variables que puedes utilizar: \n\n* Variables numéricas: Variables que almacenan valores numéricos(positivos o negativos), es decir, almacenan números del 0 al 9, signos(+y -) y puntos decimales. \n\n*Variables booleanas: Son variables que pueden contener solo dos valores (verdadero o falso) que muestran el resultado de una comparación entre otros datos. \n\n*Variables Alfanuméricas: incluye caracteres alfabéticos numéricos (letras, números y caracteres especiales).";
                 break;
             case 12:
-                panelNotebook.SetActive(false);
-                text_info_note.SetActive(false);
-                text_title.SetActive(false);
+                panelNotebook.SetActive(true);
+                text_info_note.SetActive(true);
+                text_title.SetActive(true);
                 Time.timeScale = 1f;
-                pistaInterrogante.SetActive(false);
+                textInfoNote.alignment = TextAnchor.UpperLeft;
+                textTitle.text = "Prueba de algoritmo";
+                textInfoNote.text = "Un compañero te está esperando para entregarte la tarea y la presentes ante el docente la cual contiene el problema a resolver."
+                                    + "\n\nEstos son los pasos para la solución de este problema:"
+                                    + "\t\n\n1.) Buscar la tarea en el mapa"
+                                    + "\t\t\n2.) Recoger la tarea"
+                                    + "\t\t\n3.) Buscar al docente en el mapa para entregar la tarea"
+                                    + "\t\t\n4.) Llegar hasta donde él"
+                                    + "\t\t\n5.) Dejar tarea con el docente.";
+
+                break;
+            case 13:
+                exitNote();
+                bookHomework.SetActive(true);
+                msgS.msg = "";
+                optmenuPant = 2;
+                break;
+            case 15:
+                bookHomework.SetActive(false);
+                imageHomework.SetActive(true);
                 break;
             default:
                 break;
@@ -412,10 +510,11 @@ public class scriptNotes : MonoBehaviour
     IEnumerator expectTime()
     {
         
-        yield return new WaitForSeconds(3);
+        
         switch (optmenuPant)
         {
             case 1:
+                yield return new WaitForSeconds(3);
                 for (int i = 0; i < notasPantalla.LongLength; i++)
                 {
                     if (notasPantalla[i].name == "miniMap")
@@ -426,7 +525,18 @@ public class scriptNotes : MonoBehaviour
                     notasPantalla[i].SetActive(false);
                 }
                 break;
-            default:
+            case 2:
+                yield return new WaitForSeconds(.5f);
+                msgS.msg = " ";
+                break;
+            case 3:
+                yield return new WaitForSeconds(5f);
+                msgS.msg = " ";
+                Debug.Log("ngresa");
+                animatorTeacherTwo.SetBool("idle", true);
+                animatorTeacherTwo.SetBool("talking", false);
+                caseHom = 0;
+                colliderTeacherTwo.enabled = false;
                 break;
         }
         
@@ -478,4 +588,14 @@ public class scriptNotes : MonoBehaviour
             }
         }
     }
+    void OnGUI()
+    {
+        style.fontSize = 25;
+        style.font = ScoreFont;
+        if (enter)
+        {
+            GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height - 50, 150, 30), msg, style);
+        }
+    }
 }
+

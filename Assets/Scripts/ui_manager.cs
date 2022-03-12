@@ -17,8 +17,6 @@ public class ui_manager : MonoBehaviour
     public GameObject button_close;
     public GameObject button_back;
     public GameObject button_menu;
-    public GameObject button_menu_tracks;
-    public GameObject button_menu_objects;
 
     public GameObject text_title_grades;
 
@@ -47,8 +45,6 @@ public class ui_manager : MonoBehaviour
         button_back.SetActive(false);
         button_menu.SetActive(false);
         image_menu.SetActive(false);
-        button_menu_objects.SetActive(false);
-        button_menu_tracks.SetActive(false);
         text_title_grades.SetActive(false);
         image_notebook.SetActive(false);
 
@@ -89,8 +85,6 @@ public class ui_manager : MonoBehaviour
         button_back.SetActive(true);
         button_menu.SetActive(false);
         image_menu.SetActive(false);
-        button_menu_objects.SetActive(false);
-        button_menu_tracks.SetActive(false);
         image_notebook.SetActive(false);
 
         textInfo.text = "Este juego esta diseñado para el aprendizaje de lógica computacional de esta manera podrás poner aprueba tu conocimiento para resolver problemas a través de la lógica, \n\n recuerda dentro del colegio encontraras información a través de pistas y objetos que tendrás que recolectar de igual manera pondrás a prueba el conocimiento que obtengas durante esta aventura por medio pequeños ejercicios.";
@@ -108,8 +102,6 @@ public class ui_manager : MonoBehaviour
         menuPausa.SetActive(false);
         button_back.SetActive(false);
         image_menu.SetActive(false);
-        button_menu_objects.SetActive(false);
-        button_menu_tracks.SetActive(false);
         button_menu.SetActive(true);
         image_notebook.SetActive(false);
 
@@ -127,8 +119,6 @@ public class ui_manager : MonoBehaviour
         button_back.SetActive(false);
         button_menu.SetActive(false);
         image_menu.SetActive(false);
-        button_menu_objects.SetActive(false);
-        button_menu_tracks.SetActive(false);
         image_notebook.SetActive(false);
     }
     void menuPause()
@@ -144,8 +134,6 @@ public class ui_manager : MonoBehaviour
         button_back.SetActive(false);
         button_menu.SetActive(false);
         image_menu.SetActive(false);
-        button_menu_objects.SetActive(false);
-        button_menu_tracks.SetActive(false);
         image_notebook.SetActive(false);
     }
     public void back()
@@ -160,8 +148,6 @@ public class ui_manager : MonoBehaviour
         button_back.SetActive(false);
         button_menu.SetActive(true);
         image_menu.SetActive(false);
-        button_menu_objects.SetActive(false);
-        button_menu_tracks.SetActive(false);
         image_notebook.SetActive(false);
         if (validate_screen_status == true)
         {
@@ -184,8 +170,6 @@ public class ui_manager : MonoBehaviour
         Time.timeScale = 0f;
         button_menu.SetActive(true);
         image_menu.SetActive(true);
-        button_menu_objects.SetActive(true);
-        button_menu_tracks.SetActive(true);
         image_notebook.SetActive(false);
     }
     public void next()
@@ -202,8 +186,6 @@ public class ui_manager : MonoBehaviour
         button_back.SetActive(true);
         button_menu.SetActive(false);
         image_menu.SetActive(false);
-        button_menu_objects.SetActive(false);
-        button_menu_tracks.SetActive(false);
         image_notebook.SetActive(false);
     }
     public void buttonNotebooks()
@@ -218,8 +200,6 @@ public class ui_manager : MonoBehaviour
         Time.timeScale = 0f;
         button_menu.SetActive(false);
         image_menu.SetActive(false);
-        button_menu_objects.SetActive(false);
-        button_menu_tracks.SetActive(false);
         image_notebook.SetActive(true);
     }
 }
