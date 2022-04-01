@@ -3,30 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
 public class DropSlot : MonoBehaviour, IDropHandler
 {
-    public GameObject item;
-    public Collider2D col;
+    public GameObject item; 
+    public string[] boxN;
+    public GameObject[] comboxNum;
+    public GameObject[] comboxAlf;
+    public GameObject[] comboxBool;
+    public int cont;
+    public int tam;
+    public string tag;
+    public int contador;
 
+    private void Start()
+    {
+        boxN = new string[comboxNum.LongLength];
+    }
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("Drop");
 
-        
         if (!item)
         {
             item = DragHandler.objBeingDraged;
             item.transform.SetParent(transform);
             item.transform.position = transform.position;
-            if (item.gameObject.tag == "item")
+            Debug.Log(gameObject.name);
+            Validation v = new Validation();
+            if (gameObject.name == "SlotN1" || gameObject.name == "SlotN2" || gameObject.name == "SlotN3")
             {
-                Debug.Log("Ingresa");
+                if (item.gameObject.tag == "ItemN")
+                {
+                    gameObject.SetActive(false);
+                    v.activar();
 
-
+                }
             }
-            else
+            if (gameObject.name == "SlotA1" || gameObject.name == "SlotA2" || gameObject.name == "SlotA3")
             {
-                Debug.Log("No Ingresa");
+                if (item.gameObject.tag == "ItemA")
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+            if (gameObject.name == "SlotB1" || gameObject.name == "SlotB2" || gameObject.name == "SlotB3")
+            {
+                if (item.gameObject.tag == "ItemB")
+                {
+                    gameObject.SetActive(false);
+                }
             }
         }
     }
@@ -39,4 +64,6 @@ public class DropSlot : MonoBehaviour, IDropHandler
             item = null;
         }
     }
+    
 }
+

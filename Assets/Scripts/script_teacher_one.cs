@@ -26,7 +26,7 @@ public class script_teacher_one : MonoBehaviour
     public GameObject textWelcome;
     bool enter;
     public Font ScoreFont;
-    public int llaveInt = 0;
+    public int llaveInt;
 
     private void Awake()
     {
@@ -38,15 +38,16 @@ public class script_teacher_one : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        llaveInt = 1;
         llave = false;
         panel.SetActive(false);
         textWelcome.SetActive(false);
-        llaveInt = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("llaveint: " + llaveInt);
         if (llaveInt == 0)
         {
             teacherStatic();
@@ -68,11 +69,11 @@ public class script_teacher_one : MonoBehaviour
             rota = jugador2.position;
             jugador.Rotate(rota);
             llave = true;
-            teacherStatic();
             enter = true;
             //panel.SetActive(true);
             //textWelcome.SetActive(true);
-            llaveInt = 1;
+            teacherStatic();
+           
         }
     }
     private void OnTriggerExit(Collider other)
@@ -85,6 +86,7 @@ public class script_teacher_one : MonoBehaviour
             enter = false;
             panel.SetActive(false);
             textWelcome.SetActive(false);
+            
         }
     }
     void teacherStatic()
@@ -100,7 +102,9 @@ public class script_teacher_one : MonoBehaviour
             timeRest = 0;
             teacher.angularSpeed = 0f;
         }
-        
+
+        llaveInt = 2;
+
     }
     void teacherMove()
     {

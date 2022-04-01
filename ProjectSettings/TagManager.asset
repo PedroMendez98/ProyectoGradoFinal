@@ -29,6 +29,10 @@ TagManager:
   - optionInterrogante
   - ItemDraggerParent
   - item
+  - slot
+  - ItemN
+  - ItemA
+  - ItemB
   layers:
   - Default
   - TransparentFX

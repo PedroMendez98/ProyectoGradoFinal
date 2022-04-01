@@ -60,6 +60,7 @@ public class scriptNotes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hosti.llaveInt = 1;
         style = new GUIStyle();
         textInfoNote.GetComponent<Text>();
         textTitle.GetComponent<Text>();
@@ -148,6 +149,7 @@ public class scriptNotes : MonoBehaviour
         {
             msg = "'R' Entregar Tarea";
             enter = true;
+            bookHomework.SetActive(false);
             caseHom = 2;
         }
 
@@ -250,10 +252,10 @@ public class scriptNotes : MonoBehaviour
         button_exit.SetActive(true);
         activarPistas("Concept");
         desactivarPistas("Logic");
-
         Time.timeScale = 0f;
         opt = 1;
         plarTeacher.transform.position = new Vector3(350.43f, 165.418f, 259.57f);
+        plarTeacher.transform.eulerAngles = new Vector3(0f, -281.874f, 0f);
         plarTeacher.SetActive(false);
     }
     public void concepText()
@@ -409,7 +411,7 @@ public class scriptNotes : MonoBehaviour
         opt = 12;
         textTitle.text = "¡FELICIDADES!";
         textInfoNote.text = "¡Felicidades has llegado al momento de las pruebas!" +
-                            "\n\n¡Validemos que tanto aprendiste empecemos!" +
+                            "\n\n¡Validemos que tanto aprendiste!" +
                              "\n\n\nPulsa | X | para empezar….";
         Time.timeScale = 0f;
         companionCharacter.SetActive(true);
@@ -522,7 +524,7 @@ public class scriptNotes : MonoBehaviour
                         notasPantalla[i].SetActive(true);
                     }        
                     yield return new WaitForSeconds(3);
-                    notasPantalla[i].SetActive(false);
+                    Destroy(notasPantalla[i]);
                 }
                 break;
             case 2:
