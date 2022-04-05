@@ -33,6 +33,9 @@ public class scriptNotes : MonoBehaviour
     public GameObject bookHomework;
     public GameObject imageHomework;
 
+    public GameObject buttonStart;
+    public GameObject prueba2d;
+
     public bool enter;
 
     string msg;
@@ -44,7 +47,7 @@ public class scriptNotes : MonoBehaviour
     public Collider companionColl;
 
     script_Companion msgS = new script_Companion(); 
-    script_teacher_one hosti = new script_teacher_one();
+    public script_teacher_one hosti = new script_teacher_one();
 
     public Animator animatorTeacherTwo;
     public Collider colliderTeacherTwo;
@@ -60,6 +63,8 @@ public class scriptNotes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        buttonStart.SetActive(false);
+        prueba2d.SetActive(false);
         hosti.llaveInt = 1;
         style = new GUIStyle();
         textInfoNote.GetComponent<Text>();
@@ -90,6 +95,7 @@ public class scriptNotes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("CASEHOME: " + caseHom);
         if (Input.GetKeyDown("f"))
         {
             optionNote();
@@ -117,7 +123,14 @@ public class scriptNotes : MonoBehaviour
                     enter = false;
                     animatorTeacherTwo.SetBool("idle", false);
                     animatorTeacherTwo.SetBool("talking", true);
+                    buttonStart.SetActive(true);
                     StartCoroutine("expectTime");
+                    panelNotebook.SetActive(true);
+                    text_info_note.SetActive(true);
+                    text_title.SetActive(true);
+                    textTitle.text = "¡Felicidades!";
+                    textInfoNote.text = "\n\n\nVamos a la siguiente prueba, \npulsa el botón";
+                    textInfoNote.alignment = TextAnchor.UpperCenter;
                     break;
                 default:
                     break;
@@ -149,16 +162,17 @@ public class scriptNotes : MonoBehaviour
         {
             msg = "'R' Entregar Tarea";
             enter = true;
-            bookHomework.SetActive(false);
             caseHom = 2;
+            bookHomework.SetActive(false);
         }
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        
-            
+        exitNote();
+
+
     }
     void optionNote()
     {
@@ -213,12 +227,14 @@ public class scriptNotes : MonoBehaviour
                 validarButton("buttonTrouble");
                 break;
             case "optionInterrogante":
+                Debug.Log("interro: " + optInterrogante);
                 if (optInterrogante == 1)
                 {
                    caseNextContinue(opt);
-                }  else
+                }
+                if (optInterrogante == 2)
                 {
-                    activarPruebas();           
+                    activarPruebas();
                 }
                 tags = "";
                 break;
@@ -400,7 +416,10 @@ public class scriptNotes : MonoBehaviour
         opt = 0;
         desactivarPistas("trouble");
         pistaInterrogante.SetActive(true);
-        
+        Debug.Log("opt" + opt);
+        optInterrogante = 2;
+
+
     }
     void activarPruebas()
     {
@@ -418,7 +437,8 @@ public class scriptNotes : MonoBehaviour
         plarTeacher.SetActive(true);
         hosti.llaveInt = 2;
         objTeacher.enabled = false;
-        optInterrogante = 1;
+        optInterrogante = 2;
+        caseHom = 0;
     }
     void companion()
     {
@@ -429,7 +449,6 @@ public class scriptNotes : MonoBehaviour
         textTitle.text = "¡Hola!";
         textInfoNote.text = "Soy tu compañero \n\nQueria pedirte el favor que busques al docente y entregues nuestra tarea para que asi nos pueda calificar." +
                              "\n\n\nPulsa | X | para recoger tarea";
-        Debug.Log("opt" + opt);
         Time.timeScale = 0f;
         bookHomework.SetActive(true);
         StartCoroutine("expectTime");
@@ -486,6 +505,7 @@ public class scriptNotes : MonoBehaviour
                 Time.timeScale = 1f;
                 textInfoNote.alignment = TextAnchor.UpperLeft;
                 textTitle.text = "Prueba de algoritmo";
+                hosti.llaveInt = 2;
                 textInfoNote.text = "Un compañero te está esperando para entregarte la tarea y la presentes ante el docente la cual contiene el problema a resolver."
                                     + "\n\nEstos son los pasos para la solución de este problema:"
                                     + "\t\n\n1.) Buscar la tarea en el mapa"
@@ -493,7 +513,8 @@ public class scriptNotes : MonoBehaviour
                                     + "\t\t\n3.) Buscar al docente en el mapa para entregar la tarea"
                                     + "\t\t\n4.) Llegar hasta donde él"
                                     + "\t\t\n5.) Dejar tarea con el docente.";
-
+                optInterrogante = 1;
+                opt = 12;
                 break;
             case 13:
                 exitNote();
@@ -598,6 +619,11 @@ public class scriptNotes : MonoBehaviour
         {
             GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height - 50, 150, 30), msg, style);
         }
+    }
+    public void button_active()
+    {
+        prueba2d.SetActive(true);
+        Time.timeScale = 0f;
     }
 }
 
