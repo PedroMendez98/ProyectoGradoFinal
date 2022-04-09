@@ -47,7 +47,6 @@ public class script_teacher_one : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("llaveint: " + llaveInt);
         if (llaveInt == 0)
         {
             teacherStatic();

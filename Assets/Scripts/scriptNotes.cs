@@ -36,6 +36,10 @@ public class scriptNotes : MonoBehaviour
     public GameObject buttonStart;
     public GameObject prueba2d;
 
+    public Image iamgenEjempDiagramFlujo;
+
+    public Image pistDiagFlujo;
+
     public bool enter;
 
     string msg;
@@ -52,11 +56,11 @@ public class scriptNotes : MonoBehaviour
     public Animator animatorTeacherTwo;
     public Collider colliderTeacherTwo;
 
-    int opt;
+   public  int opt;
     int caseHom;
     int optmenuPant;
     string buttonOptions;
-    int optInterrogante = 0;
+    public int optInterrogante = 0;
     int cont = 0;
     int option;
 
@@ -79,6 +83,8 @@ public class scriptNotes : MonoBehaviour
         companionCharacter.SetActive(false);
         bookHomework.SetActive(false);
         imageHomework.SetActive(false);
+        pistDiagFlujo.enabled = false;
+        iamgenEjempDiagramFlujo.enabled = false;
         //activarPruebas();
         //companion();
 
@@ -95,10 +101,9 @@ public class scriptNotes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("CASEHOME: " + caseHom);
         if (Input.GetKeyDown("f"))
         {
-            optionNote();
+            optionNote(tags);
         }
         if (Input.GetKeyDown("x"))
         {
@@ -106,7 +111,7 @@ public class scriptNotes : MonoBehaviour
         }
         if (Input.GetKeyDown("e"))
         {
-            optionNote();
+            optionNote(tags);
         }
         if (Input.GetKeyDown("r"))
         {
@@ -163,9 +168,10 @@ public class scriptNotes : MonoBehaviour
             msg = "'R' Entregar Tarea";
             enter = true;
             caseHom = 2;
+            opt = 16;
+            optInterrogante = 1;
             bookHomework.SetActive(false);
         }
-
     }
 
     private void OnTriggerExit(Collider other)
@@ -174,56 +180,56 @@ public class scriptNotes : MonoBehaviour
 
 
     }
-    void optionNote()
+    void optionNote(string tagG)
     {
-        switch (tags)
+        switch (tagG)
         {
             case "Logic":
                 logicNote();
-                tags = "";
+                tagG = "";
                 validarButton("buttonLogic");
                 break;
             case "teacherOne":
                 mensajeWelcome();
-                tags = "";
+                tagG = "";
                 break;
             case "Concept":
                 concepText();
-                tags = "";
+                tagG = "";
                 break;
             case "algorit":
                 algorit();
-                tags = "";
+                tagG = "";
                 validarButton("buttonAlgorit");
                 break;
             case "codificacion":
                 codificacion();
-                tags = "";
+                tagG = "";
                 validarButton("buttonCodificacion");
                 break;
             case "lenguProgramation":
                 lenguProgramation();
-                tags = "";
+                tagG = "";
                 validarButton("buttonLenguProgramation");
                 break;
             case "pseudocodigo":
                 pseudocodigo();
-                tags = "";
+                tagG = "";
                 validarButton("buttonPseudocodigo");
                 break;
             case "diaFlujo":
                 diaFlujo();
-                tags = "";
+                tagG = "";
                 validarButton("buttonDiaFlujo");
                 break;
             case "tipovariable":
                 tipovariable();
-                tags="";
+                tagG = "";
                 validarButton("buttonTipovariable");
                 break;
             case "trouble":
                 trouble();
-                tags = "";
+                tagG = "";
                 validarButton("buttonTrouble");
                 break;
             case "optionInterrogante":
@@ -231,16 +237,34 @@ public class scriptNotes : MonoBehaviour
                 if (optInterrogante == 1)
                 {
                    caseNextContinue(opt);
+                    tagG = "";
                 }
                 if (optInterrogante == 2)
                 {
                     activarPruebas();
+                    tagG = "";
                 }
-                tags = "";
+                if (optInterrogante == 3)
+                {
+                    activarExampleDiagrama();
+                    tagG = "";
+                }
+
                 break;
             case "companion":
                 companion();
-                tags = "";
+                tagG = "";
+                break;
+            case "pisDiagramFlujo":
+                imgDiagrama();
+                validarButton("butonPistaDiagramFlujo");
+                optInterrogante = 3;
+                tagG = "";
+                break;
+            case "ejemDiagramFlujo":
+                imageExpleDiagrama();
+                validarButton("butonEjemploDiagrama");
+                tagG = "";
                 break;
             default:
                 break;
@@ -251,8 +275,11 @@ public class scriptNotes : MonoBehaviour
         panelNotebook.SetActive(false);
         text_title.SetActive(false);
         text_info_note.SetActive(false);
-        button_exit.SetActive(false); 
+        button_exit.SetActive(false);
+        opt = 0;
         Time.timeScale = 1f;
+        pistDiagFlujo.enabled = false;
+        iamgenEjempDiagramFlujo.enabled = false;
     }
     public void logicNote()
     {
@@ -416,7 +443,6 @@ public class scriptNotes : MonoBehaviour
         opt = 0;
         desactivarPistas("trouble");
         pistaInterrogante.SetActive(true);
-        Debug.Log("opt" + opt);
         optInterrogante = 2;
 
 
@@ -526,6 +552,16 @@ public class scriptNotes : MonoBehaviour
                 bookHomework.SetActive(false);
                 imageHomework.SetActive(true);
                 break;
+            case 16:
+                panelNotebook.SetActive(true);
+                text_info_note.SetActive(true);
+                text_title.SetActive(true);
+                textInfoNote.alignment = TextAnchor.UpperCenter;
+                textTitle.text = "Prueba de Diagrama de flujo";
+                textInfoNote.text = "\n\n\n\nVeamos cómo se compone un diagrama de flujo, dirígete al restaurante para mostrarte como.";
+                optInterrogante = 1;
+                activarPistas("pisDiagramFlujo");
+                break;
             default:
                 break;
         }
@@ -555,7 +591,6 @@ public class scriptNotes : MonoBehaviour
             case 3:
                 yield return new WaitForSeconds(5f);
                 msgS.msg = " ";
-                Debug.Log("ngresa");
                 animatorTeacherTwo.SetBool("idle", true);
                 animatorTeacherTwo.SetBool("talking", false);
                 caseHom = 0;
@@ -624,6 +659,41 @@ public class scriptNotes : MonoBehaviour
     {
         prueba2d.SetActive(true);
         Time.timeScale = 0f;
+        panelNotebook.SetActive(false);
+        text_info_note.SetActive(false);
+        text_title.SetActive(false);
+        buttonStart.SetActive(false);
     }
+    public void imgDiagrama()
+    {
+        pistDiagFlujo.enabled = true;
+        button_exit.SetActive(true);
+        desactivarPistas("pisDiagramFlujo");
+        optInterrogante = 0;
+        opt = 0;
+    }
+    public void activarExampleDiagrama()
+    {
+        panelNotebook.SetActive(true);
+        text_info_note.SetActive(true);
+        text_title.SetActive(true);
+        textTitle.text = "Ejemplo";
+        textInfoNote.alignment = TextAnchor.UpperCenter;
+        textInfoNote.text = "¡En el salon de secretaria encontraras un ejemplo de un diagrama de flujo, repásalo bien se aproxima la prueba!.";
+        button_exit.SetActive(true);
+        Time.timeScale = 0f;
+        opt = 0;
+        activarPistas("ejemDiagramFlujo");
+    }
+    public void imageExpleDiagrama()
+    {
+        iamgenEjempDiagramFlujo.enabled = true;
+        button_exit.SetActive(true);
+        desactivarPistas("ejemDiagramFlujo");
+        optInterrogante = 0;
+        opt = 0;
+        Time.timeScale = 0f;
+    }
+
 }
 

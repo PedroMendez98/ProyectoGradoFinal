@@ -35,7 +35,6 @@ public class DropSlot : MonoBehaviour, IDropHandler
                 if (item.gameObject.tag == "ItemN")
                 {
                     gameObject.SetActive(false);
-                    v.activar();
 
                 }
             }
