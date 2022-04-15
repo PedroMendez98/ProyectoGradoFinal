@@ -15,6 +15,9 @@ public class DropSlot : MonoBehaviour, IDropHandler
     public int tam;
     public string tag;
     public int contador;
+    public static string vali;
+    public GameObject objtos;
+
 
     private void Start()
     {
@@ -28,14 +31,15 @@ public class DropSlot : MonoBehaviour, IDropHandler
             item = DragHandler.objBeingDraged;
             item.transform.SetParent(transform);
             item.transform.position = transform.position;
-            Debug.Log(gameObject.name);
-            Validation v = new Validation();
-            if (gameObject.name == "SlotN1" || gameObject.name == "SlotN2" || gameObject.name == "SlotN3")
-            {
-                if (item.gameObject.tag == "ItemN")
+           
+            
+            if (gameObject.name == "inicio")
+            {  
+                if (item.gameObject.name == "ItemA1")
                 {
+                    DragHandler1.cont = true;
                     gameObject.SetActive(false);
-
+                    
                 }
             }
             if (gameObject.name == "SlotA1" || gameObject.name == "SlotA2" || gameObject.name == "SlotA3")

@@ -11,6 +11,9 @@ public class DragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     private Transform startParent;
     private CanvasGroup canvasGroup;
     private Transform itemDraggerParent;
+    public int n = 0;
+    public static bool cont;
+    public GameObject objetos;
 
     private void Start() 
     {
@@ -28,7 +31,6 @@ public class DragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         startPosition = transform.position;
         startParent = transform.parent;
         transform.SetParent(itemDraggerParent);
-
         canvasGroup.blocksRaycasts = false;
 
     }
@@ -55,6 +57,16 @@ public class DragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
 
     private void Update()
     {
-
+    }
+    public void sumarN()
+    {
+        if (cont == true)
+        {
+            n = n + 1;
+            Debug.Log("N" + n);
+            DropSlot.vali = " ";
+            objetos.SetActive(true);
+        }
+        
     }
 }

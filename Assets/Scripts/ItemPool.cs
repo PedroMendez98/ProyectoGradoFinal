@@ -9,6 +9,7 @@ public class ItemPool : MonoBehaviour, IDropHandler
     {
         if (DragHandler.objBeingDraged == null) return;
         DragHandler.objBeingDraged.transform.SetParent(transform);
+        
     }
 
 }
