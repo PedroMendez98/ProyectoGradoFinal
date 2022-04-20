@@ -50,13 +50,13 @@ public class scriptNotes : MonoBehaviour
     public Collider teacherOne;
     public Collider companionColl;
 
-    script_Companion msgS = new script_Companion(); 
+    script_Companion msgS = new script_Companion();
     public script_teacher_one hosti = new script_teacher_one();
 
     public Animator animatorTeacherTwo;
     public Collider colliderTeacherTwo;
 
-   public  int opt;
+    public int opt;
     int caseHom;
     int optmenuPant;
     string buttonOptions;
@@ -140,7 +140,7 @@ public class scriptNotes : MonoBehaviour
                 default:
                     break;
             }
-            
+
         }
         Debug.Log("OPT: " + opt);
         personaje();
@@ -155,7 +155,7 @@ public class scriptNotes : MonoBehaviour
     {
         tags = other.gameObject.tag;
         print(tags);
-        if (tags=="Tops")
+        if (tags == "Tops")
         {
             option += 1;
         }
@@ -236,7 +236,7 @@ public class scriptNotes : MonoBehaviour
                 Debug.Log("interro: " + optInterrogante);
                 if (optInterrogante == 1)
                 {
-                   caseNextContinue(opt);
+                    caseNextContinue(opt);
                     tagG = "";
                 }
                 if (optInterrogante == 2)
@@ -290,7 +290,7 @@ public class scriptNotes : MonoBehaviour
         textInfoNote.text = "Se conoce por lÛgica computaciÛn o lÛgica matem·tica directamente aplicada en el contexto de las ciencias de computaciÛn aquellos recursos que pueden se implementados en diferente nivel como lo puede ser: " +
           "\n\n- Circuitos computacionales " +
           "\n- ProgramaciÛn lÛgica " +
-          "\n- An·lisis y optimizaciÛn de recursos temporales y espaciales (mas conocidos en el campo de la ciencia computacional como algoritmos)"+
+          "\n- An·lisis y optimizaciÛn de recursos temporales y espaciales (mas conocidos en el campo de la ciencia computacional como algoritmos)" +
           "\n\n\n                                        Pulsa 'X' para continuar....";
         button_exit.SetActive(true);
         activarPistas("Concept");
@@ -332,7 +332,6 @@ public class scriptNotes : MonoBehaviour
         optmenuPant = 1;
         activarPistas("Logic");
         StartCoroutine("expectTime");
-        
     }
     public void algorit()
     {
@@ -341,9 +340,9 @@ public class scriptNotes : MonoBehaviour
         text_title.SetActive(true);
         textTitle.text = "Algoritmo";
         textInfoNote.text = "Un algoritmo inform·tico es un conjunto definido, ordenado y acotado de instrucciones para resolver un problema, realizar un c·lculo o realizar una tarea. Es decir, un algoritmo es un proceso paso a paso para llegar a un fin. Partiendo de un estado e informaciÛn inicial, sigue una secuencia de pasos ordenados para resolver una situaciÛn."
-                            + "\n\nLos algoritmos se componen de tres partes importantes para realizar los pasos y resolver los problemas, sus componentes son:"+
-                                "\n\t* Input(Entrada) informaciÛn que se suministra al algoritmo."+ 
-                                "\n\t* Proceso(Paso asignados a partir de la entrada)."+
+                            + "\n\nLos algoritmos se componen de tres partes importantes para realizar los pasos y resolver los problemas, sus componentes son:" +
+                                "\n\t* Input(Entrada) informaciùn que se suministra al algoritmo." +
+                                "\n\t* Proceso(Paso asignados a partir de la entrada)." +
                                 "\n\t* Output(Salida) resultado de la transformaciÛn de los datos.";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
@@ -372,11 +371,11 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "Lenguajes de programaciÛn";
-        textInfoNote.text = "Es un lenguaje completo que, a travÈs de una serie de instrucciones, permite a los programadores escribir un conjunto de instrucciones, acciones secuenciales, datos y algoritmos para crear programas que manipulan la fÌsica y la lÛgica de una m·quina."+
-                            "\n\nGracias a este lenguaje, el programador y la m·quina se comunican entre sÌ, lo que permite determinar con precisiÛn aspectos como:"+
-                              "\n\t-QuÈ datos debe explotar un determinado software."+
+        textInfoNote.text = "Es un lenguaje completo que, a travÈs de una serie de instrucciones, permite a los programadores escribir un conjunto de instrucciones, acciones secuenciales, datos y algoritmos para crear programas que manipulan la fÌsica y la lÛgica de una m·quina." +
+                            "\n\nGracias a este lenguaje, el programador y la mùquina se comunican entre sù, lo que permite determinar con precisiùn aspectos como:" +
+                              "\n\t-Quù datos debe explotar un determinado software." +
                               "\n\t-CÛmo deben almacenarse o transmitirse estos datos." +
-                              "\n\t-Acciones tomadas por el software en base a los casos de cambio."+
+                              "\n\t-Acciones tomadas por el software en base a los casos de cambio." +
                               "\n\n                                        Pulsa 'X' para continuar....";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
@@ -392,7 +391,7 @@ public class scriptNotes : MonoBehaviour
         text_title.SetActive(true);
         textTitle.text = "PseudocÛdigo";
         textInfoNote.text = "El pseudocÛdigo es una forma de expresar los diferentes pasos que realizar· un programa, m·s similar a un lenguaje de programaciÛn. Su principal funciÛn es representar la soluciÛn de un problema o algoritmo paso a paso de la forma m·s detallada posible, utilizando un lenguaje cercano a la programaciÛn. \n\nEl pseudocÛdigo no se puede ejecutar en una computadora porque entonces ya no ser· un pseudocÛdigo, como sugiere el nombre, es un cÛdigo de error (pseudo = falso), que es un cÛdigo escrito para el entendimiento humano, no para la m·quina."
-                            +"\n\n                                        Pulsa 'X' para continuar....";
+                            + "\n\n                                        Pulsa 'X' para continuar....";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
         opt = 4;
@@ -406,7 +405,7 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "Diagrama de flujos";
-        textInfoNote.text = "Un diagrama de flujo se conoce como una representaciÛn gr·fica de todos los pasos involucrados en un proceso. Por lo tanto, es un diagrama esquem·tico de la secuencia de operaciones que componen el sistema. Un diagrama de flujo es en pocas palabras todas las acciones que se relacionan entre sÌ para conducir a un resultado especÌfico. \n\nEs importante resaltar que un diagrama de flujo es una representaciÛn gr·fica o visual de un algoritmo que utiliza varios sÌmbolos, formas y lÌneas para representar el proceso de un programa."+
+        textInfoNote.text = "Un diagrama de flujo se conoce como una representaciÛn gr·fica de todos los pasos involucrados en un proceso. Por lo tanto, es un diagrama esquem·tico de la secuencia de operaciones que componen el sistema. Un diagrama de flujo es en pocas palabras todas las acciones que se relacionan entre sÌ para conducir a un resultado especÌfico. \n\nEs importante resaltar que un diagrama de flujo es una representaciÛn gr·fica o visual de un algoritmo que utiliza varios sÌmbolos, formas y lÌneas para representar el proceso de un programa." +
                              "\n                                           Pulsa 'X' para continuar....";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
@@ -422,7 +421,7 @@ public class scriptNotes : MonoBehaviour
         text_title.SetActive(true);
         textTitle.text = "Tipo Variable";
         textInfoNote.text = "Es un espacio en la memoria de la computadora que permite el almacenamiento temporal de datos durante la ejecuciÛn de un proceso, cuyo contenido puede cambiarse durante la ejecuciÛn del programa. \n\nLa informaciÛn puede ser un car·cter, una cadena, un n˙mero, una matriz y, en general, cualquier otro tipo de dato. Para identificar una variable en la memoria de la computadora, es necesario darle un nombre para que podamos identificarla en el algoritmo."
-                            +"\n                                           Pulsa 'X' para continuar....";
+                            + "\n                                           Pulsa 'X' para continuar....";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
         opt = 5;
@@ -480,7 +479,7 @@ public class scriptNotes : MonoBehaviour
         StartCoroutine("expectTime");
         caseHom = 1;
         msg = "'R' Recoger Tarea";
-        companionColl.enabled = false;  
+        companionColl.enabled = false;
     }
     void personaje()
     {
@@ -501,7 +500,6 @@ public class scriptNotes : MonoBehaviour
                     break;
             }
         }
-        
     }
     public void caseNextContinue(int opts)
     {
@@ -568,8 +566,6 @@ public class scriptNotes : MonoBehaviour
     }
     IEnumerator expectTime()
     {
-        
-        
         switch (optmenuPant)
         {
             case 1:
@@ -579,7 +575,7 @@ public class scriptNotes : MonoBehaviour
                     if (notasPantalla[i].name == "miniMap")
                     {
                         notasPantalla[i].SetActive(true);
-                    }        
+                    }
                     yield return new WaitForSeconds(3);
                     Destroy(notasPantalla[i]);
                 }
@@ -597,16 +593,15 @@ public class scriptNotes : MonoBehaviour
                 colliderTeacherTwo.enabled = false;
                 break;
         }
-        
     }
-    public void validarButton(string optiButton) 
+    public void validarButton(string optiButton)
     {
         for (int i = 0; i < buttonNotes.LongLength; i++)
         {
-           if(buttonNotes[i].name == optiButton)
-           {
-                buttonNotes[i].enabled = true;   
-           }
+            if (buttonNotes[i].name == optiButton)
+            {
+                buttonNotes[i].enabled = true;
+            }
         }
     }
     public void activarPistas(string namePistaA)
@@ -685,6 +680,7 @@ public class scriptNotes : MonoBehaviour
         opt = 0;
         activarPistas("ejemDiagramFlujo");
     }
+
     public void imageExpleDiagrama()
     {
         iamgenEjempDiagramFlujo.enabled = true;
