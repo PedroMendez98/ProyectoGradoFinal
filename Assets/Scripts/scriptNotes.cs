@@ -763,9 +763,7 @@ public class scriptNotes : MonoBehaviour
     {
         if(x == 1)
         {
-            optmenuPant = 5;
-            StartCoroutine("expectTime");
-            
+          
         }
     }
 

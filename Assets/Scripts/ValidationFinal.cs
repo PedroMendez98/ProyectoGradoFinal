@@ -7,23 +7,18 @@ using UnityEngine.EventSystems;
 public class ValidationFinal : MonoBehaviour
 {
     public GameObject[] objetos;
-    public GameObject obj1;
-    public GameObject obj2;
-    public GameObject obj3;
-    public GameObject obj4;
-    public GameObject obj5;
-    public GameObject obj6;
-    public GameObject obj7;
-    public GameObject obj8;
-    public GameObject obj9;
     public static int cont = 0;
     public GameObject button;
     public GameObject prefabGame2D;
     public Collider colliderTeacherThree;
     public GameObject imagenFin;
+    public GameObject salir;
     private void Start()
     {
         cont = 0;
+        salir.SetActive(false);
+        imagenFin.SetActive(false);
+        prefabGame2D.SetActive(true);
     }
     private void Update()
     {
@@ -32,20 +27,21 @@ public class ValidationFinal : MonoBehaviour
         //    prefabGame2D.SetActive(false);
         //    Time.timeScale = 1f;
         //}                   
-    
+
         validarTodos(cont);
     }
     void validarTodos(int num)
     {
         if (num == objetos.LongLength)
         {
-            //scriptNotes.n = 1;
-            //colliderTeacherThree.enabled = false;
-            //prefabGame2D.SetActive(false);
-            //Time.timeScale = 1f;
-            //imagenFin.SetActive(true);
-            SceneManager.LoadScene("SampleScene");
+            salir.SetActive(true);
+            imagenFin.SetActive(true);
+            prefabGame2D.SetActive(false);
+            cont = 0;
         }
     }
+    public void buttonSalir()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
 }
-
