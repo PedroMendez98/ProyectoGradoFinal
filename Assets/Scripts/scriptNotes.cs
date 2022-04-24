@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class scriptNotes : MonoBehaviour
 {
@@ -69,6 +70,8 @@ public class scriptNotes : MonoBehaviour
     public GameObject pruebaFinal2d;
     public GameObject miniMenu;
     public GameObject miniMap;
+    public static int n;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -168,8 +171,11 @@ public class scriptNotes : MonoBehaviour
                 default:
                     break;
             }
+           
 
         }
+        final(n);
+        Debug.Log("N: " + n);
         Debug.Log("OPT: " + opt);
         personaje();
 
@@ -315,6 +321,7 @@ public class scriptNotes : MonoBehaviour
         pistDiagFlujo.enabled = false;
         iamgenEjempDiagramFlujo.enabled = false;
         buttonStartTwo.SetActive(false);
+        msg = " ";
     }
     public void logicNote()
     {
@@ -631,9 +638,14 @@ public class scriptNotes : MonoBehaviour
                 yield return new WaitForSeconds(5f);
                 msgS.msg = " ";
                 animatorTeacherThree.SetBool("Idle", true);
-                animatorTeacherThree.SetBool("Talking", false);
+                animatorTeacherThree.SetBool("Talking", false);    
                 caseHom = 0;
                 //colliderTeacherTwo.enabled = false;
+                break;
+            case 5:
+                yield return new WaitForSeconds(5);
+                //SceneManager.LoadScene("SampleScene");
+                SceneManager.LoadScene("Juego2D 1");
                 break;
         }
     }
@@ -704,7 +716,8 @@ public class scriptNotes : MonoBehaviour
     }
     public void button_active_final()
     {
-        pruebaFinal2d.SetActive(true);
+        SceneManager.LoadScene("Juego2D 1");
+        //pruebaFinal2d.SetActive(true);
         Time.timeScale = 0f;
         panelNotebook.SetActive(false);
         text_info_note.SetActive(false);
@@ -712,6 +725,8 @@ public class scriptNotes : MonoBehaviour
         buttonStart.SetActive(false);
         miniMap.SetActive(false);
         miniMenu.SetActive(false);
+        button_exit.SetActive(false);
+        buttonStartTwo.SetActive(false);
     }
     public void imgDiagrama()
     {
@@ -743,6 +758,15 @@ public class scriptNotes : MonoBehaviour
         optInterrogante = 0;
         opt = 0;
         Time.timeScale = 0f;
+    }
+    void final(int x)
+    {
+        if(x == 1)
+        {
+            optmenuPant = 5;
+            StartCoroutine("expectTime");
+            
+        }
     }
 
 }

@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class DropSlot : MonoBehaviour, IDropHandler
 {
     public GameObject item;
+    public GameObject item1;
 
     public string[] boxN;
 
@@ -32,6 +33,8 @@ public class DropSlot : MonoBehaviour, IDropHandler
     private void Start()
     {
         boxN = new string[comboxNum.LongLength];
+        gameObject.SetActive(true);
+        item = item1;
     }
 
     public void OnDrop(PointerEventData eventData)

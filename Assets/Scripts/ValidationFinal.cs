@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
 public class ValidationFinal : MonoBehaviour
@@ -15,12 +16,14 @@ public class ValidationFinal : MonoBehaviour
     public GameObject obj7;
     public GameObject obj8;
     public GameObject obj9;
-    public static int cont;
+    public static int cont = 0;
     public GameObject button;
     public GameObject prefabGame2D;
+    public Collider colliderTeacherThree;
+    public GameObject imagenFin;
     private void Start()
     {
-        button.SetActive(false);
+        cont = 0;
     }
     private void Update()
     {
@@ -28,17 +31,21 @@ public class ValidationFinal : MonoBehaviour
         //{
         //    prefabGame2D.SetActive(false);
         //    Time.timeScale = 1f;
-        //}
+        //}                   
+    
         validarTodos(cont);
     }
     void validarTodos(int num)
     {
         if (num == objetos.LongLength)
         {
-            prefabGame2D.SetActive(false);
-            Time.timeScale = 1f;
+            //scriptNotes.n = 1;
+            //colliderTeacherThree.enabled = false;
+            //prefabGame2D.SetActive(false);
+            //Time.timeScale = 1f;
+            //imagenFin.SetActive(true);
+            SceneManager.LoadScene("SampleScene");
         }
     }
 }
-
 

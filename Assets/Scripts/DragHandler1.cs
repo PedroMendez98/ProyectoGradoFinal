@@ -19,7 +19,11 @@ public class DragHandler1 : MonoBehaviour
 
     private void Start()
     {
-
+        cont = "";
+        for (int i = 0; i < objetos.LongLength; i++)
+        {
+            objetos[i].SetActive(false);       
+        }
     }
 
     private void Update()
@@ -83,6 +87,7 @@ public class DragHandler1 : MonoBehaviour
                 activarImages("finI51");
                 break;
             default:
+                activarImages("");
                 break;
         }
 
