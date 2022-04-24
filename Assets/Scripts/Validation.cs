@@ -15,17 +15,33 @@ public class Validation : MonoBehaviour
     public GameObject obj7;
     public GameObject obj8;
     public GameObject obj9;
-    int cont;
+    int cont = 0;
     public GameObject button;
     public GameObject prefabGame2D;
-    scriptNotes i = new scriptNotes();
     private void Start()
     {
         button.SetActive(false);
     }
     private void Update()
     {
-        if (obj1.activeInHierarchy == false && obj2.activeInHierarchy == false && obj3.activeInHierarchy == false && obj4.activeInHierarchy == false && obj5.activeInHierarchy == false && obj6.activeInHierarchy == false && obj7.activeInHierarchy == false && obj8.activeInHierarchy == false && obj9.activeInHierarchy == false)
+        //if (obj1.activeInHierarchy == false && obj2.activeInHierarchy == false && obj3.activeInHierarchy == false && obj4.activeInHierarchy == false && obj5.activeInHierarchy == false && obj6.activeInHierarchy == false && obj7.activeInHierarchy == false && obj8.activeInHierarchy == false && obj9.activeInHierarchy == false)
+        //{
+        //    prefabGame2D.SetActive(false);
+        //    Time.timeScale = 1f;
+        //}
+        for (int i = 0; i < objetos.LongLength; i++)
+        {
+            if (objetos[i].activeInHierarchy == false)
+            {
+                cont += 1;
+                validarTodos(cont);
+            }
+           
+        }
+    }
+    void validarTodos(int num)
+    {
+        if (num == objetos.LongLength)
         {
             prefabGame2D.SetActive(false);
             Time.timeScale = 1f;

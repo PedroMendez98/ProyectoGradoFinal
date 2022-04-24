@@ -77,14 +77,7 @@ public class DragHandler1 : MonoBehaviour
                 }
                 break;
             case "impreI8":
-                if (val == 1)
-                {
-                    activarImages("impreI81");
-                }
-                else if (val == 2)
-                {
                     activarImages("impreI82");
-                }
                 break;
             case "finI5":
                 activarImages("finI51");
@@ -94,6 +87,7 @@ public class DragHandler1 : MonoBehaviour
         }
 
     }
+
     void activarImages(string name)
     {
         for (int i = 0; i < objetos.LongLength; i++)

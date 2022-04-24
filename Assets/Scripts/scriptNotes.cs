@@ -34,6 +34,7 @@ public class scriptNotes : MonoBehaviour
     public GameObject imageHomework;
 
     public GameObject buttonStart;
+    public GameObject buttonStartTwo;
     public GameObject prueba2d;
 
     public Image iamgenEjempDiagramFlujo;
@@ -55,6 +56,7 @@ public class scriptNotes : MonoBehaviour
 
     public Animator animatorTeacherTwo;
     public Collider colliderTeacherTwo;
+    public Animator animatorTeacherThree;
 
     public int opt;
     int caseHom;
@@ -64,11 +66,21 @@ public class scriptNotes : MonoBehaviour
     int cont = 0;
     int option;
 
+    public GameObject pruebaFinal2d;
+    public GameObject miniMenu;
+    public GameObject miniMap;
+
     // Start is called before the first frame update
     void Start()
     {
+        
+
+        miniMenu.SetActive(true);
+        miniMap.SetActive(true);
         buttonStart.SetActive(false);
+        buttonStartTwo.SetActive(false);
         prueba2d.SetActive(false);
+        pruebaFinal2d.SetActive(false);
         hosti.llaveInt = 1;
         style = new GUIStyle();
         textInfoNote.GetComponent<Text>();
@@ -137,6 +149,22 @@ public class scriptNotes : MonoBehaviour
                     textInfoNote.text = "\n\n\nVamos a la siguiente prueba, \npulsa el botón";
                     textInfoNote.alignment = TextAnchor.UpperCenter;
                     break;
+                case 3:
+                    optmenuPant = 4;
+                    enter = false;
+                    animatorTeacherThree.SetBool("Idle", false);
+                    animatorTeacherThree.SetBool("Talking", true);
+                    buttonStartTwo.SetActive(true);
+                    StartCoroutine("expectTime");
+                    panelNotebook.SetActive(true);
+                    button_exit.SetActive(true);
+                    text_info_note.SetActive(true);
+                    text_title.SetActive(true);
+                    textTitle.text = "¡Felicidades!";
+                    textInfoNote.text = "\nEsta es la ultima prueba, \nRevisa bien tus notas sobre los diagramas de flujo. \n\n Cuando estes listo regresa y \npulsa el botón";
+                    textInfoNote.alignment = TextAnchor.UpperCenter;
+                    textTitle.color = Color.green;
+                    break;
                 default:
                     break;
             }
@@ -171,6 +199,12 @@ public class scriptNotes : MonoBehaviour
             opt = 16;
             optInterrogante = 1;
             bookHomework.SetActive(false);
+        }
+        if (tags == "teacherThree")
+        {
+            msg = "'R' Hablar";
+            enter = true;
+            caseHom = 3;
         }
     }
 
@@ -280,6 +314,7 @@ public class scriptNotes : MonoBehaviour
         Time.timeScale = 1f;
         pistDiagFlujo.enabled = false;
         iamgenEjempDiagramFlujo.enabled = false;
+        buttonStartTwo.SetActive(false);
     }
     public void logicNote()
     {
@@ -557,7 +592,7 @@ public class scriptNotes : MonoBehaviour
                 textInfoNote.alignment = TextAnchor.UpperCenter;
                 textTitle.text = "Prueba de Diagrama de flujo";
                 textInfoNote.text = "\n\n\n\nVeamos cómo se compone un diagrama de flujo, dirígete al restaurante para mostrarte como.";
-                optInterrogante = 1;
+                optInterrogante = 3;
                 activarPistas("pisDiagramFlujo");
                 break;
             default:
@@ -591,6 +626,14 @@ public class scriptNotes : MonoBehaviour
                 animatorTeacherTwo.SetBool("talking", false);
                 caseHom = 0;
                 colliderTeacherTwo.enabled = false;
+                break;
+            case 4:
+                yield return new WaitForSeconds(5f);
+                msgS.msg = " ";
+                animatorTeacherThree.SetBool("Idle", true);
+                animatorTeacherThree.SetBool("Talking", false);
+                caseHom = 0;
+                //colliderTeacherTwo.enabled = false;
                 break;
         }
     }
@@ -658,6 +701,17 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(false);
         text_title.SetActive(false);
         buttonStart.SetActive(false);
+    }
+    public void button_active_final()
+    {
+        pruebaFinal2d.SetActive(true);
+        Time.timeScale = 0f;
+        panelNotebook.SetActive(false);
+        text_info_note.SetActive(false);
+        text_title.SetActive(false);
+        buttonStart.SetActive(false);
+        miniMap.SetActive(false);
+        miniMenu.SetActive(false);
     }
     public void imgDiagrama()
     {

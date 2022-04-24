@@ -39,7 +39,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
         if (!item)
         {
             item = DragHandler.objBeingDraged;
-            item.transform.SetParent (transform);
+            item.transform.SetParent(transform);
             item.transform.position = transform.position;
 
             Debug.Log("objbox " + gameObject.name);
@@ -92,38 +92,15 @@ public class DropSlot : MonoBehaviour, IDropHandler
                     {
                         valiItemActi("impreI6", item);
                     }
-                    break; 
+                    break;
                 case "negativa":
                     valiItemActi("impreI8", item);
-                    break;     
+                    break;
                 case "fin":
                     valiItemActi("finI5", item);
                     break;
                 default:
                     break;
-            }
-
-            if (
-                gameObject.name == "SlotA1" ||
-                gameObject.name == "SlotA2" ||
-                gameObject.name == "SlotA3"
-            )
-            {
-                if (item.gameObject.tag == "ItemA")
-                {
-                    gameObject.SetActive(false);
-                }
-            }
-            if (
-                gameObject.name == "SlotB1" ||
-                gameObject.name == "SlotB2" ||
-                gameObject.name == "SlotB3"
-            )
-            {
-                if (item.gameObject.tag == "ItemB")
-                {
-                    gameObject.SetActive(false);
-                }
             }
         }
     }
@@ -144,6 +121,7 @@ public class DropSlot : MonoBehaviour, IDropHandler
         {
             DragHandler1.cont = itemActi;
             gameObject.SetActive(false);
+            ValidationFinal.cont += 1;
         }
     }
 }
