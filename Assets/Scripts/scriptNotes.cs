@@ -38,15 +38,17 @@ public class scriptNotes : MonoBehaviour
     public GameObject buttonStartTwo;
     public GameObject prueba2d;
 
+    public GameObject teacherGameOver;
+
     public Image iamgenEjempDiagramFlujo;
 
     public Image pistDiagFlujo;
 
     public bool enter;
 
-    string msg;
+    public string msg;
 
-    GUIStyle style;
+    public GUIStyle style;
     public Font ScoreFont;
 
     public Collider teacherOne;
@@ -70,16 +72,23 @@ public class scriptNotes : MonoBehaviour
     public GameObject pruebaFinal2d;
     public GameObject miniMenu;
     public GameObject miniMap;
+
+    public GameObject imagenFinalGameOver;
+
     public static int n;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        
-
-        miniMenu.SetActive(true);
-        miniMap.SetActive(true);
+        for (int i = 0; i < buttonNotes.LongLength; i++)
+        {
+            buttonNotes[i].enabled = false;
+        }
+        teacherGameOver.SetActive(false);
+        imagenFinalGameOver.SetActive(false);
+        miniMenu.SetActive(false);
+        miniMap.SetActive(false);
         buttonStart.SetActive(false);
         buttonStartTwo.SetActive(false);
         prueba2d.SetActive(false);
@@ -100,13 +109,10 @@ public class scriptNotes : MonoBehaviour
         imageHomework.SetActive(false);
         pistDiagFlujo.enabled = false;
         iamgenEjempDiagramFlujo.enabled = false;
-        //activarPruebas();
-        //companion();
+        opt = 0;
+        enter = false;
 
-        for (int i = 0; i < buttonNotes.LongLength; i++)
-        {
-            buttonNotes[i].enabled = false;
-        }
+
         for (int i = 0; i < notas.LongLength; i++)
         {
             notas[i].SetActive(false);
@@ -116,6 +122,7 @@ public class scriptNotes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("enter: " + enter);
         if (Input.GetKeyDown("f"))
         {
             optionNote(tags);
@@ -134,13 +141,11 @@ public class scriptNotes : MonoBehaviour
             {
                 case 1:
                     caseNextContinue(15);
-                    enter = false;
                     break;
                 case 2:
                     imageHomework.SetActive(false);
                     optmenuPant = 3;
                     teacherOne.enabled = false;
-                    enter = false;
                     animatorTeacherTwo.SetBool("idle", false);
                     animatorTeacherTwo.SetBool("talking", true);
                     buttonStart.SetActive(true);
@@ -171,11 +176,7 @@ public class scriptNotes : MonoBehaviour
                 default:
                     break;
             }
-           
-
         }
-        final(n);
-        Debug.Log("N: " + n);
         Debug.Log("OPT: " + opt);
         personaje();
 
@@ -184,6 +185,7 @@ public class scriptNotes : MonoBehaviour
         {
             buttonNotes[i].enabled = true;
         }
+      
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -192,10 +194,6 @@ public class scriptNotes : MonoBehaviour
         if (tags == "Tops")
         {
             option += 1;
-        }
-        if (tags == "book")
-        {
-            enter = true;
         }
         if (tags == "teacherTwo")
         {
@@ -212,13 +210,16 @@ public class scriptNotes : MonoBehaviour
             enter = true;
             caseHom = 3;
         }
+        if (tags == "book")
+        {
+            msg = "'R' Recojgr Tarea";
+            enter = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         exitNote();
-
-
     }
     void optionNote(string tagG)
     {
@@ -289,6 +290,16 @@ public class scriptNotes : MonoBehaviour
                     activarExampleDiagrama();
                     tagG = "";
                 }
+                if (optInterrogante == 4)
+                {
+                    caseNextContinue(16);
+                    tagG = "";
+                }
+                if (optInterrogante == 5)
+                {
+                    pistaPruebaFinal();
+                    tagG = "";
+                }
 
                 break;
             case "companion":
@@ -298,7 +309,6 @@ public class scriptNotes : MonoBehaviour
             case "pisDiagramFlujo":
                 imgDiagrama();
                 validarButton("butonPistaDiagramFlujo");
-                optInterrogante = 3;
                 tagG = "";
                 break;
             case "ejemDiagramFlujo":
@@ -316,12 +326,11 @@ public class scriptNotes : MonoBehaviour
         text_title.SetActive(false);
         text_info_note.SetActive(false);
         button_exit.SetActive(false);
-        opt = 0;
         Time.timeScale = 1f;
         pistDiagFlujo.enabled = false;
         iamgenEjempDiagramFlujo.enabled = false;
         buttonStartTwo.SetActive(false);
-        msg = " ";
+        enter = false;
     }
     public void logicNote()
     {
@@ -512,15 +521,12 @@ public class scriptNotes : MonoBehaviour
         panelNotebook.SetActive(true);
         text_info_note.SetActive(true);
         text_title.SetActive(true);
-        opt = 13;
         textTitle.text = "¡Hola!";
-        textInfoNote.text = "Soy tu compañero \n\nQueria pedirte el favor que busques al docente y entregues nuestra tarea para que asi nos pueda calificar." +
-                             "\n\n\nPulsa | X | para recoger tarea";
+        textInfoNote.text = "Soy tu compañero \n\nQueria pedirte el favor que busques al docente y entregues nuestra tarea para que asi nos pueda calificar.";
         Time.timeScale = 0f;
         bookHomework.SetActive(true);
-        StartCoroutine("expectTime");
+        button_exit.SetActive(true);
         caseHom = 1;
-        msg = "'R' Recoger Tarea";
         companionColl.enabled = false;
     }
     void personaje()
@@ -582,15 +588,10 @@ public class scriptNotes : MonoBehaviour
                 optInterrogante = 1;
                 opt = 12;
                 break;
-            case 13:
-                exitNote();
-                bookHomework.SetActive(true);
-                msgS.msg = "";
-                optmenuPant = 2;
-                break;
             case 15:
                 bookHomework.SetActive(false);
                 imageHomework.SetActive(true);
+                enter = false;
                 break;
             case 16:
                 panelNotebook.SetActive(true);
@@ -599,7 +600,6 @@ public class scriptNotes : MonoBehaviour
                 textInfoNote.alignment = TextAnchor.UpperCenter;
                 textTitle.text = "Prueba de Diagrama de flujo";
                 textInfoNote.text = "\n\n\n\nVeamos cómo se compone un diagrama de flujo, dirígete al restaurante para mostrarte como.";
-                optInterrogante = 3;
                 activarPistas("pisDiagramFlujo");
                 break;
             default:
@@ -618,7 +618,7 @@ public class scriptNotes : MonoBehaviour
                     {
                         notasPantalla[i].SetActive(true);
                     }
-                    yield return new WaitForSeconds(3);
+                    yield return new WaitForSeconds(5);
                     Destroy(notasPantalla[i]);
                 }
                 break;
@@ -700,7 +700,8 @@ public class scriptNotes : MonoBehaviour
     {
         style.fontSize = 25;
         style.font = ScoreFont;
-        if (enter)
+        Debug.Log("enterGui " + enter);
+        if (enter == true)
         {
             GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height - 50, 150, 30), msg, style);
         }
@@ -708,11 +709,13 @@ public class scriptNotes : MonoBehaviour
     public void button_active()
     {
         prueba2d.SetActive(true);
+        enter = false;
         Time.timeScale = 0f;
         panelNotebook.SetActive(false);
         text_info_note.SetActive(false);
         text_title.SetActive(false);
         buttonStart.SetActive(false);
+        optInterrogante = 4;
     }
     public void button_active_final()
     {
@@ -733,7 +736,7 @@ public class scriptNotes : MonoBehaviour
         pistDiagFlujo.enabled = true;
         button_exit.SetActive(true);
         desactivarPistas("pisDiagramFlujo");
-        optInterrogante = 0;
+        optInterrogante = 3;
         opt = 0;
     }
     public void activarExampleDiagrama()
@@ -755,17 +758,22 @@ public class scriptNotes : MonoBehaviour
         iamgenEjempDiagramFlujo.enabled = true;
         button_exit.SetActive(true);
         desactivarPistas("ejemDiagramFlujo");
-        optInterrogante = 0;
+        optInterrogante = 5;
         opt = 0;
         Time.timeScale = 0f;
+        teacherGameOver.SetActive(true);
+        imagenFinalGameOver.SetActive(true);
     }
-    void final(int x)
+    public void pistaPruebaFinal()
     {
-        if(x == 1)
-        {
-          
-        }
+        panelNotebook.SetActive(true);
+        text_info_note.SetActive(true);
+        text_title.SetActive(true);
+        textTitle.text = "Prueba Final";
+        textInfoNote.alignment = TextAnchor.UpperCenter;
+        textInfoNote.text = "¡En el Aula Multiple te espera el docente con la pista para la prueba final \n\n -CORRE-!.";
+        button_exit.SetActive(true);
+        opt = 0;
     }
-
 }
 

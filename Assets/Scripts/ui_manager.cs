@@ -28,6 +28,7 @@ public class ui_manager : MonoBehaviour
     public GameObject image_controls;
     public GameObject image_menu;
     public GameObject image_notebook;
+    public GameObject mini_map;
 
     bool validate_screen_status;
 
@@ -71,6 +72,7 @@ public class ui_manager : MonoBehaviour
         Time.timeScale = 1f;
         validate_screen_status = false;
         image_notebook.SetActive(false);
+        mini_map.SetActive(true);                   
     }
     public void startInfo()
     {

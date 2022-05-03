@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class Validation : MonoBehaviour
 {
-    public GameObject[] objetos;
     public GameObject obj1;
     public GameObject obj2;
     public GameObject obj3;
@@ -24,28 +23,20 @@ public class Validation : MonoBehaviour
     }
     private void Update()
     {
-        //if (obj1.activeInHierarchy == false && obj2.activeInHierarchy == false && obj3.activeInHierarchy == false && obj4.activeInHierarchy == false && obj5.activeInHierarchy == false && obj6.activeInHierarchy == false && obj7.activeInHierarchy == false && obj8.activeInHierarchy == false && obj9.activeInHierarchy == false)
-        //{
-        //    prefabGame2D.SetActive(false);
-        //    Time.timeScale = 1f;
-        //}
-        for (int i = 0; i < objetos.LongLength; i++)
-        {
-            if (objetos[i].activeInHierarchy == false)
-            {
-                cont += 1;
-                validarTodos(cont);
-            }
-           
-        }
-    }
-    void validarTodos(int num)
-    {
-        if (num == objetos.LongLength)
+        if (obj1.activeInHierarchy == false && obj2.activeInHierarchy == false && obj3.activeInHierarchy == false && obj4.activeInHierarchy == false && obj5.activeInHierarchy == false && obj6.activeInHierarchy == false && obj7.activeInHierarchy == false && obj8.activeInHierarchy == false && obj9.activeInHierarchy == false)
         {
             prefabGame2D.SetActive(false);
             Time.timeScale = 1f;
         }
+        //for (int i = 0; i < objetos.LongLength; i++)
+        //{
+        //    if (objetos[i].activeInHierarchy == false)
+        //    {
+        //        cont += 1;
+        //        validarTodos(cont);
+        //    }
+        //   
+        //}
     }
 }
 
