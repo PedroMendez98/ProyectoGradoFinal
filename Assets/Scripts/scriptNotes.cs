@@ -12,7 +12,7 @@ public class scriptNotes : MonoBehaviour
 
     public GameObject text_title;
     public GameObject text_info_note;
-
+    int sumaTotal;
     public GameObject button_exit;
 
     public Text textTitle;
@@ -26,6 +26,7 @@ public class scriptNotes : MonoBehaviour
     public GameObject[] notasPantalla;
     public Button[] buttonNotes;
     public GameObject[] life;
+    public GameObject imageGameOver;
 
     //objetos a destruir
     public GameObject plarTeacher;
@@ -81,6 +82,7 @@ public class scriptNotes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        imageGameOver.SetActive(false);
         for (int i = 0; i < buttonNotes.LongLength; i++)
         {
             buttonNotes[i].enabled = false;
@@ -194,6 +196,7 @@ public class scriptNotes : MonoBehaviour
         if (tags == "Tops")
         {
             option += 1;
+            sumaTotal += 1;
         }
         if (tags == "teacherTwo")
         {
@@ -212,8 +215,9 @@ public class scriptNotes : MonoBehaviour
         }
         if (tags == "book")
         {
-            msg = "'R' Recojgr Tarea";
+            msg = "'R' Recoger Tarea";
             enter = true;
+            colliderTeacherTwo.enabled = true;
         }
     }
 
@@ -531,23 +535,34 @@ public class scriptNotes : MonoBehaviour
     }
     void personaje()
     {
-        if (tags == "Tops")
+        ui_manager m = new ui_manager();
+        if (sumaTotal == 3)
         {
-            switch (option)
-            {
-                case 1:
-                    calculateLife("Notebook_3");
-                    break;
-                case 2:
-                    calculateLife("Notebook_2");
-                    break;
-                case 3:
-                    calculateLife("Notebook_1");
-                    break;
-                default:
-                    break;
-            }
+            imageGameOver.SetActive(true);
+            miniMap.SetActive(false);
+            optmenuPant = 6;
+            StartCoroutine("expectTime");
+
         }
+            if (tags == "Tops")
+            {
+                switch (option)
+                {
+                    case 1:
+                        calculateLife("Notebook_3");
+                    break;
+                    case 2:
+                        calculateLife("Notebook_2");
+                    break;
+                    case 3:
+                        calculateLife("Notebook_1");
+                    break;
+                    default:
+                        break;
+                }
+            }
+        
+        
     }
     public void caseNextContinue(int opts)
     {
@@ -587,6 +602,7 @@ public class scriptNotes : MonoBehaviour
                                     + "\t\t\n5.) Dejar tarea con el docente.";
                 optInterrogante = 1;
                 opt = 12;
+                companionColl.enabled = true;
                 break;
             case 15:
                 bookHomework.SetActive(false);
@@ -646,6 +662,11 @@ public class scriptNotes : MonoBehaviour
                 yield return new WaitForSeconds(5);
                 //SceneManager.LoadScene("SampleScene");
                 SceneManager.LoadScene("Juego2D 1");
+                break;
+            case 6:
+                yield return new WaitForSeconds(5);
+                //SceneManager.LoadScene("SampleScene");
+                SceneManager.LoadScene("SampleScene");
                 break;
         }
     }
@@ -748,6 +769,7 @@ public class scriptNotes : MonoBehaviour
         textInfoNote.alignment = TextAnchor.UpperCenter;
         textInfoNote.text = "¡En el salon de secretaria encontraras un ejemplo de un diagrama de flujo, repásalo bien se aproxima la prueba!.";
         button_exit.SetActive(true);
+        iamgenEjempDiagramFlujo.enabled = true;
         Time.timeScale = 0f;
         opt = 0;
         activarPistas("ejemDiagramFlujo");

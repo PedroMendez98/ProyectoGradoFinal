@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ui_manager : MonoBehaviour
 {
+    [SerializeField]
     //Menus
     public GameObject menu;
     public GameObject menuPausa;
@@ -22,11 +23,13 @@ public class ui_manager : MonoBehaviour
 
     public Text textInfo;
     public Text textTitleGrades;
+    public GameObject miniMap;
 
     //Imagenes y/o Fondos
     public GameObject image_information;
     public GameObject image_controls;
     public GameObject image_menu;
+    public Button Bnext;
     public GameObject image_notebook;
     public GameObject mini_map;
 
@@ -34,8 +37,9 @@ public class ui_manager : MonoBehaviour
 
     //Jugador
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
+        
         textInfo.GetComponent<Text>();
         menu.SetActive(true);
         menuPausa.SetActive(false);
@@ -88,7 +92,7 @@ public class ui_manager : MonoBehaviour
         button_menu.SetActive(false);
         image_menu.SetActive(false);
         image_notebook.SetActive(false);
-
+        Bnext.GetComponent<Button>().onClick.AddListener(next);
         textInfo.text = "Este juego esta diseñado para el aprendizaje de lógica computacional de esta manera podrás poner aprueba tu conocimiento para resolver problemas a través de la lógica, \n\n recuerda dentro del colegio encontraras información a través de pistas y objetos que tendrás que recolectar de igual manera pondrás a prueba el conocimiento que obtengas durante esta aventura por medio pequeños ejercicios.";
 
     }
@@ -151,6 +155,7 @@ public class ui_manager : MonoBehaviour
         button_menu.SetActive(true);
         image_menu.SetActive(false);
         image_notebook.SetActive(false);
+        miniMap.SetActive(false);
         if (validate_screen_status == true)
         {
             menu.SetActive(false);
@@ -180,8 +185,8 @@ public class ui_manager : MonoBehaviour
         button_play.SetActive(false);
         Time.timeScale = 0f;
         menu.SetActive(false);
+        Bnext.GetComponent<Button>().onClick.AddListener(imagenMiniMap);
         image_information.SetActive(true);
-        button_next.SetActive(true);
         button_close.SetActive(true);
         image_controls.SetActive(false);
         menuPausa.SetActive(false);
@@ -189,6 +194,7 @@ public class ui_manager : MonoBehaviour
         button_menu.SetActive(false);
         image_menu.SetActive(false);
         image_notebook.SetActive(false);
+        miniMap.SetActive(false);
     }
     public void buttonNotebooks()
     {
@@ -203,5 +209,16 @@ public class ui_manager : MonoBehaviour
         button_menu.SetActive(false);
         image_menu.SetActive(false);
         image_notebook.SetActive(true);
+    }
+    public void imagenMiniMap()
+    {
+        miniMap.SetActive(true);
+        Time.timeScale = 0f;
+        textInfo.text = "";
+        
+    }
+    public void exitAplicattion()
+    {
+        Application.Quit();
     }
 }
