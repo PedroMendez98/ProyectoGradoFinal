@@ -117,7 +117,8 @@ public class script_teacher_one : MonoBehaviour
             teacherAnimator.SetBool("Walk", true);
             teacherAnimator.SetBool("Idle", false);
             teacherAnimator.SetBool("Speak", false);
-            teacher.destination = wayPoints[nextPoint].position;
+            ///teacher.destination = wayPoints[nextPoint].position;
+            teacher.SetDestination(wayPoints[nextPoint].position);
             timeTrans = 0;
             time = 0;
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ui_manager : MonoBehaviour
@@ -17,13 +18,16 @@ public class ui_manager : MonoBehaviour
     public GameObject button_information;
     public GameObject button_close;
     public GameObject button_back;
+    public Button button_backB;
     public GameObject button_menu;
+    public GameObject button_close_2;
 
     public GameObject text_title_grades;
 
     public Text textInfo;
     public Text textTitleGrades;
     public GameObject miniMap;
+
 
     //Imagenes y/o Fondos
     public GameObject image_information;
@@ -39,7 +43,7 @@ public class ui_manager : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        
+        button_close_2.SetActive(false);
         textInfo.GetComponent<Text>();
         menu.SetActive(true);
         menuPausa.SetActive(false);
@@ -52,7 +56,7 @@ public class ui_manager : MonoBehaviour
         image_menu.SetActive(false);
         text_title_grades.SetActive(false);
         image_notebook.SetActive(false);
-
+        mini_map.SetActive(false);
     }
 
     // Update is called once per frame
@@ -85,32 +89,75 @@ public class ui_manager : MonoBehaviour
         menu.SetActive(false);
         image_information.SetActive(true);
         button_next.SetActive(true);
-        button_close.SetActive(true);
+        button_close_2.SetActive(false);
+        button_close.SetActive(false);
+        image_controls.SetActive(false);
+        menuPausa.SetActive(false);
+        button_back.SetActive(true);
+        mini_map.SetActive(false);
+        button_menu.SetActive(false);
+        image_menu.SetActive(false);
+        image_notebook.SetActive(false);
+        button_backB.GetComponent<Button>().onClick.AddListener(backPause);
+        Bnext.GetComponent<Button>().onClick.AddListener(next);
+        textInfo.text = "Este juego esta diseñado para el aprendizaje de lógica computacional de esta manera podrás poner aprueba tu conocimiento para resolver problemas a través de la lógica, \n\n recuerda dentro del colegio encontraras información a través de pistas y objetos que tendrás que recolectar de igual manera pondrás a prueba el conocimiento que obtengas durante esta aventura por medio pequeños ejercicios.";
+
+    }
+    public void startInfo2()
+    {
+        button_play.SetActive(false);
+        Time.timeScale = 0f;
+        menu.SetActive(false);
+        image_information.SetActive(true);
+        button_next.SetActive(true);
+        button_close_2.SetActive(false);
+        button_close.SetActive(false);
         image_controls.SetActive(false);
         menuPausa.SetActive(false);
         button_back.SetActive(true);
         button_menu.SetActive(false);
         image_menu.SetActive(false);
         image_notebook.SetActive(false);
+        mini_map.SetActive(false);
         Bnext.GetComponent<Button>().onClick.AddListener(next);
         textInfo.text = "Este juego esta diseñado para el aprendizaje de lógica computacional de esta manera podrás poner aprueba tu conocimiento para resolver problemas a través de la lógica, \n\n recuerda dentro del colegio encontraras información a través de pistas y objetos que tendrás que recolectar de igual manera pondrás a prueba el conocimiento que obtengas durante esta aventura por medio pequeños ejercicios.";
 
     }
     public void close()
     {
-        button_play.SetActive(true);
+        textInfo.GetComponent<Text>();
         menu.SetActive(false);
-        Time.timeScale=1f;
+        menuPausa.SetActive(false);
         image_information.SetActive(false);
         button_next.SetActive(false);
         button_close.SetActive(false);
         image_controls.SetActive(false);
-        menuPausa.SetActive(false);
         button_back.SetActive(false);
-        image_menu.SetActive(false);
         button_menu.SetActive(true);
+        image_menu.SetActive(false);
+        text_title_grades.SetActive(false);
         image_notebook.SetActive(false);
-
+        button_play.SetActive(false);
+        Time.timeScale = 1f;
+        mini_map.SetActive(true);
+    }
+    public void closeStart()
+    {
+        textInfo.GetComponent<Text>();
+        menu.SetActive(true);
+        menuPausa.SetActive(false);
+        image_information.SetActive(false);
+        button_next.SetActive(false);
+        button_close.SetActive(false);
+        image_controls.SetActive(false);
+        button_back.SetActive(false);
+        button_menu.SetActive(false);
+        image_menu.SetActive(false);
+        text_title_grades.SetActive(false);
+        image_notebook.SetActive(false);
+        button_play.SetActive(true);
+        button_close_2.SetActive(false);
+        miniMap.SetActive(false);
     }
     public void screenControls()
     {
@@ -119,7 +166,8 @@ public class ui_manager : MonoBehaviour
         menu.SetActive(false);
         image_information.SetActive(false);
         button_next.SetActive(false);
-        button_close.SetActive(true);
+        button_close_2.SetActive(true);
+        button_close.SetActive(false);
         image_controls.SetActive(true);
         menuPausa.SetActive(false);
         button_back.SetActive(false);
@@ -141,6 +189,7 @@ public class ui_manager : MonoBehaviour
         button_menu.SetActive(false);
         image_menu.SetActive(false);
         image_notebook.SetActive(false);
+        mini_map.SetActive(false);
     }
     public void back()
     {
@@ -149,6 +198,7 @@ public class ui_manager : MonoBehaviour
         image_information.SetActive(false);
         button_next.SetActive(false);
         button_close.SetActive(false);
+        button_close_2.SetActive(false);
         image_controls.SetActive(false);
         menuPausa.SetActive(false);
         button_back.SetActive(false);
@@ -156,6 +206,7 @@ public class ui_manager : MonoBehaviour
         image_menu.SetActive(false);
         image_notebook.SetActive(false);
         miniMap.SetActive(false);
+        mini_map.SetActive(true);
         if (validate_screen_status == true)
         {
             menu.SetActive(false);
@@ -165,13 +216,19 @@ public class ui_manager : MonoBehaviour
             menu.SetActive(true);
         }
     }
+    public void backPause()
+    {
+        button_menu.SetActive(false);
+        mini_map.SetActive(false);
+        SceneManager.LoadScene("SampleScene");
+    }
     public void enterMenu()
     {
         menu.SetActive(false);
         menuPausa.SetActive(false);
         image_information.SetActive(false);
         button_next.SetActive(false);
-        button_close.SetActive(true);
+        button_close.SetActive(false);
         image_controls.SetActive(false);
         button_back.SetActive(false);
         Time.timeScale = 0f;
@@ -187,7 +244,8 @@ public class ui_manager : MonoBehaviour
         menu.SetActive(false);
         Bnext.GetComponent<Button>().onClick.AddListener(imagenMiniMap);
         image_information.SetActive(true);
-        button_close.SetActive(true);
+        button_close.SetActive(false);
+        button_close_2.SetActive(false);
         image_controls.SetActive(false);
         menuPausa.SetActive(false);
         button_back.SetActive(true);
@@ -203,12 +261,14 @@ public class ui_manager : MonoBehaviour
         image_information.SetActive(false);
         button_next.SetActive(false);
         button_close.SetActive(true);
+        button_close_2.SetActive(false);
         image_controls.SetActive(false);
         button_back.SetActive(false);
         Time.timeScale = 0f;
         button_menu.SetActive(false);
         image_menu.SetActive(false);
         image_notebook.SetActive(true);
+        mini_map.SetActive(false);
     }
     public void imagenMiniMap()
     {
@@ -221,4 +281,5 @@ public class ui_manager : MonoBehaviour
     {
         Application.Quit();
     }
+    
 }
