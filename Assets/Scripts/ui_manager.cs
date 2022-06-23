@@ -100,7 +100,7 @@ public class ui_manager : MonoBehaviour
         image_notebook.SetActive(false);
         button_backB.GetComponent<Button>().onClick.AddListener(backPause);
         Bnext.GetComponent<Button>().onClick.AddListener(next);
-        textInfo.text = "Este juego esta diseñado para el aprendizaje de lógica computacional de esta manera podrás poner aprueba tu conocimiento para resolver problemas a través de la lógica, \n\n recuerda dentro del colegio encontraras información a través de pistas y objetos que tendrás que recolectar de igual manera pondrás a prueba el conocimiento que obtengas durante esta aventura por medio pequeños ejercicios.";
+        textInfo.text = "Este juego está diseñado para el aprendizaje de lógica computacional, de esta manera podrás poner aprueba tú conocimiento para resolver problemas a través de la lógica, \n\n recuerda, dentro del colegio encontraras información a través de pistas y objetos que tendrás que recolectar, de igual manera pondrás a prueba el conocimiento que obtengas durante esta aventura por medio pequeños ejercicios.";
 
     }
     public void startInfo2()
@@ -120,8 +120,8 @@ public class ui_manager : MonoBehaviour
         image_notebook.SetActive(false);
         mini_map.SetActive(false);
         Bnext.GetComponent<Button>().onClick.AddListener(next);
-        textInfo.text = "Este juego esta diseñado para el aprendizaje de lógica computacional de esta manera podrás poner aprueba tu conocimiento para resolver problemas a través de la lógica, \n\n recuerda dentro del colegio encontraras información a través de pistas y objetos que tendrás que recolectar de igual manera pondrás a prueba el conocimiento que obtengas durante esta aventura por medio pequeños ejercicios.";
-
+        textInfo.text = "Este juego está diseñado para el aprendizaje de lógica computacional, de esta manera podrás poner aprueba tú conocimiento para resolver problemas a través de la lógica, \n\n recuerda; dentro del colegio encontrarás información a través de pistas y objetos que tendrás que recolectar, de igual manera pondrás a prueba el conocimiento que obtengas durante está aventura, por medio de pequeños ejercicios.";
+                                                                                                                                                                                                                                                                                                                   
     }
     public void close()
     {
@@ -238,7 +238,7 @@ public class ui_manager : MonoBehaviour
     }
     public void next()
     {
-        textInfo.text = "\n\nNo olvides algunos profesores del videojuego te darán información para que puedas continuar con tu ruta de aprendizaje.\n\n\n ¡Que comience la aventura a través de esta ruta de aprendizaje!";
+        textInfo.text = "\n\nNo olvides que algunos profesores del videojuego te darán información para que puedas continuar con tu ruta de aprendizaje.\n\n\n ¡Que comience la aventura a través de está ruta de aprendizaje!";
         button_play.SetActive(false);
         Time.timeScale = 0f;
         menu.SetActive(false);
@@ -283,3 +283,4 @@ public class ui_manager : MonoBehaviour
     }
     
 }
+                     

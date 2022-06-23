@@ -171,7 +171,7 @@ public class scriptNotes : MonoBehaviour
                     text_info_note.SetActive(true);
                     text_title.SetActive(true);
                     textTitle.text = "°Felicidades!";
-                    textInfoNote.text = "\nEsta es la ultima prueba, \nRevisa bien tus notas sobre los diagramas de flujo. \n\n Cuando estes listo regresa y \npulsa el botÛn";
+                    textInfoNote.text = "\nEsta es la ˙ltima prueba, \nRevisa bien tus notas sobre los diagramas de flujo. \n\n Cuando estes listo regresa y \npulsa el botÛn";
                     textInfoNote.alignment = TextAnchor.UpperCenter;
                     textTitle.color = Color.green;
                     break;
@@ -339,13 +339,14 @@ public class scriptNotes : MonoBehaviour
     public void logicNote()
     {
         panelNotebook.SetActive(true);
+
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "LÛgica";
-        textInfoNote.text = "Se conoce por lÛgica computaciÛn o lÛgica matem·tica directamente aplicada en el contexto de las ciencias de computaciÛn aquellos recursos que pueden se implementados en diferente nivel como lo puede ser: " +
+        textInfoNote.text = "Se conoce por lÛgica, computaciÛn o lÛgica matem·tica directamente aplicada en el contexto de las ciencias inform·ticas, aquellos recursos que pueden ser implementados en diferentes niveles como lo son: " +
           "\n\n- Circuitos computacionales " +
           "\n- ProgramaciÛn lÛgica " +
-          "\n- An·lisis y optimizaciÛn de recursos temporales y espaciales (mas conocidos en el campo de la ciencia computacional como algoritmos)" +
+          "\n- An·lisis y optimizaciÛn de recursos temporales y espaciales (m·s conocidos en el campo de la ciencia computacional como algoritmos)" +
           "\n\n\n                                        Pulsa 'X' para continuar....";
         button_exit.SetActive(true);
         activarPistas("Concept");
@@ -363,7 +364,7 @@ public class scriptNotes : MonoBehaviour
         text_title.SetActive(true);
         textTitle.text = "Conceptos";
         textInfoNote.text = "Para iniciar esta travesÌa es importante tener claros algunos conceptos, los cuales aparecer·n en el mapa para que puedas analizarlos."
-                               + "\n\nLos conceptos son: \n -Algoritmos \n -CodificaciÛn \n -Lenguaje de programaciÛn \n -SeudocÛdigo \n -Diagrama de flujo";
+                               + "\n\nLos conceptos son: \n -Algoritmos \n -CodificaciÛn \n -Lenguaje de programaciÛn \n -PseudocÛdigo \n -Diagrama de flujo";
         button_exit.SetActive(true);
 
         Time.timeScale = 0f;
@@ -394,11 +395,24 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "Algoritmo";
-        textInfoNote.text = "Un algoritmo inform·tico es un conjunto definido, ordenado y acotado de instrucciones para resolver un problema, realizar un c·lculo o realizar una tarea. Es decir, un algoritmo es un proceso paso a paso para llegar a un fin. Partiendo de un estado e informaciÛn inicial, sigue una secuencia de pasos ordenados para resolver una situaciÛn."
-                            + "\n\nLos algoritmos se componen de tres partes importantes para realizar los pasos y resolver los problemas, sus componentes son:" +
-                                "\n\t* Input(Entrada) informaciùn que se suministra al algoritmo." +
+
+
+
+
+
+        textInfoNote.text = "Un algoritmo inform·tico es un conjunto definido, ordenado y acotado de instrucciones para resolver un problema, realizar un c·lculo o realizar una tarea. Es decir; un algoritmo es un proceso paso a paso para llegar a un fin. Partiendo de un estado de informaciÛn inicial, sigue una secuencia de pasos ordenados para resolver una situaciÛn."
+                            + "\n\nLos algoritmos se componen de tres partes: " +
+                                "\n\t* Input(Entrada) informaciÛùn que se suministra al algoritmo." +
                                 "\n\t* Proceso(Paso asignados a partir de la entrada)." +
-                                "\n\t* Output(Salida) resultado de la transformaciÛn de los datos.";
+                                "\n\t* Output(Salida) resultado de la transformaciÛn de los datos."
+                                + "\nLos cuales son importantes para realizar los pasos y resolver los problemas.  ";
+        
+        
+        
+        
+        
+        
+        
         button_exit.SetActive(true);
         Time.timeScale = 0f;
         opt = 0;
@@ -412,7 +426,7 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "CodificaciÛn";
-        textInfoNote.text = "En inform·tica, la codificaciÛn tambiÈn es la operaciÛn de enviar datos de un lugar a otro, procesarlos y obtener resultados de ellos. Todas las operaciones de la computadora est·n encriptadas en cÛdigo binario o en una combinaciÛn m·s o menos compleja de 1 y 0 que siguen apareciendo. \n\nA su vez, ciertas operaciones de la computadora requieren un segundo nivel de encriptaciÛn. Son aquellas que requieren aspectos de seguridad y confidencialidad, y por lo tanto implican la creaciÛn de mensajes encriptados que solo pueden ser leÌdos por cierto tipo de computadoras o por el usuario que los creÛ, al igual que las contraseÒas y los datos personales en las transacciones en lÌnea.";
+        textInfoNote.text = "En inform·tica, la codificaciÛn tambiÈn es la operaciÛn de enviar datos de un lugar a otro, procesarlos y obtener resultados de ellos. Todas las operaciones de la computadora est·n encriptadas en cÛdigo binario o en una combinaciÛn m·s o menos compleja de 1 y 0, que siguen apareciendo. \n\nA su vez, ciertas operaciones de la computadora requieren un segundo nivel de encriptaciÛn. Son aquellas que requieren aspectos de seguridad y confidencialidad, y por lo tanto, implican la creaciÛn de mensajes encriptados que solo pueden ser leÌdos por cierto tipo de computadoras o por el usuario que los creÛ, al igual que las contraseÒas y los datos personales en las transacciones en lÌnea.";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
         cont = cont + 1;
@@ -427,8 +441,8 @@ public class scriptNotes : MonoBehaviour
         text_title.SetActive(true);
         textTitle.text = "Lenguajes de programaciÛn";
         textInfoNote.text = "Es un lenguaje completo que, a travÈs de una serie de instrucciones, permite a los programadores escribir un conjunto de instrucciones, acciones secuenciales, datos y algoritmos para crear programas que manipulan la fÌsica y la lÛgica de una m·quina." +
-                            "\n\nGracias a este lenguaje, el programador y la mùquina se comunican entre sù, lo que permite determinar con precisiùn aspectos como:" +
-                              "\n\t-Quù datos debe explotar un determinado software." +
+                            "\n\nGracias a este lenguaje, el programador y la maùquina se comunican entre siù, lo que permite determinar con precisiÛùn aspectos como:" +
+                              "\n\t-Quùe datos debe explotar un determinado software." +
                               "\n\t-CÛmo deben almacenarse o transmitirse estos datos." +
                               "\n\t-Acciones tomadas por el software en base a los casos de cambio." +
                               "\n\n                                        Pulsa 'X' para continuar....";
@@ -445,7 +459,7 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "PseudocÛdigo";
-        textInfoNote.text = "El pseudocÛdigo es una forma de expresar los diferentes pasos que realizar· un programa, m·s similar a un lenguaje de programaciÛn. Su principal funciÛn es representar la soluciÛn de un problema o algoritmo paso a paso de la forma m·s detallada posible, utilizando un lenguaje cercano a la programaciÛn. \n\nEl pseudocÛdigo no se puede ejecutar en una computadora porque entonces ya no ser· un pseudocÛdigo, como sugiere el nombre, es un cÛdigo de error (pseudo = falso), que es un cÛdigo escrito para el entendimiento humano, no para la m·quina."
+        textInfoNote.text = "El pseudocÛdigo, es una forma de expresar los diferentes pasos que realizar· un programa, m·s similar a un lenguaje de programaciÛn. Su principal funciÛn es representar la soluciÛn de un problema o algoritmo paso a paso de la forma m·s detallada posible, utilizando un lenguaje cercano a la programaciÛn. \n\nEl pseudocÛdigo no se puede ejecutar en una computadora porque entonces ya no ser· un pseudocÛdigo, como sugiere el nombre, es un cÛdigo de error (pseudo = falso), que es un cÛdigo escrito para el entendimiento humano, no para la m·quina."
                             + "\n\n                                        Pulsa 'X' para continuar....";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
@@ -460,7 +474,7 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "Diagrama de flujos";
-        textInfoNote.text = "Un diagrama de flujo se conoce como una representaciÛn gr·fica de todos los pasos involucrados en un proceso. Por lo tanto, es un diagrama esquem·tico de la secuencia de operaciones que componen el sistema. Un diagrama de flujo es en pocas palabras todas las acciones que se relacionan entre sÌ para conducir a un resultado especÌfico. \n\nEs importante resaltar que un diagrama de flujo es una representaciÛn gr·fica o visual de un algoritmo que utiliza varios sÌmbolos, formas y lÌneas para representar el proceso de un programa." +
+        textInfoNote.text = "Un diagrama de flujo se conoce como una representaciÛn gr·fica de todos los pasos involucrados en un proceso. Por lo tanto, es un diagrama esquem·tico de la secuencia de operaciones que componen el sistema. Un diagrama de flujo es en pocas palabras, todas las acciones que se relacionan entre sÌ para conducir a un resultado especÌfico. \n\nEs importante resaltar que un diagrama de flujo es una representaciÛn gr·fica o visual de un algoritmo que utiliza varios sÌmbolos, formas y lÌneas para representar el proceso de un programa." +
                              "\n                                           Pulsa 'X' para continuar....";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
@@ -491,7 +505,7 @@ public class scriptNotes : MonoBehaviour
         textTitle.text = "Problemas";
         textInfoNote.text = "En el cual se comprende con claridad, cu·l es el problema, que debes lograr y planificar una posible soluciÛn."
                              + "\n\nLa programaciÛn lineal es un mÈtodo por el cual se optimiza una funciÛn objetivo, por maximizaciÛn o minimizaciÛn, en el que las variables se elevan a potencias de 1. Ello, teniendo en cuenta las diversas restricciones introducidas." +
-                                " Recuerda que este tipo de ecuaciÛn es una igualdad matem·tica que puede tener una o m·s incÛgnitas. Entonces tiene la siguiente forma b·sica, donde a y b son constantes, mientras que x e y son variables.";
+                                " Recuerda que este tipo de ecuaciÛn es una igualdad matem·tica que puede tener una o m·s incÛgnitas. Entonces tiene la siguiente forma b·sica, donde (a, b) son constantes, mientras que (x, y) son variables.";
         button_exit.SetActive(true);
         Time.timeScale = 0f;
         opt = 0;
@@ -509,7 +523,7 @@ public class scriptNotes : MonoBehaviour
         textInfoNote.alignment = TextAnchor.UpperCenter;
         opt = 12;
         textTitle.text = "°FELICIDADES!";
-        textInfoNote.text = "°Felicidades has llegado al momento de las pruebas!" +
+        textInfoNote.text = "°Felicidades! has llegado al momento de las pruebas!" +
                             "\n\n°Validemos que tanto aprendiste!" +
                              "\n\n\nPulsa | X | para empezarÖ.";
         Time.timeScale = 0f;
@@ -569,18 +583,18 @@ public class scriptNotes : MonoBehaviour
         switch (opts)
         {
             case 1:
-                textInfoNote.text = "la lÛgica computacional es una disciplina que estudia la aplicaciÛn de la lÛgica formal Para representaciÛn computacional de par·metros, tÈcnicas de deducciÛn autom·tica o Conocimientos b·sicos asistidos por ordenador relacionados con la validez y la integridad de acuerdo con su complejidad. ";
+                textInfoNote.text = "la lÛgica computacional, es una disciplina que estudia la aplicaciÛn de la lÛgica formal para representaciÛn computacional de par·metros, tÈcnicas de deducciÛn autom·tica o conocimientos b·sicos asistidos por ordenador relacionados con la validez y la integridad de acuerdo con su complejidad. ";
                 break;
             case 2:
-                textInfoNote.text = "Para explicar mejor, un lenguaje de programaciÛn es un sistema de comunicaciÛn estructurado, compuesto por conjuntos de sÌmbolos, palabras clave, reglas sem·nticas y sintaxis que permite el entendimiento entre programadores y m·quinas." +
+                textInfoNote.text = "Para explicar mejor, un lenguaje de programaciÛn es un sistema de comunicaciÛn estructurado, compuesto por conjuntos de sÌmbolos, palabras clave, reglas sem·nticas y sintaxis, que permite el entendimiento entre programadores y m·quinas." +
                                     "\n\nEstos son algunos ejemplos de lenguajes de programaciÛn que podr·s encontrar:" +
                                     "\n\t*JavaScript \n\t*Java \n\t*C# \n\t*PHP \n\t*C / C++";
                 break;
             case 3:
-                textInfoNote.text = "Usando algoritmos, las personas pueden entender f·cilmente un programa. El objetivo principal de los diagramas de flujo es analizar diferentes procesos.\n\n Los procesos se pueden representar mediante cajas y flujos de diferentes tamaÒos y colores. En un diagrama, podemos resaltar f·cilmente un elemento y la relaciÛn entre cada parte.";
+                textInfoNote.text = "Usando algoritmos, las personas pueden entender f·cilmente un programa. El objetivo principal de los diagramas de flujo, es analizar diferentes procesos.\n\n Los procesos se pueden representar mediante cajas y flujos de diferentes tamaÒos y colores. En un diagrama, podemos resaltar f·cilmente un elemento y la relaciÛn entre cada parte.";
                 break;
             case 4:
-                textInfoNote.text = "El pseudocÛdigo es un mÈtodo para visualizar una soluciÛn detallada de un algoritmo. El tÈrmino se utiliza campos como la inform·tica, las especializaciones en inform·tica y el an·lisis numÈrico. Por lo tanto, el pseudocÛdigo es una forma relativamente simple de representar los diferentes pasos que debe seguir un programa para lograr sus objetivos.";
+                textInfoNote.text = "El pseudocÛdigo es un mÈtodo para visualizar una soluciÛn detallada de un algoritmo. El tÈrmino utiliza campos como la inform·tica, las especializaciones en inform·tica y el an·lisis numÈrico. Por lo tanto, el pseudocÛdigo es una forma relativamente simple de representar los diferentes pasos que debe seguir un programa para lograr sus objetivos.";
                 break;
             case 5:
                 textInfoNote.text = "Estos son los tipos de variables que puedes utilizar: \n\n* Variables numÈricas: Variables que almacenan valores numÈricos(positivos o negativos), es decir, almacenan n˙meros del 0 al 9, signos(+y -) y puntos decimales. \n\n*Variables booleanas: Son variables que pueden contener solo dos valores (verdadero o falso) que muestran el resultado de una comparaciÛn entre otros datos. \n\n*Variables AlfanumÈricas: incluye caracteres alfabÈticos numÈricos (letras, n˙meros y caracteres especiales).";
@@ -593,7 +607,7 @@ public class scriptNotes : MonoBehaviour
                 textInfoNote.alignment = TextAnchor.UpperLeft;
                 textTitle.text = "Prueba de algoritmo";
                 hosti.llaveInt = 2;
-                textInfoNote.text = "Un compaÒero te est· esperando para entregarte la tarea y la presentes ante el docente la cual contiene el problema a resolver."
+                textInfoNote.text = "Un compaÒero te est· esperando para entregarte la tarea y la presentes ante el docente, la cual contiene el problema a resolver."
                                     + "\n\nEstos son los pasos para la soluciÛn de este problema:"
                                     + "\t\n\n1.) Buscar la tarea en el mapa"
                                     + "\t\t\n2.) Recoger la tarea"
@@ -767,7 +781,7 @@ public class scriptNotes : MonoBehaviour
         text_title.SetActive(true);
         textTitle.text = "Ejemplo";
         textInfoNote.alignment = TextAnchor.UpperCenter;
-        textInfoNote.text = "°En el salon de secretaria encontraras un ejemplo de un diagrama de flujo, rep·salo bien se aproxima la prueba!.";
+        textInfoNote.text = "°En el salÛn de secretaria encontraras un ejemplo de un diagrama de flujo, rep·salo bien se aproxima la prueba!.";
         button_exit.SetActive(true);
         iamgenEjempDiagramFlujo.enabled = true;
         Time.timeScale = 0f;
