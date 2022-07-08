@@ -94,7 +94,6 @@ public class scriptNotes : MonoBehaviour
         buttonStart.SetActive(false);
         buttonStartTwo.SetActive(false);
         prueba2d.SetActive(false);
-        pruebaFinal2d.SetActive(false);
         hosti.llaveInt = 1;
         style = new GUIStyle();
         textInfoNote.GetComponent<Text>();
@@ -183,10 +182,10 @@ public class scriptNotes : MonoBehaviour
         personaje();
 
         ////--------borrar----------
-        for (int i = 0; i < buttonNotes.LongLength; i++)
-        {
-            buttonNotes[i].enabled = true;
-        }
+        //for (int i = 0; i < buttonNotes.LongLength; i++)
+        //{
+        //    buttonNotes[i].enabled = true;
+        //}
       
     }
     private void OnTriggerEnter(Collider other)
