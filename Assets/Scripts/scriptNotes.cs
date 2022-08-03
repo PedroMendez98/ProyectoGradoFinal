@@ -30,6 +30,8 @@ public class scriptNotes : MonoBehaviour
 
     //objetos a destruir
     public GameObject plarTeacher;
+    public GameObject obMiniMapTeacherPlar;
+    public GameObject obMiniMapTeacherPlar2;
     public GameObject companionCharacter;
     public Collider objTeacher;
     public GameObject bookHomework;
@@ -112,6 +114,7 @@ public class scriptNotes : MonoBehaviour
         iamgenEjempDiagramFlujo.enabled = false;
         opt = 0;
         enter = false;
+        obMiniMapTeacherPlar2.SetActive(false);
 
 
         for (int i = 0; i < notas.LongLength; i++)
@@ -157,6 +160,9 @@ public class scriptNotes : MonoBehaviour
                     textTitle.text = "¡Felicidades!";
                     textInfoNote.text = "\n\n\nVamos a la siguiente prueba, \npulsa el botón";
                     textInfoNote.alignment = TextAnchor.UpperCenter;
+                    Time.timeScale = 0f;
+                    msg = "";
+                    msgS.msg = " ";
                     break;
                 case 3:
                     optmenuPant = 4;
@@ -182,10 +188,10 @@ public class scriptNotes : MonoBehaviour
         personaje();
 
         ////--------borrar----------
-        //for (int i = 0; i < buttonNotes.LongLength; i++)
-        //{
-        //    buttonNotes[i].enabled = true;
-        //}
+        for (int i = 0; i < buttonNotes.LongLength; i++)
+        {
+            buttonNotes[i].enabled = true;
+        }
       
     }
     private void OnTriggerEnter(Collider other)
@@ -222,6 +228,7 @@ public class scriptNotes : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        opt = 0;
         exitNote();
     }
     void optionNote(string tagG)
@@ -333,6 +340,7 @@ public class scriptNotes : MonoBehaviour
         pistDiagFlujo.enabled = false;
         iamgenEjempDiagramFlujo.enabled = false;
         buttonStartTwo.SetActive(false);
+        buttonStart.SetActive(false);
         enter = false;
     }
     public void logicNote()
@@ -355,6 +363,7 @@ public class scriptNotes : MonoBehaviour
         plarTeacher.transform.position = new Vector3(350.43f, 165.418f, 259.57f);
         plarTeacher.transform.eulerAngles = new Vector3(0f, -281.874f, 0f);
         plarTeacher.SetActive(false);
+        Destroy(obMiniMapTeacherPlar);
     }
     public void concepText()
     {
@@ -394,24 +403,13 @@ public class scriptNotes : MonoBehaviour
         text_info_note.SetActive(true);
         text_title.SetActive(true);
         textTitle.text = "Algoritmo";
-
-
-
-
-
         textInfoNote.text = "Un algoritmo informático es un conjunto definido, ordenado y acotado de instrucciones para resolver un problema, realizar un cálculo o realizar una tarea. Es decir; un algoritmo es un proceso paso a paso para llegar a un fin. Partiendo de un estado de información inicial, sigue una secuencia de pasos ordenados para resolver una situación."
                             + "\n\nLos algoritmos se componen de tres partes: " +
                                 "\n\t* Input(Entrada) información que se suministra al algoritmo." +
                                 "\n\t* Proceso(Paso asignados a partir de la entrada)." +
                                 "\n\t* Output(Salida) resultado de la transformación de los datos."
-                                + "\nLos cuales son importantes para realizar los pasos y resolver los problemas.  ";
-        
-        
-        
-        
-        
-        
-        
+                           + "\nLos cuales son importantes para realizar los pasos y resolver los problemas.  ";  
+                                                                                                                                                                                                                                                                                                                                               
         button_exit.SetActive(true);
         Time.timeScale = 0f;
         opt = 0;
@@ -528,6 +526,7 @@ public class scriptNotes : MonoBehaviour
         Time.timeScale = 0f;
         companionCharacter.SetActive(true);
         plarTeacher.SetActive(true);
+        obMiniMapTeacherPlar2.SetActive(true);
         hosti.llaveInt = 2;
         objTeacher.enabled = false;
         optInterrogante = 2;
@@ -632,6 +631,7 @@ public class scriptNotes : MonoBehaviour
                 activarPistas("pisDiagramFlujo");
                 break;
             default:
+                opt = 0;
                 break;
         }
     }
@@ -750,6 +750,7 @@ public class scriptNotes : MonoBehaviour
         text_title.SetActive(false);
         buttonStart.SetActive(false);
         optInterrogante = 4;
+        colliderTeacherTwo.enabled = false;
     }
     public void button_active_final()
     {
@@ -772,6 +773,7 @@ public class scriptNotes : MonoBehaviour
         desactivarPistas("pisDiagramFlujo");
         optInterrogante = 3;
         opt = 0;
+        tags = "";
     }
     public void activarExampleDiagrama()
     {
