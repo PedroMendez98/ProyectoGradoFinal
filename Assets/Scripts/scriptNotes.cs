@@ -188,10 +188,10 @@ public class scriptNotes : MonoBehaviour
         personaje();
 
         ////--------borrar----------
-        for (int i = 0; i < buttonNotes.LongLength; i++)
-        {
-            buttonNotes[i].enabled = true;
-        }
+       //for (int i = 0; i < buttonNotes.LongLength; i++)
+       //{
+       //    buttonNotes[i].enabled = true;
+       //}
       
     }
     private void OnTriggerEnter(Collider other)
