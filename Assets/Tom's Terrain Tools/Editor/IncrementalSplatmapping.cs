@@ -49,10 +49,10 @@ public class IncrementalSplatmapping : EditorWindow {
 		EditorGUILayout.BeginVertical(GUI.skin.box, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
 		scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
 
+	
 		GUILayout.Label("Incremental Splatmapping",EditorStyles.boldLabel);
 		EditorGUILayout.Separator();
 
-		// bold titles
 		GUIStyle myFoldoutStyle = new GUIStyle(EditorStyles.foldout);
 		myFoldoutStyle.fontStyle = FontStyle.Bold;
 
@@ -145,6 +145,9 @@ public class IncrementalSplatmapping : EditorWindow {
 	}
 	
 	
+	
+	/*It takes a Texture2D, checks if it's readable and RGB24, and if not, makes it so*/
+	/// <param name="Texture2D">The texture to fix</param>
 	void FixFormat(Texture2D texture) {
 		string path = AssetDatabase.GetAssetPath(texture);
 		TextureImporter textureImporter = AssetImporter.GetAtPath(path) as TextureImporter;
@@ -158,6 +161,13 @@ public class IncrementalSplatmapping : EditorWindow {
 		}
 	}
 	
+	/// <summary>
+	/// It reverses a string.
+	/// </summary>
+	/// <param name="text">the string that will be reversed</param>
+	/// <returns>
+	/// A new string with the characters in the array reversed.
+	/// </returns>
 	public string Reverse(string text) {
 	   if (text == null) return null;
 
@@ -166,6 +176,13 @@ public class IncrementalSplatmapping : EditorWindow {
 	   System.Array.Reverse(array);
       return new string(array);
 	}
+	/// <summary>
+	/// It takes a string as input, and returns a string
+	/// </summary>
+	/// <param name="basename">the name of the file without the extension</param>
+	/// <returns>
+	/// The first file that matches the basename and one of the extensions.
+	/// </returns>
 	public string FindFile(string basename) {
 		string[] extensions = {"tif", "tiff", "png", "jpg", "jpeg"};
 		foreach (string ext in extensions) {
@@ -178,6 +195,14 @@ public class IncrementalSplatmapping : EditorWindow {
 	}
 	
 
+	/// <summary>
+	/// It checks if the splatmap is null, if it's not null it fixes the format, then it checks if the
+	/// splatmap is square, and if it's not square it displays a dialog, then it checks if the splatmap is
+	/// a power of two, and if it's not a power of two it displays a dialog
+	/// </summary>
+	/// <returns>
+	/// A boolean value.
+	/// </returns>
 	bool CheckSplatmap() {
 		if (Splatmap==null) return false;
 		FixFormat(Splatmap);
@@ -190,7 +215,6 @@ public class IncrementalSplatmapping : EditorWindow {
 			EditorUtility.DisplayDialog("Wrong size", "Splatmap width and height must be a power of two", "Cancel"); 
 			return false;	
 		}
-
 		return true;
 	}
 	
@@ -200,6 +224,7 @@ public class IncrementalSplatmapping : EditorWindow {
 		TerrainData terrain = MyTerrain.terrainData;
 
 		int splaMaptWidth = Splatmap.width;
+		/* It checks if the splatmap is the same size as the terrain's splatmap. */
 		if (splaMaptWidth!=terrain.alphamapWidth)
 		{
 			Debug.LogError("New splatmap is not same resolution as the current terrain splatmap ("+splaMaptWidth+" != "+terrain.alphamapWidth+")");
@@ -215,15 +240,23 @@ public class IncrementalSplatmapping : EditorWindow {
 		int green_layer = layer+1;
 		int blue_layer = layer+2;
 
+		/* It's checking if the TextureRed variable is not null, and if it's not null, it calls the
+		AddTexture function, passing the TextureRed variable and the TileSizeRed variable as parameters. */
 		if (TextureRed) {
 			AddTexture(TextureRed, TileSizeRed);
 			add_layers++;
 		}
+		/* It's checking if the TextureGreen variable is not null, and if it's not null, it calls the
+		AddTexture function, passing the TextureGreen variable and the TileSizeGreen variable as
+		parameters. */
 		if (TextureGreen) {
 			AddTexture(TextureGreen, TileSizeGreen);
 			green_layer = layer + add_layers;
 			add_layers++;
 		}
+		/* It's checking if the TextureBlue variable is not null, and if it's not null, it calls the
+		AddTexture function, passing the TextureBlue variable and the TileSizeBlue variable as
+		parameters. */
 		if (TextureBlue) {
 			AddTexture(TextureBlue, TileSizeBlue);
 			blue_layer = layer + add_layers;
@@ -241,6 +274,8 @@ public class IncrementalSplatmapping : EditorWindow {
 				float blue = SplatmapColors[x*splaMaptWidth + y].b * bias;
 				float value = 0.0f;
 
+				/* It's checking if the TextureRed variable is not null, and if it's not null, it calls the
+				AddTexture function, passing the TextureRed variable and the TileSizeRed variable as parameters. */
 				if (TextureRed) {
 					if (red>0.0f) {
 						splatmapData[x,y,red_layer] = red;
@@ -250,6 +285,9 @@ public class IncrementalSplatmapping : EditorWindow {
 					}
 				}
 
+				/* It's checking if the TextureGreen variable is not null, and if it's not null, it calls the
+				AddTexture function, passing the TextureGreen variable and the TileSizeGreen variable as
+				parameters. */
 				if (TextureGreen) {
 					if (green>0.0f) {
 						splatmapData[x,y,green_layer] = green;
@@ -259,6 +297,9 @@ public class IncrementalSplatmapping : EditorWindow {
 					}
 				}
 
+				/* It's checking if the TextureBlue variable is not null, and if it's not null, it calls the
+				AddTexture function, passing the TextureBlue variable and the TileSizeBlue variable as
+				parameters. */
 				if (TextureBlue) {
 					if (blue>0.0f) {
 						splatmapData[x,y,blue_layer] = blue;
@@ -268,14 +309,25 @@ public class IncrementalSplatmapping : EditorWindow {
 					}
 				}
 
-				// normalize
 				float total = 0.0f;
+				/* It's checking if the Replacing variable is true, and if it's true, it's checking if the value
+				variable is greater than or equal to 1.0f, and if it's greater than or equal to 1.0f, it's
+				checking if
+				the l variable is less than the layer variable, and if it's less than the layer variable, it
+				sets the
+				splatmapData variable at the x and y coordinates and the l layer to 0. */
 				for (int l = 0; l < layer+add_layers; l++) {
 					if (Replacing && value >= 1.0f && l < layer) {
 						splatmapData[x,y,l] = 0;
 					}
 					total += splatmapData[x,y,l];
 				}
+				/* It's checking if the total variable is not equal to 1.0f, and if it's not equal to 1.0f, it's
+				looping through the l variable, which is less than the layer variable plus the add_layers
+				variable, and
+				if it's less than the layer variable plus the add_layers variable, it's setting the splatmapData
+				variable at the x and y coordinates and the l layer to the splatmapData variable at the x and y
+				coordinates and the l layer multiplied by 1.0f divided by the total variable. */
 				if (total != 1.0f) {
 					for (int l = 0; l < layer+add_layers; l++) {
 						splatmapData[x,y,l] *= 1.0f/total;
@@ -291,6 +343,11 @@ public class IncrementalSplatmapping : EditorWindow {
 		EditorUtility.ClearProgressBar();
 	}
 
+	/// <summary>
+	/// It takes a texture and a tile size, and adds it to the terrain as a splat prototype
+	/// </summary>
+	/// <param name="Texture2D">The texture you want to add.</param>
+	/// <param name="TileSize">The size of the texture in the terrain.</param>
 	void AddTexture(Texture2D Texture, int TileSize) 
 	{
 		SplatPrototype[] oldPrototypes = MyTerrain.terrainData.splatPrototypes;

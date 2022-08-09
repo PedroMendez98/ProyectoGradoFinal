@@ -34,6 +34,9 @@ public class MiniMapComponent : MonoBehaviour {
 	MiniMapEntity mme;
 	MapObject mmo;
 
+	/// <summary>
+	/// It registers the object with the minimap.
+	/// </summary>
 	void OnEnable(){
 		miniMapController = GameObject.Find ("CanvasMiniMap").GetComponent<MiniMapController> ();
 		mme = new MiniMapEntity ();
@@ -48,10 +51,16 @@ public class MiniMapComponent : MonoBehaviour {
 		mmo = miniMapController.RegisterMapObject(this.gameObject, mme);
 	}
 
+	/// <summary>
+	/// It unregisters the map object from the mini map controller.
+	/// </summary>
 	void OnDisable(){
 		miniMapController.UnregisterMapObject (mmo,this.gameObject);
 	}
 
+	/// <summary>
+	/// > When this object is destroyed, unregister it from the mini map
+	/// </summary>
 	void OnDestroy(){
 		miniMapController.UnregisterMapObject (mmo,this.gameObject);
 	}

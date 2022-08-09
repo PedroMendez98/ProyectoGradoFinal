@@ -46,6 +46,10 @@ public class AjPlayer : MonoBehaviour
         camDirection();
 
         movePlayer = playerInput.x * CamRight + playerInput.z * camFoorward;
+        /* Checking if the player is moving and if the left shift key is pressed. If the player is
+        moving and the left shift key is pressed, it will call the Run() function. If the player is
+        moving and the left shift key is not pressed, it will set the movePlayer variable to the
+        movePlayer variable multiplied by the runSpeed variable. */
         if (playerInput != Vector3.zero && !Input.GetKey(KeyCode.LeftShift))
         {
             movePlayer = movePlayer * runSpeed;
@@ -62,7 +66,10 @@ public class AjPlayer : MonoBehaviour
         player.Move(movePlayer * Time.deltaTime);
     }
 
-    //Función para habilidades del personaje
+
+    /// <summary>
+    /// If the player is grounded and the jump button is pressed, then the player will jump
+    /// </summary>
     void PlayerSkills()
     {
         if (player.isGrounded && Input.GetButtonDown("Jump"))
@@ -72,7 +79,10 @@ public class AjPlayer : MonoBehaviour
             animator.SetTrigger("IsJump");
         }
     }
-    //Función de Direccion de camara
+
+    /// <summary>
+    /// It gets the forward and right vectors of the camera and sets the y value to 0
+    /// </summary>
     void camDirection()
     {
         camFoorward = mainCamera.transform.forward;
@@ -85,7 +95,11 @@ public class AjPlayer : MonoBehaviour
         CamRight = CamRight.normalized;
 
     }
-    //Función de Gravedad
+
+    /// <summary>
+    /// If the player is grounded, then the fall velocity is set to the negative of the gravity
+    /// multiplied by the time since the last frame
+    /// </summary>
     void SetGravity()
     {
         if (player.isGrounded)
@@ -102,20 +116,20 @@ public class AjPlayer : MonoBehaviour
         animator.SetBool("IsGround", player.isGrounded);
 
     }
-    //Función de activación control de Animator
     private void OnAnimatorMove()
     {
 
     }
+    /// <summary>
+    /// The function Run() is called when the player presses the left shift key. The function then
+    /// multiplies the movePlayer variable by the runWalkSpeed variable. The animator.SetFloat()
+    /// function is then called to set the animation speed to the magnitude of the playerInput variable
+    /// multiplied by the runWalkSpeed variable
+    /// </summary>
     void Run()
     {
         movePlayer = movePlayer * runWalkSpeed;
         animator.SetFloat("VetX", playerInput.magnitude * runWalkSpeed);
     }
 
-    //IEnumerator time_starts()
-    //{
-    //    yield return new WaitForSeconds(5);
-    //    image.SetActive(false);
-    //}
 }

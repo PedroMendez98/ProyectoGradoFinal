@@ -19,11 +19,17 @@ public class obtjetRotate : MonoBehaviour
         style = new GUIStyle();
     }
 
-    // Update is called once per frame
+   /// <summary>
+   /// The Update function is called every frame
+   /// </summary>
     void Update()
     {
         objeto.transform.Rotate(0, 10, 0); 
     }
+    /// <summary>
+    /// If the player enters the trigger, set the enter variable to true
+    /// </summary>
+    /// <param name="Collider">The collider that is being entered.</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -31,6 +37,10 @@ public class obtjetRotate : MonoBehaviour
             enter = true;
         }
     }
+    /// <summary>
+    /// If the player leaves the trigger area, the panel is deactivated
+    /// </summary>
+    /// <param name="Collider">The collider that is used to detect the player.</param>
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -39,6 +49,9 @@ public class obtjetRotate : MonoBehaviour
             panelNotebook.SetActive(false);
         }
     }
+    /// <summary>
+    /// If the player presses the 'E' key, the function will display the text "E Pista!" on the screen
+    /// </summary>
     void OnGUI()
     {
         style.fontSize = 25;

@@ -22,14 +22,13 @@ public class ValidationFinal : MonoBehaviour
     }
     private void Update()
     {
-        //if (obj1.activeInHierarchy == false && obj2.activeInHierarchy == false && obj3.activeInHierarchy == false && obj4.activeInHierarchy == false && obj5.activeInHierarchy == false && obj6.activeInHierarchy == false && obj7.activeInHierarchy == false && obj8.activeInHierarchy == false && obj9.activeInHierarchy == false)
-        //{
-        //    prefabGame2D.SetActive(false);
-        //    Time.timeScale = 1f;
-        //}                   
-
         validarTodos(cont);
     }
+    /// <summary>
+    /// If the number of objects is equal to the number of objects in the array, then the exit button is
+    /// activated, the image is activated, the prefab is deactivated, and the counter is set to 0
+    /// </summary>
+    /// <param name="num">is the number of objects that have been validated</param>
     void validarTodos(int num)
     {
         if (num == objetos.LongLength)
@@ -40,6 +39,9 @@ public class ValidationFinal : MonoBehaviour
             cont = 0;
         }
     }
+    /// <summary>
+    /// This function loads the scene called "SampleScene" when the button is clicked
+    /// </summary>
     public void buttonSalir()
     {
         SceneManager.LoadScene("SampleScene");

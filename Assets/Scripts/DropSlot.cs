@@ -20,8 +20,6 @@ public class DropSlot : MonoBehaviour, IDropHandler
 
     public int tam;
 
-    public string tag;
-
     public int contador;
 
     public static string vali;
@@ -45,7 +43,8 @@ public class DropSlot : MonoBehaviour, IDropHandler
             item.transform.SetParent(transform);
             item.transform.position = transform.position;
 
-            Debug.Log("objbox " + gameObject.name);
+            /* A switch case that is used to validate the name of the gameObject and the name of the
+            item that is being dragged. */
             switch (gameObject.name)
             {
                 case "inicio":
@@ -110,13 +109,19 @@ public class DropSlot : MonoBehaviour, IDropHandler
 
     private void Update()
     {
+        /* This is checking if the item is not null and if the item's parent is not the transform of
+        the object. If it is, it will set the item to null. */
         if (item != null && item.transform.parent != transform)
         {
-            Debug.Log("Remover");
             item = null;
         }
     }
 
+    /// <summary>
+    /// This function is used to validate the item that is being dragged and dropped
+    /// </summary>
+    /// <param name="itemActi">The name of the item that is being dragged.</param>
+    /// <param name="GameObject">The object that you want to be able to drag.</param>
     void valiItemActi(string itemActi, GameObject obj)
     {
         GameObject i = obj;

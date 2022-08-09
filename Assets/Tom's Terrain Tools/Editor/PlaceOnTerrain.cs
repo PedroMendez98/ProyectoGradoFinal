@@ -10,10 +10,15 @@ namespace TTT
 		public Texture2D lmap;
 		
 		[MenuItem ("Window/Terrain Tools/Drop Selection to Terrain",false,103)]
+		/// <summary>
+		/// > This function will move the selected object to the terrain
+		/// </summary>
 		static void PlaceSelectionOnTerrain() 
 		{
 			foreach (Transform t in Selection.transforms) 
 			{
+				/* Checking if the selected object is a terrain. If it is not, it will move the object to the
+				terrain. */
 				if (t.GetComponent<Terrain>()==null)
 				{
 					Undo.RecordObject(t, "Move " + t.name);
@@ -30,9 +35,14 @@ namespace TTT
 		}
 	 
 		[MenuItem ("Window/Terrain Tools/Drop Selection to Terrain", true, 3)]
+		/// <summary>
+		/// If the user has selected a GameObject in the Hierarchy, then the menu item will be enabled
+		/// </summary>
+		/// <returns>
+		/// A bool.
+		/// </returns>
 		static bool ValidatePlaceSelectionOnTerrain () {
 			return Selection.activeTransform != null;
 		}
-	  	
 	}
 }

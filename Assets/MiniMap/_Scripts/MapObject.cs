@@ -27,6 +27,9 @@ public class MapObject : MonoBehaviour {
 
 	}
 
+	/// <summary>
+	/// It sets the values of the MiniMapEntity and the MiniMapController
+	/// </summary>
 	public void SetMiniMapEntityValues(MiniMapController controller,MiniMapEntity mme, GameObject attachedGO, Camera renderCamera, GameObject parentPanelGO){
 		linkedMiniMapEntity = mme;
 		owner = attachedGO;
@@ -43,12 +46,18 @@ public class MapObject : MonoBehaviour {
 
 	}
 
+	/// <summary>
+	/// > Set the parent of the object to the panel, and then set the position and rotation of the object
+	/// </summary>
 	void SetPositionAndRotation(){
 		transform.SetParent (panelGO.transform, false);
 
 		SetPosition ();
 		SetRotation ();
 	}
+	/// <summary>
+	/// > The function sets the position of the icon on the minimap
+	/// </summary>
 	void SetPosition(){
 		cornerss = new Vector3[4];
 		rt.GetWorldCorners (cornerss);
@@ -59,6 +68,10 @@ public class MapObject : MonoBehaviour {
 			sprRect.anchoredPosition = screenPos-rt.sizeDelta/2f;
 		}
 	}
+	/// <summary>
+	/// > If the icon collider is inside the shape collider, move the icon collider to the edge of the
+	/// shape collider
+	/// </summary>
 	void ClampIconColliderWise(){
 		sprRect.anchoredPosition = screenPos-rt.sizeDelta/2f;
 		Vector2 diff;
@@ -67,15 +80,18 @@ public class MapObject : MonoBehaviour {
 		if (hits.Length > 0) {
 			for(int i=0;i<hits.Length;i++){
 				if (hits [i].transform.name == mmc.shapeColliderGO.name) {
-					//Debug.DrawLine (sprRect.position, rt.position);
 					sprRect.position = hits[i].point;
 					break;
 				}
 			}
-		} 
-
+		}
 	}
 
+	/// <summary>
+	/// If the entity is set to rotate with the object, then rotate the entity based on the object's
+	/// rotation and the camera's rotation. If the entity is not set to rotate with the object, then rotate
+	/// the entity based on the entity's rotation
+	/// </summary>
 	void SetRotation(){
 		if (linkedMiniMapEntity.rotateWithObject) {
 			if (Mathf.Abs (linkedMiniMapEntity.upAxis.y) == 1) {

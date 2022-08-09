@@ -103,6 +103,10 @@ public class ui_manager : MonoBehaviour
         textInfo.text = "Este juego está diseñado para el aprendizaje de lógica computacional, de esta manera podrás poner aprueba tú conocimiento para resolver problemas a través de la lógica, \n\n recuerda, dentro del colegio encontraras información a través de pistas y objetos que tendrás que recolectar, de igual manera pondrás a prueba el conocimiento que obtengas durante esta aventura por medio pequeños ejercicios.";
 
     }
+    /// <summary>
+    /// This function is used to display the information of the game, it is activated when the player
+    /// clicks on the button "Information" in the main menu
+    /// </summary>
     public void startInfo2()
     {
         button_play.SetActive(false);
@@ -121,8 +125,11 @@ public class ui_manager : MonoBehaviour
         mini_map.SetActive(false);
         Bnext.GetComponent<Button>().onClick.AddListener(next);
         textInfo.text = "Este juego está diseñado para el aprendizaje de lógica computacional, de esta manera podrás poner aprueba tú conocimiento para resolver problemas a través de la lógica, \n\n recuerda; dentro del colegio encontrarás información a través de pistas y objetos que tendrás que recolectar, de igual manera pondrás a prueba el conocimiento que obtengas durante está aventura, por medio de pequeños ejercicios.";
-                                                                                                                                                                                                                                                                                                                   
     }
+
+    /// <summary>
+    /// It's a function that closes the menu and the pause menu, and it also activates the mini map
+    /// </summary>
     public void close()
     {
         textInfo.GetComponent<Text>();

@@ -59,6 +59,7 @@ public class Camara2 : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
+            /* Checking if the camera is hitting a wall. */
             if (Physics.Linecast(target.transform.position + addPos, corners[i], out hit))
             {
                 Debug.DrawLine(target.transform.position + addPos, corners[i], Color.red);
@@ -71,6 +72,7 @@ public class Camara2 : MonoBehaviour
             {
                 Debug.DrawLine(target.transform.position + addPos, corners[i], Color.blue);
             }
+            /* A fix for when the camera is too close to the wall. */
             if(hitDistance > 999999)
             {
                 hitDistance = 0;
@@ -79,6 +81,7 @@ public class Camara2 : MonoBehaviour
     }
     void LateUpdate()
     {
+        /* Setting the mouseDelta to the mouse's x, y, and scroll wheel. */
         mouseDelta.Set(Input.GetAxisRaw("Mouse X"),
             Input.GetAxisRaw("Mouse Y"),
             Input.GetAxisRaw("Mouse ScrollWheel"));
@@ -87,6 +90,7 @@ public class Camara2 : MonoBehaviour
         amount.z = Mathf.Clamp(amount.z, 50, 100);
         amount.y = Mathf.Clamp(amount.y, 10, 89);
 
+        /* Rotating the camera. */
         cameraRotation = Quaternion.AngleAxis(-amount.x, Vector3.up) *
             Quaternion.AngleAxis(amount.y, Vector3.right);
 
@@ -96,6 +100,7 @@ public class Camara2 : MonoBehaviour
 
         cameraPositioNotOcc = target.transform.position + addPos - lookAt * hitDistance;
 
+        /* This is a fix for when the camera is too close to the wall. */
         if (hitDistance < cam.nearClipPlane * 2.5f)
         {
             cameraPositioNotOcc -= lookAt * cam.nearClipPlane;
@@ -103,6 +108,7 @@ public class Camara2 : MonoBehaviour
 
         transform.rotation = Quaternion.Lerp(transform.rotation, cameraRotation, Time.deltaTime * 10.0f);
 
+        /* This is a fix for when the camera is too close to the wall. */
         if (hitDistance > 0)
         {
             transform.position = Vector3.Lerp(transform.position, cameraPositioNotOcc, Time.deltaTime * 10.0f); ;

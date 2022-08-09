@@ -133,11 +133,9 @@ namespace TTT_Tools
 		{
 			if (!ValidateTerrain()) return;
 
-			// TODO: read heightdata
 			var terrainData = myTerrain.terrainData;
 			var width = terrainData.heightmapResolution;
 			var length = terrainData.heightmapResolution;
-//			var height = terrainData.size.y;
 
 			var newSplatmap = new Texture2D(width,length,TextureFormat.RGB24,false);
 			var pixels = newSplatmap.GetPixels();
@@ -159,6 +157,8 @@ namespace TTT_Tools
 
 					normalizedHeight = Remap(worldHeight,lowestPoint,highestPoint,0,100);
 
+					/* Checking if the normalized height is less than or equal to the red threshold max. If it is,
+					then it sets r to 1, otherwise it sets r to 0. */
 					if (normalizedHeight<=redThresholdMax)
 					{
 						r=1;
@@ -166,6 +166,8 @@ namespace TTT_Tools
 						r=0;
 					}
 			
+					/* Checking if the normalized height is between the green threshold min and max. If it is, then it
+					sets g to 1, otherwise it sets g to 0. */
 					if (normalizedHeight>=greenThresholdMin && normalizedHeight<=greenThresholdMax)
 					{
 						g=1;
@@ -173,6 +175,8 @@ namespace TTT_Tools
 						g=0;
 					}
 
+					/* This is checking if the normalized height is greater than or equal to the blue threshold min.
+					If it is, then it sets b to 1, otherwise it sets b to 0. */
 					if (normalizedHeight>=blueThresholdMin)
 					{
 						b=1;
@@ -206,7 +210,12 @@ namespace TTT_Tools
 			DestroyImmediate(newSplatmap);
 		}
 
-		// checks if terrain is assigned and terrainData is accessible
+		/// <summary>
+		/// If the terrain is null, or if the terrainData is null, then return false
+		/// </summary>
+		/// <returns>
+		/// A boolean value.
+		/// </returns>
 		bool ValidateTerrain()
 		{
 			if (myTerrain==null) 
@@ -220,13 +229,12 @@ namespace TTT_Tools
 				Debug.LogError("Unable to get terrainData from "+myTerrain.name);
 				return false;
 			}
-
 			return true;
 		}
 
-
-		// HELPERS
-
+		/// <summary>
+		/// > Remap a value from one range to another
+		/// </summary>
 		float Remap(float source, float sourceFrom, float sourceTo, float targetFrom, float targetTo)
 		{
 			return targetFrom + (source-sourceFrom)*(targetTo-targetFrom)/(sourceTo-sourceFrom);
@@ -237,7 +245,28 @@ namespace TTT_Tools
 			return (float)(targetFrom + (source-sourceFrom)*(targetTo-targetFrom)/(sourceTo-sourceFrom));
 		}
 
-		// returns min and max height
+		/// <summary>
+		/// > Get the heightmap resolution of the terrain, then loop through every point in the heightmap and
+		/// get the height of that point. 
+		/// 
+		/// The first thing we do is get the terrain data from the terrain object. Then we get the heightmap
+		/// resolution of the terrain. This is the number of points in the heightmap. 
+		/// 
+		/// Next we create two variables to hold the minimum and maximum height values. We set them to
+		/// infinity and negative infinity respectively. 
+		/// 
+		/// Then we loop through every point in the heightmap. We get the height of the point and compare it
+		/// to the current minimum and maximum values. If it's lower than the minimum, we set the minimum to
+		/// that value. If it's higher than the maximum, we set the maximum to that value. 
+		/// 
+		/// Once we've looped through every point in the heightmap, we return a Vector2 with the minimum and
+		/// maximum values. 
+		/// 
+		/// Now we can use this function to get
+		/// </summary>
+		/// <returns>
+		/// A Vector2 with the min and max height of the terrain.
+		/// </returns>
 		Vector2 GetTerrainHeightRange()
 		{
 			var terrainData = myTerrain.terrainData;
@@ -259,7 +288,5 @@ namespace TTT_Tools
 			}
 			return new Vector2(minY,maxY);
 		}
-
-
 	}
 }

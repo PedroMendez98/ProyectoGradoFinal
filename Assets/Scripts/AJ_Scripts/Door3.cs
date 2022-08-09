@@ -28,6 +28,8 @@ public class Door3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /* Checking if the door is open or not. If it is open, it will set the key to false. If it is
+        not open, it will set the key to true. */
         if (open)
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, openRot, Time.deltaTime * smooth);
@@ -38,6 +40,9 @@ public class Door3 : MonoBehaviour
             transform.localPosition = Vector3.Lerp(transform.localPosition, defaultRot, Time.deltaTime * smooth);
             key = true;
         }
+        /* Checking if the player is pressing the F key and if the player is entering the door. If the
+        player is pressing the F key and entering the door, the door will open. If the player is
+        pressing the F key and entering the door, the door will close. */
         if (Input.GetKeyDown("f") && enter)
         {
             open = !open;
@@ -52,10 +57,14 @@ public class Door3 : MonoBehaviour
                 smooth = 2.1f;
                 audioSource.clip = closeDoor;
                 audioSource.Play();
-
             }
         } 
     }
+    /// <summary>
+    /// When the player enters the trigger, the panel is set to active and the enter variable is set to
+    /// true
+    /// </summary>
+    /// <param name="Collider">The collider that is hit by the raycast.</param>
     private void OnTriggerEnter(Collider other)
     {  
         if (other.gameObject.tag == "Player")
@@ -68,6 +77,10 @@ public class Door3 : MonoBehaviour
             AudioSource.PlayClipAtPoint(closeDoor, transform.position, 1);
         }
     }
+    /// <summary>
+    /// When the player exits the trigger, the panel is deactivated and the boolean is set to false
+    /// </summary>
+    /// <param name="Collider">The collider that is being exited.</param>
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -85,12 +98,14 @@ public class Door3 : MonoBehaviour
         style.fontSize = 25;
         style.font = ScoreFont;
 
+        /* Checking if the player is entering the door and if the key is true. If the player is
+        entering the door and the key is true, it will display the text "F Abrir" on the screen. */
         if (enter && key)
         {
-            // Se muestra el mensaje de interaccion
-
             GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height - 50, 150, 30), "'F' Abrir", style);
         }
+        /* Checking if the player is entering the door and if the key is false. If the player is
+        entering the door and the key is false, it will display the text "F Cerrar" on the screen. */
         if (enter && !key)
         {
             GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height - 50, 150, 30), "'F' Cerrar", style);

@@ -21,6 +21,7 @@ public class scriptNotebook : MonoBehaviour
     {
         transform.Rotate(xAngle: 10f, yAngle: 0, zAngle: 0);
     }
+    /* Checking if the player is within the trigger area. */
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -28,6 +29,10 @@ public class scriptNotebook : MonoBehaviour
             enter = true;
         }
     }
+    /// <summary>
+    /// If the player leaves the trigger area, the boolean variable enter is set to false
+    /// </summary>
+    /// <param name="Collider">The collider that is being used to detect the player.</param>
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -35,6 +40,10 @@ public class scriptNotebook : MonoBehaviour
             enter = false;
         }
     }
+    /// <summary>
+    /// If the player presses the F key, the function will check if the player is within a certain
+    /// distance of the object, and if so, it will display a message on the screen
+    /// </summary>
     void OnGUI()
     {
         style.fontSize = 25;

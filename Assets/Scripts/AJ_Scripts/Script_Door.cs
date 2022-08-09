@@ -69,6 +69,10 @@ public class Script_Door : MonoBehaviour
             AudioSource.PlayClipAtPoint(closeDoor, transform.position, 1);
         }
     }
+    /// <summary>
+    /// If the player exits the trigger, the panel is deactivated and the door sound is played
+    /// </summary>
+    /// <param name="Collider">The collider that is being exited.</param>
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -86,12 +90,14 @@ public class Script_Door : MonoBehaviour
         style.fontSize = 25;
         style.font = ScoreFont;
 
+        /* Checking if the player is in the trigger and if the key is true. If it is, it will display
+        the text "F Abrir" on the screen. */
         if (enter && key)
         {
-            // Se muestra el mensaje de interaccion
-
             GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height - 50, 150, 30), "'F' Abrir", style);
         }
+        /* Checking if the player is in the trigger and if the key is false. If it is, it will display
+        the text "F Cerrar" on the screen. */
         if (enter && !key)
         {
             GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height - 50, 150, 30), "'F' Cerrar", style);

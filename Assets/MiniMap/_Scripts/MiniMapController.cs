@@ -66,7 +66,11 @@ public class MiniMapController : MonoBehaviour {
 	Vector2 res;
 	Image miniMapPanelImage;
 
-	//Initialize everything here
+
+ 
+	/// We're getting references to the map panel, the map panel border, the map panel mask, the map
+	/// camera, and the map panel image. We're also setting up the render texture
+ 
 	public void OnEnable(){
 		ownerIconMap.Clear ();
 		GameObject maskPanelGO = transform.GetComponentInChildren<Mask> ().gameObject;
@@ -89,7 +93,9 @@ public class MiniMapController : MonoBehaviour {
 		miniMapPanelImage.enabled = !showBackground;
 		SetupRenderTexture();
 	}
-	//Release the unmanaged objects
+ 
+	/// If the render texture is not null and it is not created, release it
+ 
 	void OnDisable(){
 		if (renderTex != null) {
 			if (!renderTex.IsCreated ()) {
@@ -98,9 +104,9 @@ public class MiniMapController : MonoBehaviour {
 		}
 	}
 
-	//Release the unmanaged objects
+ 
+	/// If the render texture is not null, and it is not created, then release it
 	void OnDestroy(){
-		//Debug.Log ("MiniMapController OnDestroy");
 		if (renderTex != null) {
 			if (!renderTex.IsCreated ()) {
 				renderTex.Release ();
@@ -108,9 +114,9 @@ public class MiniMapController : MonoBehaviour {
 		}
 	}
 
-	//As this script is ExecuteInEditMode, this function will be called when something in scene changes
+ 
+	/// It sets the map panel mask, border, and color, and then sets the render texture and camera
 	public void LateUpdate(){
-		//Set minimap images and colors
 		mapPanelMask.sprite = miniMapMask;
 		mapPanelBorder.sprite = miniMapBorder;
 		mapPanelBorder.rectTransform.localScale = miniMapScale;
@@ -118,47 +124,40 @@ public class MiniMapController : MonoBehaviour {
 		mapColor.a = miniMapOpacity;
 		mapPanelBorder.color = mapBorderColor;
 		mapPanel.color = mapColor;
-
-		//Set minimappanel size and position, so it updates with size and resolution changes
 		mapPanelMaskRect.sizeDelta = new Vector2(Mathf.RoundToInt(mapPanelMaskRect.sizeDelta.x),Mathf.RoundToInt(mapPanelMaskRect.sizeDelta.y));
 		mapPanelRect.position = mapPanelMaskRect.position;
 		mapPanelRect.sizeDelta = mapPanelMaskRect.sizeDelta;
 		miniMapPanelImage.enabled = !showBackground;
 
 		if (Screen.width != res.x || Screen.height != res.y) {
-			//Set the render texture
 			SetupRenderTexture ();
-			//res = new Vector2(Screen.width,Screen.height);
 			res.x = Screen.width;
 			res.y = Screen.height;
 		}
-		//Set the camera
 		SetCam ();
 	}
+
 	void SetupRenderTexture(){
-		//Release the old texture, otherwise memory leak happens
-		//This line shows as error log in Unity versions < 5.4, which is a Unity bug. But harmless.
 		if(renderTex.IsCreated()) renderTex.Release ();
-		//Setup render texture and resize it.
-		//New render texture was created, as premade render texture's size can't be changed
+
 		renderTex = new RenderTexture ((int)mapPanelRect.sizeDelta.x, (int)mapPanelRect.sizeDelta.y, 24);
-		//Create only creates new render texture in memory, if it is not already created
+
 		renderTex.Create ();
 
 		mapMaterial.mainTexture = renderTex;
 		mapCamera.targetTexture = renderTex;
 
-		//Cheat to refresh the minimap panel texture;
+
 		mapPanelMaskRect.gameObject.SetActive (false);
 		mapPanelMaskRect.gameObject.SetActive (true);
 	}
 
+/// > Set the camera's orthographic size, far clip plane, rotation, and position
 	void SetCam(){
 		mapCamera.orthographicSize = camSize;
 		mapCamera.farClipPlane = camFarClip;
 		if (target == null) {
 			#if UNITY_EDITOR
-			Debug.Log ("Please assign the target");
 			#endif
 		} else {
 			mapCamera.transform.eulerAngles = rotationOfCam;
@@ -170,7 +169,8 @@ public class MiniMapController : MonoBehaviour {
 		}
 	}
 
-	//Register's minimap objects here
+	/// It creates a new GameObject, adds a MapObject component to it, and then sets the values of the
+	/// MapObject component
 	public MapObject RegisterMapObject(GameObject owner, MiniMapEntity mme){
 		GameObject curMGO = Instantiate (iconPref);
 		MapObject curMO = curMGO.AddComponent<MapObject> ();
@@ -179,7 +179,10 @@ public class MiniMapController : MonoBehaviour {
 		return owner.GetComponent<MapObject>();
 	}
 
-	//Unregister's minimap objects here
+
+	/// It removes the map object from the map.
+	/// <param name="MapObject">The MapObject that you want to remove from the map.</param>
+	/// <param name="GameObject">The game object that the map object is attached to.</param>
 	public void UnregisterMapObject(MapObject mmo, GameObject owner){
 		if (ownerIconMap.ContainsKey (owner)) {
 			Destroy (ownerIconMap [owner]);

@@ -17,6 +17,10 @@ public class DragHandler1 : MonoBehaviour
     public string sCases;
     public static int val;
 
+    /// <summary>
+    /// It's a function that is called when the game starts, and it sets all the objects in the array to
+    /// inactive.
+    /// </summary>
     private void Start()
     {
         cont = "";
@@ -30,6 +34,12 @@ public class DragHandler1 : MonoBehaviour
     {
         sumarN(cont);
     }
+
+    /// <summary>
+    /// It's a function that takes a string as a parameter and depending on the value of the string, it
+    /// will activate a different image
+    /// </summary>
+    /// <param name="name">is the name of the image that is being clicked</param>
     public void sumarN(string name)
     {
         switch (name)
@@ -90,9 +100,13 @@ public class DragHandler1 : MonoBehaviour
                 activarImages("");
                 break;
         }
-
     }
 
+    /// <summary>
+    /// It takes a string as a parameter and then loops through an array of game objects and activates
+    /// the one that matches the string
+    /// </summary>
+    /// <param name="name">The name of the object you want to activate.</param>
     void activarImages(string name)
     {
         for (int i = 0; i < objetos.LongLength; i++)
@@ -103,6 +117,10 @@ public class DragHandler1 : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// It's a function that activates images based on the value of the parameter
+    /// </summary>
+    /// <param name="vali">is the value of the option selected</param>
     void optionRes1(int vali)
     {
         switch (vali)

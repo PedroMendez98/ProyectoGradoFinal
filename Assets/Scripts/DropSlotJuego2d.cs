@@ -11,7 +11,6 @@ public class DropSlotJuego2d : MonoBehaviour, IDropHandler
     public GameObject[] comboxBool;
     public int cont;
     public int tam;
-    public string tag;
     public int contador;
     private void Start()
     {
@@ -24,8 +23,9 @@ public class DropSlotJuego2d : MonoBehaviour, IDropHandler
             item = DragHandler.objBeingDraged;
             item.transform.SetParent(transform);
             item.transform.position = transform.position;
-            Debug.Log(gameObject.name);
             Validation v = new Validation();
+            /* This is checking if the gameObject name is equal to SlotN1 or SlotN2 or SlotN3 and if
+            the item gameObject tag is equal to ItemN then the gameObject is set to inactive. */
             if (gameObject.name == "SlotN1" || gameObject.name == "SlotN2" || gameObject.name == "SlotN3")
             {
                 if (item.gameObject.tag == "ItemN")
@@ -33,6 +33,9 @@ public class DropSlotJuego2d : MonoBehaviour, IDropHandler
                     gameObject.SetActive(false);
                 }
             }
+            /* This is checking if the gameObject name is equal to SlotA1 or SlotA2 or SlotA3 and if
+                        the item gameObject tag is equal to ItemA then the gameObject is set to
+            inactive. */
             if (gameObject.name == "SlotA1" || gameObject.name == "SlotA2" || gameObject.name == "SlotA3")
             {
                 if (item.gameObject.tag == "ItemA")
@@ -40,6 +43,10 @@ public class DropSlotJuego2d : MonoBehaviour, IDropHandler
                     gameObject.SetActive(false);
                 }
             }
+            /* This is checking if the gameObject name is equal to SlotB1 or SlotB2 or SlotB3 and if
+                                    the item gameObject tag is equal to ItemB then the gameObject is
+            set to
+                        inactive. */
             if (gameObject.name == "SlotB1" || gameObject.name == "SlotB2" || gameObject.name == "SlotB3")
             {
                 if (item.gameObject.tag == "ItemB")
@@ -51,9 +58,10 @@ public class DropSlotJuego2d : MonoBehaviour, IDropHandler
     }
     private void Update()
     {
+        /* This is checking if the item is not null and if the item transform parent is not equal to
+        the transform then the item is set to null. */
         if (item != null && item.transform.parent != transform)
         {
-            Debug.Log("Remover");
             item = null;
         }
     }

@@ -28,6 +28,16 @@ public class script_teacher_one : MonoBehaviour
     public Font ScoreFont;
     public int llaveInt;
 
+    /// <summary>
+    /// The Awake function is called when the script instance is being loaded. Awake is used to
+    /// initialize any variables or game state before the game starts. Awake is called only once during
+    /// the lifetime of the script instance. Awake is called after all objects are initialized so you
+    /// can safely speak to other objects or query them using for example GameObject.FindWithTag. Each
+    /// GameObject's Awake is called in a random order between objects. Because of this, you should use
+    /// Awake to set up references between scripts, and use Start to pass any information back and
+    /// forth. Awake is always called before any Start functions. This allows you to order
+    /// initialization of scripts. Awake can not act as a coroutine
+    /// </summary>
     private void Awake()
     {
         teacher = GetComponent<NavMeshAgent>();
@@ -61,6 +71,12 @@ public class script_teacher_one : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// If the player enters the trigger, the teacher will rotate to face the player, the key will be
+    /// set to true, the enter variable will be set to true, and the teacherStatic function will be
+    /// called
+    /// </summary>
+    /// <param name="Collider">The collider that is entered.</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -69,12 +85,16 @@ public class script_teacher_one : MonoBehaviour
             jugador.Rotate(rota);
             llave = true;
             enter = true;
-            //panel.SetActive(true);
-            //textWelcome.SetActive(true);
             teacherStatic();
            
         }
     }
+    /// <summary>
+    /// If the player leaves the trigger area, the key is set to false, the time is set to 0, the
+    /// timeRest is set to 5, the enter is set to false, the panel is set to false and the textWelcome
+    /// is set to false
+    /// </summary>
+    /// <param name="Collider">The collider that is used to detect the player.</param>
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -88,6 +108,9 @@ public class script_teacher_one : MonoBehaviour
             
         }
     }
+    /// <summary>
+    /// If the teacher's destination is the player's position, then the teacher's angular speed is 0.
+    /// </summary>
     void teacherStatic()
     {
         distance = 0;
@@ -101,10 +124,11 @@ public class script_teacher_one : MonoBehaviour
             timeRest = 0;
             teacher.angularSpeed = 0f;
         }
-
         llaveInt = 2;
-
     }
+    /// <summary>
+    /// The teacher moves to a random point, then when it reaches that point, it moves to the player.
+    /// </summary>
     void teacherMove()
     {
         teacher.angularSpeed = 120f;
@@ -131,6 +155,24 @@ public class script_teacher_one : MonoBehaviour
             teacher.destination = jugador.position;
         }
     }
+    /// <summary>
+    /// If the player is within a certain distance of the professor, the text "F" will appear on the
+    /// screen. 
+    /// 
+    /// The first thing we do is create a new GUIStyle object called style. This is the style that we
+    /// will use to display the text. We then set the font size to 25 and the font to the ScoreFont
+    /// object we created earlier. 
+    /// 
+    /// Next, we check if the player is within a certain distance of the professor. If they are, we
+    /// display the text "F" on the screen. 
+    /// 
+    /// The GUI.Label function is used to display text on the screen. The first parameter is the
+    /// position of the text. The second parameter is the text itself. The third parameter is the style
+    /// of the text. 
+    /// 
+    /// The position of the text is determined by the Rect function. The Rect function takes four
+    /// parameters: the x position, the y position, the width
+    /// </summary>
     void OnGUI()
     {
          style.fontSize = 25;
@@ -140,13 +182,14 @@ public class script_teacher_one : MonoBehaviour
             GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height - 50, 150, 30), "'F' Hablar con el Profe!", style);
          }
     }
+    /// <summary>
+    /// If the teacher is not walking, then make him speak.
+    /// </summary>
     public void teacherMove_2()
     {
-
         teacherAnimator.SetBool("Walk", false);
         teacherAnimator.SetBool("Idle", false);
         teacherAnimator.SetBool("Speak", true);
-
     }
 }
 
