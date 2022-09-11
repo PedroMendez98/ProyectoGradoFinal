@@ -189,10 +189,10 @@ public class scriptNotes : MonoBehaviour
         }
         personaje();
         ////--------borrar----------
-        for (int i = 0; i < buttonNotes.LongLength; i++)
-        {
-            buttonNotes[i].enabled = true;
-        }
+        //for (int i = 0; i < buttonNotes.LongLength; i++)
+        //{
+        //    buttonNotes[i].enabled = true;
+        //}
     }
 
     
@@ -908,10 +908,10 @@ public class scriptNotes : MonoBehaviour
         panelNotebook.SetActive(true);
         text_info_note.SetActive(true);
         text_title.SetActive(true);
+        button_exit.SetActive(true);
         textTitle.text = "Ejemplo";
         textInfoNote.alignment = TextAnchor.UpperCenter;
-        textInfoNote.text = "¡En el salón de secretaria encontraras un ejemplo de un diagrama de flujo, repásalo bien se aproxima la prueba!.";
-        button_exit.SetActive(true);
+        textInfoNote.text = "¡En el salón de secretaria encontraras un ejemplo de un diagrama de flujo, repásalo bien se aproxima la prueba!."; 
         iamgenEjempDiagramFlujo.enabled = true;
         Time.timeScale = 0f;
         opt = 0;
